@@ -1,0 +1,19 @@
+{
+  "name": "crypto-project",
+  "version": "0.1",
+  "description": "An Enhancement of Data Security in Third-party Storage with an Implementation of Hybrid AES-ECC algorithm",
+  "main": "app.js",
+  "repository": "https://github.com/haouit/Secure-Cloud-DB-Hybrid",
+  "author": "haouit <22520404@gm.uit.edu.vn>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}

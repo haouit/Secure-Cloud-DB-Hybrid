@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NT219_FinalProject.Crypto;
 
 namespace NT219_FinalProject
 {
@@ -120,19 +121,36 @@ namespace NT219_FinalProject
             //await SendRequestByme(currentPage, pageSize);
         }
 
-        private void list_data_Click(object sender, EventArgs e)
+        private static byte[] rsaPublicKey;
+        private static byte[] rsaPrivateKey;
+
+        private void btn_createpublickey_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Thông báo!");
+            rb_publickey.Clear();
+            rb_privatekey.Clear();
+            RSA rsa = new RSA();
+            byte[][] pubandpri = rsa.GenerateKeyPair();
+            rsaPublicKey = pubandpri[0];
+            rsaPrivateKey = pubandpri[1];
+            rb_privatekey.Text = Convert.ToBase64String(rsaPrivateKey);
+            rb_publickey.Text = Convert.ToBase64String(rsaPublicKey);
         }
 
-        private void list_request_Click(object sender, EventArgs e)
+        private void btn_configpublickey_Click(object sender, EventArgs e)
         {
-
+            
         }
 
-        private void btn_createsecretkey_Click(object sender, EventArgs e)
+        private void btn_saveprivatekey_Click(object sender, EventArgs e)
         {
-
+            checkBox2.Checked = true;
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = saveFileDialog.FileName;
+                File.WriteAllBytes(fileName + "public_key.bin", rsaPublicKey);
+                File.WriteAllBytes(fileName + "private_key.bin", rsaPrivateKey);
+            }
         }
     }
 }

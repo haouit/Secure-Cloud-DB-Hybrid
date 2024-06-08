@@ -30,11 +30,12 @@
         {
             tabshow = new TabControl();
             Key_setting = new TabPage();
-            btn_createsecretkey = new Button();
-            btn_saveseecertkey = new Button();
-            rb_secretkey = new RichTextBox();
-            btn_createpublickey = new Button();
+            checkBox2 = new CheckBox();
+            checkBox1 = new CheckBox();
+            btn_saveprivatekey = new Button();
             label2 = new Label();
+            rb_privatekey = new RichTextBox();
+            btn_createpublickey = new Button();
             btn_configpublickey = new Button();
             label1 = new Label();
             rb_publickey = new RichTextBox();
@@ -72,11 +73,12 @@
             // 
             // Key_setting
             // 
-            Key_setting.Controls.Add(btn_createsecretkey);
-            Key_setting.Controls.Add(btn_saveseecertkey);
-            Key_setting.Controls.Add(rb_secretkey);
-            Key_setting.Controls.Add(btn_createpublickey);
+            Key_setting.Controls.Add(checkBox2);
+            Key_setting.Controls.Add(checkBox1);
+            Key_setting.Controls.Add(btn_saveprivatekey);
             Key_setting.Controls.Add(label2);
+            Key_setting.Controls.Add(rb_privatekey);
+            Key_setting.Controls.Add(btn_createpublickey);
             Key_setting.Controls.Add(btn_configpublickey);
             Key_setting.Controls.Add(label1);
             Key_setting.Controls.Add(rb_publickey);
@@ -87,70 +89,82 @@
             Key_setting.Text = "Key Setting";
             Key_setting.UseVisualStyleBackColor = true;
             // 
-            // btn_createsecretkey
+            // checkBox2
             // 
-            btn_createsecretkey.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_createsecretkey.Location = new Point(19, 497);
-            btn_createsecretkey.Name = "btn_createsecretkey";
-            btn_createsecretkey.Size = new Size(196, 61);
-            btn_createsecretkey.TabIndex = 10;
-            btn_createsecretkey.Text = "Create key";
-            btn_createsecretkey.UseVisualStyleBackColor = true;
-            btn_createsecretkey.Click += btn_createsecretkey_Click;
+            checkBox2.AutoSize = true;
+            checkBox2.Enabled = false;
+            checkBox2.Location = new Point(992, 528);
+            checkBox2.Name = "checkBox2";
+            checkBox2.Size = new Size(22, 21);
+            checkBox2.TabIndex = 12;
+            checkBox2.UseVisualStyleBackColor = true;
             // 
-            // btn_saveseecertkey
+            // checkBox1
             // 
-            btn_saveseecertkey.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_saveseecertkey.Location = new Point(316, 497);
-            btn_saveseecertkey.Name = "btn_saveseecertkey";
-            btn_saveseecertkey.Size = new Size(196, 61);
-            btn_saveseecertkey.TabIndex = 9;
-            btn_saveseecertkey.Text = "Save key";
-            btn_saveseecertkey.UseVisualStyleBackColor = true;
+            checkBox1.AutoSize = true;
+            checkBox1.Enabled = false;
+            checkBox1.Location = new Point(590, 528);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(22, 21);
+            checkBox1.TabIndex = 11;
+            checkBox1.UseVisualStyleBackColor = true;
             // 
-            // rb_secretkey
+            // btn_saveprivatekey
             // 
-            rb_secretkey.Location = new Point(19, 87);
-            rb_secretkey.Name = "rb_secretkey";
-            rb_secretkey.Size = new Size(493, 382);
-            rb_secretkey.TabIndex = 8;
-            rb_secretkey.Text = "";
-            // 
-            // btn_createpublickey
-            // 
-            btn_createpublickey.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_createpublickey.Location = new Point(527, 497);
-            btn_createpublickey.Name = "btn_createpublickey";
-            btn_createpublickey.Size = new Size(196, 61);
-            btn_createpublickey.TabIndex = 7;
-            btn_createpublickey.Text = "Create key";
-            btn_createpublickey.UseVisualStyleBackColor = true;
+            btn_saveprivatekey.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_saveprivatekey.Location = new Point(643, 503);
+            btn_saveprivatekey.Name = "btn_saveprivatekey";
+            btn_saveprivatekey.Size = new Size(343, 61);
+            btn_saveprivatekey.TabIndex = 10;
+            btn_saveprivatekey.Text = "Save private key";
+            btn_saveprivatekey.UseVisualStyleBackColor = true;
+            btn_saveprivatekey.Click += btn_saveprivatekey_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(144, 15);
+            label2.Location = new Point(676, 21);
             label2.Name = "label2";
-            label2.Size = new Size(216, 54);
-            label2.TabIndex = 6;
-            label2.Text = "Secret key";
+            label2.Size = new Size(232, 54);
+            label2.TabIndex = 9;
+            label2.Text = "Private key";
+            // 
+            // rb_privatekey
+            // 
+            rb_privatekey.Location = new Point(526, 93);
+            rb_privatekey.Name = "rb_privatekey";
+            rb_privatekey.Size = new Size(493, 382);
+            rb_privatekey.TabIndex = 8;
+            rb_privatekey.Text = "";
+            // 
+            // btn_createpublickey
+            // 
+            btn_createpublickey.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_createpublickey.Location = new Point(14, 503);
+            btn_createpublickey.Name = "btn_createpublickey";
+            btn_createpublickey.Size = new Size(196, 61);
+            btn_createpublickey.TabIndex = 7;
+            btn_createpublickey.Text = "Create key";
+            btn_createpublickey.UseVisualStyleBackColor = true;
+            btn_createpublickey.Click += btn_createpublickey_Click;
             // 
             // btn_configpublickey
             // 
             btn_configpublickey.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_configpublickey.Location = new Point(824, 497);
+            btn_configpublickey.Location = new Point(280, 503);
             btn_configpublickey.Name = "btn_configpublickey";
-            btn_configpublickey.Size = new Size(196, 61);
+            btn_configpublickey.Size = new Size(304, 61);
             btn_configpublickey.TabIndex = 5;
-            btn_configpublickey.Text = "Config key";
+            btn_configpublickey.Text = "Config public key";
             btn_configpublickey.UseVisualStyleBackColor = true;
+            btn_configpublickey.Click += btn_configpublickey_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(677, 15);
+            label1.Location = new Point(164, 21);
             label1.Name = "label1";
             label1.Size = new Size(214, 54);
             label1.TabIndex = 4;
@@ -158,7 +172,7 @@
             // 
             // rb_publickey
             // 
-            rb_publickey.Location = new Point(527, 87);
+            rb_publickey.Location = new Point(14, 93);
             rb_publickey.Name = "rb_publickey";
             rb_publickey.Size = new Size(493, 382);
             rb_publickey.TabIndex = 3;
@@ -177,7 +191,6 @@
             list_data.TabIndex = 2;
             list_data.Text = "Data Manager";
             list_data.UseVisualStyleBackColor = true;
-            list_data.Click += list_data_Click;
             // 
             // btn_
             // 
@@ -236,7 +249,6 @@
             list_request.TabIndex = 0;
             list_request.Text = "Request";
             list_request.UseVisualStyleBackColor = true;
-            list_request.Click += list_request_Click;
             // 
             // btn_refreshrequest
             // 
@@ -308,19 +320,20 @@
         private Button btn_downdata;
         private FlowLayoutPanel flowLayoutPanel1;
         private TabPage Key_setting;
-        private RichTextBox rb_secretkey;
         private Button btn_createpublickey;
-        private Label label2;
         private Button btn_configpublickey;
         private Label label1;
         private RichTextBox rb_publickey;
-        private Button btn_createsecretkey;
-        private Button btn_saveseecertkey;
         private Button btn_refresh;
         private Button btn_refreshrequest;
         private FlowLayoutPanel flowLayoutPanel2;
         private Button button1;
         private FlowLayoutPanel flowLayoutPanel3;
         private Button btn_;
+        private CheckBox checkBox2;
+        private CheckBox checkBox1;
+        private Button btn_saveprivatekey;
+        private Label label2;
+        private RichTextBox rb_privatekey;
     }
 }

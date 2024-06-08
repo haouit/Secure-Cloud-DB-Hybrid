@@ -84,9 +84,9 @@
             // 
             // btn_signin
             // 
-            btn_signin.Location = new Point(251, 299);
+            btn_signin.Location = new Point(417, 259);
             btn_signin.Name = "btn_signin";
-            btn_signin.Size = new Size(316, 34);
+            btn_signin.Size = new Size(150, 34);
             btn_signin.TabIndex = 5;
             btn_signin.Text = "Sign In";
             btn_signin.UseVisualStyleBackColor = true;
@@ -94,17 +94,17 @@
             // 
             // btn_repass
             // 
-            btn_repass.Location = new Point(251, 259);
+            btn_repass.Location = new Point(39, 230);
             btn_repass.Name = "btn_repass";
             btn_repass.Size = new Size(155, 34);
             btn_repass.TabIndex = 6;
-            btn_repass.Text = "Forget";
+            btn_repass.Text = "test";
             btn_repass.UseVisualStyleBackColor = true;
-            btn_repass.Click += btn_repass_Click;
+            btn_repass.Click += btn_test_Click;
             // 
             // btn_signup
             // 
-            btn_signup.Location = new Point(412, 259);
+            btn_signup.Location = new Point(251, 259);
             btn_signup.Name = "btn_signup";
             btn_signup.Size = new Size(155, 34);
             btn_signup.TabIndex = 7;

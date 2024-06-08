@@ -12,6 +12,10 @@ using static System.Windows.Forms.DataFormats;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Newtonsoft.Json.Linq;
 using MongoDB.Driver;
+using Microsoft.Extensions.Logging.Console.Internal;
+using Microsoft.VisualBasic.ApplicationServices;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace NT219_FinalProject
 {
@@ -38,7 +42,7 @@ namespace NT219_FinalProject
 
         private readonly HttpClient httpClient = new HttpClient
         {
-            BaseAddress = new Uri(@"https://nt106.uitiot.vn")
+            BaseAddress = new Uri(@"http://localhost:3000/")
         };
 
         private async void btn_signin_Click(object sender, EventArgs e)
@@ -77,13 +81,35 @@ namespace NT219_FinalProject
             }
         }
 
-        private void btn_repass_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_signup_Click(object sender, EventArgs e)
         {
+        }
+
+
+        public class formdata
+        {
+            public string from { get; set; }
+            public string to { get; set; }
+            public string message { get; set; }
+        }
+
+        private async void btn_test_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                formdata formData = new formdata
+                {
+                    from = "a",
+                    to = "b"
+                };
+
+                HttpContent content = new StringContent(JsonConvert.SerializeObject(formData), Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await httpClient.PostAsync("api/send-request", content);
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

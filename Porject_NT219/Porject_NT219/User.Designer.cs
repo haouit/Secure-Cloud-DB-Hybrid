@@ -96,6 +96,7 @@
             btn_createsecretkey.TabIndex = 10;
             btn_createsecretkey.Text = "Create key";
             btn_createsecretkey.UseVisualStyleBackColor = true;
+            btn_createsecretkey.Click += btn_createsecretkey_Click;
             // 
             // btn_saveseecertkey
             // 

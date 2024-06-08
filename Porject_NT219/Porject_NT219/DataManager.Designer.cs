@@ -38,12 +38,13 @@
             lb_namefile = new Label();
             lb_namekey = new Label();
             lb_nameiv = new Label();
+            btn_gen = new Button();
             SuspendLayout();
             // 
             // btn_dataload
             // 
             btn_dataload.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_dataload.Location = new Point(12, 12);
+            btn_dataload.Location = new Point(12, 125);
             btn_dataload.Name = "btn_dataload";
             btn_dataload.Size = new Size(154, 50);
             btn_dataload.TabIndex = 0;
@@ -54,7 +55,7 @@
             // btn_uploaddata
             // 
             btn_uploaddata.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_uploaddata.Location = new Point(678, 12);
+            btn_uploaddata.Location = new Point(12, 438);
             btn_uploaddata.Name = "btn_uploaddata";
             btn_uploaddata.Size = new Size(154, 50);
             btn_uploaddata.TabIndex = 1;
@@ -65,7 +66,7 @@
             // btn_loadkey
             // 
             btn_loadkey.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_loadkey.Location = new Point(209, 12);
+            btn_loadkey.Location = new Point(12, 224);
             btn_loadkey.Name = "btn_loadkey";
             btn_loadkey.Size = new Size(154, 50);
             btn_loadkey.TabIndex = 5;
@@ -76,7 +77,7 @@
             // btn_loadiv
             // 
             btn_loadiv.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_loadiv.Location = new Point(406, 12);
+            btn_loadiv.Location = new Point(12, 335);
             btn_loadiv.Name = "btn_loadiv";
             btn_loadiv.Size = new Size(154, 50);
             btn_loadiv.TabIndex = 6;
@@ -88,7 +89,7 @@
             // 
             checkBox1.AutoSize = true;
             checkBox1.Enabled = false;
-            checkBox1.Location = new Point(170, 30);
+            checkBox1.Location = new Point(170, 143);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(22, 21);
             checkBox1.TabIndex = 7;
@@ -98,7 +99,7 @@
             // 
             checkBox2.AutoSize = true;
             checkBox2.Enabled = false;
-            checkBox2.Location = new Point(369, 30);
+            checkBox2.Location = new Point(172, 242);
             checkBox2.Name = "checkBox2";
             checkBox2.Size = new Size(22, 21);
             checkBox2.TabIndex = 8;
@@ -108,7 +109,7 @@
             // 
             checkBox3.AutoSize = true;
             checkBox3.Enabled = false;
-            checkBox3.Location = new Point(566, 30);
+            checkBox3.Location = new Point(172, 353);
             checkBox3.Name = "checkBox3";
             checkBox3.Size = new Size(22, 21);
             checkBox3.TabIndex = 9;
@@ -118,7 +119,7 @@
             // 
             lb_namefile.AutoSize = true;
             lb_namefile.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_namefile.Location = new Point(12, 65);
+            lb_namefile.Location = new Point(12, 178);
             lb_namefile.Name = "lb_namefile";
             lb_namefile.Size = new Size(104, 30);
             lb_namefile.TabIndex = 10;
@@ -128,7 +129,7 @@
             // 
             lb_namekey.AutoSize = true;
             lb_namekey.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_namekey.Location = new Point(209, 65);
+            lb_namekey.Location = new Point(12, 277);
             lb_namekey.Name = "lb_namekey";
             lb_namekey.Size = new Size(104, 30);
             lb_namekey.TabIndex = 11;
@@ -138,17 +139,29 @@
             // 
             lb_nameiv.AutoSize = true;
             lb_nameiv.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_nameiv.Location = new Point(406, 65);
+            lb_nameiv.Location = new Point(12, 388);
             lb_nameiv.Name = "lb_nameiv";
             lb_nameiv.Size = new Size(104, 30);
             lb_nameiv.TabIndex = 12;
             lb_nameiv.Text = "NameFile";
             // 
+            // btn_gen
+            // 
+            btn_gen.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_gen.Location = new Point(12, 47);
+            btn_gen.Name = "btn_gen";
+            btn_gen.Size = new Size(273, 50);
+            btn_gen.TabIndex = 13;
+            btn_gen.Text = "Gen key and iv";
+            btn_gen.UseVisualStyleBackColor = true;
+            btn_gen.Click += btn_gen_Click;
+            // 
             // DataManager
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(857, 116);
+            ClientSize = new Size(524, 549);
+            Controls.Add(btn_gen);
             Controls.Add(lb_nameiv);
             Controls.Add(lb_namekey);
             Controls.Add(lb_namefile);
@@ -177,5 +190,6 @@
         private Label lb_namefile;
         private Label lb_namekey;
         private Label lb_nameiv;
+        private Button btn_gen;
     }
 }

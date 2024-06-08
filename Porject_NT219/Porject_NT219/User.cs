@@ -129,5 +129,10 @@ namespace NT219_FinalProject
         {
 
         }
+
+        private void btn_createsecretkey_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -16,5 +16,10 @@ namespace NT219_FinalProject
         {
             InitializeComponent();
         }
+
+        private void btn_request_Click(object sender, EventArgs e)
+        {
+            //call api
+        }
     }
 }

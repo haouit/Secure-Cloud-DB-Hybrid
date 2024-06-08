@@ -12,7 +12,7 @@ namespace NT219_FinalProject.Crypto
         private static byte[] key = new byte[32];
         private static byte[] iv = new byte[16];
 
-        public bool KeyIVGen()
+        public byte[][] KeyIVGen()
         {
             try
             {
@@ -22,17 +22,13 @@ namespace NT219_FinalProject.Crypto
                     key = aes.Key;
                     iv = aes.IV;
                 }
-
-                // Save key and iv to file in binary format
-                SaveKeyAndIVToFile("key.bin", key);
-                SaveKeyAndIVToFile("iv.bin", iv);
+                return new byte[][] { key, iv };
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return false;
             }
-            return true;
+            return null;
         }
 
         public byte[] Encrypt(byte[] data, byte[] key = null, byte[] iv = null)

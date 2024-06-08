@@ -1,0 +1,9 @@
+E:\STUDENT\NT219\Porject_NT219\Porject_NT219\obj\Debug\net6.0-windows7.0\Porject_NT219.Config_Key.resources
+E:\STUDENT\NT219\Porject_NT219\Porject_NT219\obj\Debug\net6.0-windows7.0\Porject_NT219.Login.resources
+E:\STUDENT\NT219\Porject_NT219\Porject_NT219\obj\Debug\net6.0-windows7.0\Porject_NT219.Request.resources
+E:\STUDENT\NT219\Porject_NT219\Porject_NT219\obj\Debug\net6.0-windows7.0\Porject_NT219.User.resources
+E:\STUDENT\NT219\Porject_NT219\Porject_NT219\obj\Debug\net6.0-windows7.0\Porject_NT219.csproj.GenerateResource.cache
+E:\STUDENT\NT219\Porject_NT219\Porject_NT219\obj\Debug\net6.0-windows7.0\Porject_NT219.GeneratedMSBuildEditorConfig.editorconfig
+E:\STUDENT\NT219\Porject_NT219\Porject_NT219\obj\Debug\net6.0-windows7.0\Porject_NT219.AssemblyInfoInputs.cache
+E:\STUDENT\NT219\Porject_NT219\Porject_NT219\obj\Debug\net6.0-windows7.0\Porject_NT219.AssemblyInfo.cs
+E:\STUDENT\NT219\Porject_NT219\Porject_NT219\obj\Debug\net6.0-windows7.0\Porject_NT219.csproj.CoreCompileInputs.cache

@@ -31,6 +31,7 @@
             tb_username = new TextBox();
             tb_password = new TextBox();
             btn_signin = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // tb_username
@@ -55,15 +56,26 @@
             btn_signin.Name = "btn_signin";
             btn_signin.Size = new Size(259, 39);
             btn_signin.TabIndex = 2;
-            btn_signin.Text = "button1";
+            btn_signin.Text = "Sign in";
             btn_signin.UseVisualStyleBackColor = true;
             btn_signin.Click += btn_signin_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(322, 30);
+            label1.Name = "label1";
+            label1.Size = new Size(142, 38);
+            label1.TabIndex = 3;
+            label1.Text = "MongoDB";
             // 
             // LoginMongo
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label1);
             Controls.Add(btn_signin);
             Controls.Add(tb_password);
             Controls.Add(tb_username);
@@ -78,5 +90,6 @@
         private TextBox tb_username;
         private TextBox tb_password;
         private Button btn_signin;
+        private Label label1;
     }
 }

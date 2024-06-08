@@ -12,12 +12,13 @@ namespace NT219_FinalProject.Crypto
         private static byte[] rsaPublicKey;
         private static byte[] rsaPrivateKey;
 
-        public void GenerateKeyPair()
+        public byte[][] GenerateKeyPair()
         {
             using (var rsa = new RSACryptoServiceProvider(2048))
             {
                 rsaPublicKey = rsa.ExportRSAPublicKey();
                 rsaPrivateKey = rsa.ExportRSAPrivateKey();
+                return new byte[][] { rsaPublicKey, rsaPrivateKey };
             }
         }
     }

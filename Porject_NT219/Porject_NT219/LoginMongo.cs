@@ -32,8 +32,8 @@ namespace NT219_FinalProject
             try
             {
                 var result = client.GetDatabase("admin").RunCommand<BsonDocument>(new BsonDocument("ping", 1));
-                Console.WriteLine(result);
-                Console.WriteLine("Pinged your deployment. You successfully connected to MongoDB!");
+                MessageBox.Show($"{result}");
+                MessageBox.Show("Pinged your deployment. You successfully connected to MongoDB!");
             }
             catch (Exception ex)
             {

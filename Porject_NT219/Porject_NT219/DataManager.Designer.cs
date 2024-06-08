@@ -30,15 +30,20 @@
         {
             btn_dataload = new Button();
             btn_uploaddata = new Button();
-            btn_savedata = new Button();
-            btn_encyptdata = new Button();
-            rb_secretkey = new RichTextBox();
+            btn_loadkey = new Button();
+            btn_loadiv = new Button();
+            checkBox1 = new CheckBox();
+            checkBox2 = new CheckBox();
+            checkBox3 = new CheckBox();
+            lb_namefile = new Label();
+            lb_namekey = new Label();
+            lb_nameiv = new Label();
             SuspendLayout();
             // 
             // btn_dataload
             // 
             btn_dataload.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_dataload.Location = new Point(366, 12);
+            btn_dataload.Location = new Point(12, 12);
             btn_dataload.Name = "btn_dataload";
             btn_dataload.Size = new Size(154, 50);
             btn_dataload.TabIndex = 0;
@@ -49,7 +54,7 @@
             // btn_uploaddata
             // 
             btn_uploaddata.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_uploaddata.Location = new Point(703, 12);
+            btn_uploaddata.Location = new Point(678, 12);
             btn_uploaddata.Name = "btn_uploaddata";
             btn_uploaddata.Size = new Size(154, 50);
             btn_uploaddata.TabIndex = 1;
@@ -57,57 +62,120 @@
             btn_uploaddata.UseVisualStyleBackColor = true;
             btn_uploaddata.Click += btn_uploaddata_Click;
             // 
-            // btn_savedata
+            // btn_loadkey
             // 
-            btn_savedata.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_savedata.Location = new Point(863, 12);
-            btn_savedata.Name = "btn_savedata";
-            btn_savedata.Size = new Size(154, 50);
-            btn_savedata.TabIndex = 2;
-            btn_savedata.Text = "Save Data";
-            btn_savedata.UseVisualStyleBackColor = true;
-            btn_savedata.Click += btn_savedata_Click;
+            btn_loadkey.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_loadkey.Location = new Point(209, 12);
+            btn_loadkey.Name = "btn_loadkey";
+            btn_loadkey.Size = new Size(154, 50);
+            btn_loadkey.TabIndex = 5;
+            btn_loadkey.Text = "Load Key";
+            btn_loadkey.UseVisualStyleBackColor = true;
+            btn_loadkey.Click += btn_loadkey_Click;
             // 
-            // btn_encyptdata
+            // btn_loadiv
             // 
-            btn_encyptdata.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_encyptdata.Location = new Point(526, 12);
-            btn_encyptdata.Name = "btn_encyptdata";
-            btn_encyptdata.Size = new Size(171, 50);
-            btn_encyptdata.TabIndex = 3;
-            btn_encyptdata.Text = "Encrypt Data";
-            btn_encyptdata.UseVisualStyleBackColor = true;
-            btn_encyptdata.Click += btn_encyptdata_Click;
+            btn_loadiv.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_loadiv.Location = new Point(406, 12);
+            btn_loadiv.Name = "btn_loadiv";
+            btn_loadiv.Size = new Size(154, 50);
+            btn_loadiv.TabIndex = 6;
+            btn_loadiv.Text = "Load IV";
+            btn_loadiv.UseVisualStyleBackColor = true;
+            btn_loadiv.Click += btn_loadiv_Click;
             // 
-            // rb_secretkey
+            // checkBox1
             // 
-            rb_secretkey.Location = new Point(12, 93);
-            rb_secretkey.Name = "rb_secretkey";
-            rb_secretkey.Size = new Size(1005, 270);
-            rb_secretkey.TabIndex = 4;
-            rb_secretkey.Text = "";
+            checkBox1.AutoSize = true;
+            checkBox1.Enabled = false;
+            checkBox1.Location = new Point(170, 30);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(22, 21);
+            checkBox1.TabIndex = 7;
+            checkBox1.UseVisualStyleBackColor = true;
             // 
-            // Data
+            // checkBox2
+            // 
+            checkBox2.AutoSize = true;
+            checkBox2.Enabled = false;
+            checkBox2.Location = new Point(369, 30);
+            checkBox2.Name = "checkBox2";
+            checkBox2.Size = new Size(22, 21);
+            checkBox2.TabIndex = 8;
+            checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            checkBox3.AutoSize = true;
+            checkBox3.Enabled = false;
+            checkBox3.Location = new Point(566, 30);
+            checkBox3.Name = "checkBox3";
+            checkBox3.Size = new Size(22, 21);
+            checkBox3.TabIndex = 9;
+            checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // lb_namefile
+            // 
+            lb_namefile.AutoSize = true;
+            lb_namefile.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_namefile.Location = new Point(12, 65);
+            lb_namefile.Name = "lb_namefile";
+            lb_namefile.Size = new Size(104, 30);
+            lb_namefile.TabIndex = 10;
+            lb_namefile.Text = "NameFile";
+            // 
+            // lb_namekey
+            // 
+            lb_namekey.AutoSize = true;
+            lb_namekey.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_namekey.Location = new Point(209, 65);
+            lb_namekey.Name = "lb_namekey";
+            lb_namekey.Size = new Size(104, 30);
+            lb_namekey.TabIndex = 11;
+            lb_namekey.Text = "NameFile";
+            // 
+            // lb_nameiv
+            // 
+            lb_nameiv.AutoSize = true;
+            lb_nameiv.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_nameiv.Location = new Point(406, 65);
+            lb_nameiv.Name = "lb_nameiv";
+            lb_nameiv.Size = new Size(104, 30);
+            lb_nameiv.TabIndex = 12;
+            lb_nameiv.Text = "NameFile";
+            // 
+            // DataManager
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1034, 375);
-            Controls.Add(rb_secretkey);
-            Controls.Add(btn_encyptdata);
-            Controls.Add(btn_savedata);
+            ClientSize = new Size(857, 116);
+            Controls.Add(lb_nameiv);
+            Controls.Add(lb_namekey);
+            Controls.Add(lb_namefile);
+            Controls.Add(checkBox3);
+            Controls.Add(checkBox2);
+            Controls.Add(checkBox1);
+            Controls.Add(btn_loadiv);
+            Controls.Add(btn_loadkey);
             Controls.Add(btn_uploaddata);
             Controls.Add(btn_dataload);
-            Name = "Data";
+            Name = "DataManager";
             Text = "Data";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button btn_dataload;
         private Button btn_uploaddata;
-        private Button btn_savedata;
-        private Button btn_encyptdata;
-        private RichTextBox rb_secretkey;
+        private Button btn_loadkey;
+        private Button btn_loadiv;
+        private CheckBox checkBox1;
+        private CheckBox checkBox2;
+        private CheckBox checkBox3;
+        private Label lb_namefile;
+        private Label lb_namekey;
+        private Label lb_nameiv;
     }
 }

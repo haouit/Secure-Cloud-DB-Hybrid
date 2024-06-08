@@ -18,8 +18,8 @@ namespace NT219_FinalProject
         }
 
         string filePath_data;
-        string data;
-        string data_encrypted;
+        string filePath_key;
+        string filePath_iv;
 
         private void btn_dataload_Click(object sender, EventArgs e)
         {
@@ -27,31 +27,45 @@ namespace NT219_FinalProject
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 filePath_data = openFileDialog.FileName;
-                data = File.ReadAllText(filePath_data);
+                checkBox1.Checked = true;
+                lb_namefile.Text = openFileDialog.SafeFileName;
             }
         }
 
-        private void btn_savedata_Click(object sender, EventArgs e)
+        private void btn_loadkey_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string filePath = saveFileDialog.FileName;
-                File.WriteAllText(filePath, data_encrypted);
+                filePath_key = openFileDialog.FileName;
+                checkBox2.Checked = true;
+                lb_namekey.Text = openFileDialog.SafeFileName;
             }
+        }
+
+        private void btn_loadiv_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                filePath_iv = openFileDialog.FileName;
+                checkBox3.Checked = true;
+                lb_nameiv.Text = openFileDialog.SafeFileName;
+            }            
         }
 
         private void btn_uploaddata_Click(object sender, EventArgs e)
         {
+            checkBox1.Checked = false;
+            checkBox2.Checked = false;
+            checkBox3.Checked = false;
+            filePath_data = "";
+            filePath_key = "";
+            filePath_iv = "";
+            lb_namefile.Text = "Name file";
+            lb_namekey.Text = "Name file";
+            lb_nameiv.Text = "Name file";
             //upload to server
-
-            this.Hide();
-            this.Close();
-        }
-
-        private void btn_encyptdata_Click(object sender, EventArgs e)
-        {
-            //encrypt data
 
             this.Hide();
             this.Close();

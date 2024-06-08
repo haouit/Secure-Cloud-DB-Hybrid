@@ -1,4 +1,4 @@
-﻿namespace Porject_NT219
+﻿namespace NT219_FinalProject
 {
     partial class DataManager
     {

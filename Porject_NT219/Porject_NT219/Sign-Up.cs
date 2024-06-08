@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Xml.Linq;
 
-namespace Porject_NT219
+namespace NT219_FinalProject
 {
     public partial class Sign_Up : Form
     {

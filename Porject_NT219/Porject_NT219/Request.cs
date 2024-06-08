@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Porject_NT219
+namespace NT219_FinalProject
 {
     public partial class Request : UserControl
     {

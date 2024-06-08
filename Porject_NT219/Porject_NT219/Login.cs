@@ -12,7 +12,7 @@ using static System.Windows.Forms.DataFormats;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Newtonsoft.Json.Linq;
 
-namespace Porject_NT219
+namespace NT219_FinalProject
 {
     public partial class Login : Form
     {

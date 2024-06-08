@@ -8,11 +8,13 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.19.2",
-    "nedb": "^1.8.0"
+    "nedb": "^1.8.0",
+    "nodemon": "^3.1.3"
   }
 }

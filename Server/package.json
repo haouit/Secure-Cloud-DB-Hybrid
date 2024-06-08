@@ -1,5 +1,5 @@
 {
-  "name": "Server",
+  "name": "server",
   "version": "0.1.0",
   "description": "the express server for communication",
   "main": "server.js",
@@ -7,6 +7,9 @@
   "author": "haouit",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "express": "^4.19.2"
   }

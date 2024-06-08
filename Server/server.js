@@ -10,7 +10,6 @@ db.loadDatabase();
 app.use(cors());
 app.use(express.json());
 
-
 /* 
 Route to send a request from A to B
 	- This route is used by A to send a request to B. The request contains A's public-key. 
@@ -73,7 +72,6 @@ app.get('/check-requests/:id', (req, res) => {
         }
     });
 });
-
 
 /*
 Route to check a request sent to B is accepted or rejected

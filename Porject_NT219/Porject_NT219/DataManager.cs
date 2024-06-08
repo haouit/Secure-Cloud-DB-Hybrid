@@ -62,7 +62,7 @@ namespace NT219_FinalProject
         {
             //upload to server
 
-            AES aes = new AES();
+            AES_Prj aes = new AES_Prj();
             string fileName = lb_namefile.Text;
             byte[] encryptedData = aes.Encrypt(data, secret_key, iv);
 
@@ -83,7 +83,7 @@ namespace NT219_FinalProject
 
         private void btn_gen_Click(object sender, EventArgs e)
         {
-            AES aes = new AES();
+            AES_Prj aes = new AES_Prj();
             byte[][] keyAndIV = aes.KeyIVGen();
             secret_key = keyAndIV[0];
             iv = keyAndIV[1];

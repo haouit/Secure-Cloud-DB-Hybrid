@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using NT219_FinalProject.Crypto;
-using static NT219_FinalProject.User;
 
 namespace NT219_FinalProject
 {
@@ -22,9 +23,12 @@ namespace NT219_FinalProject
         byte[] secret_key;
         byte[] iv;
 
+        byte[] rsaPublicKey;
+        byte[] rsaPrivateKey;
+
         private void button1_Click(object sender, EventArgs e)
         {
-            AES aes = new AES();
+            AES_Prj aes = new AES_Prj();
             string fileName = "";
             // Open a file dialog
             OpenFileDialog ofd = new OpenFileDialog();
@@ -74,7 +78,43 @@ namespace NT219_FinalProject
 
         private void button2_Click(object sender, EventArgs e)
         {
+            RSA_Prj rsa = new RSA_Prj();
+            byte[][] keyPair = rsa.GenerateKeyPair();
+            rsaPublicKey = keyPair[0];
+            rsaPrivateKey = keyPair[1];
 
+            string[] keyPairPEM = rsa.ExportKeyPair();
+            string publicKeyPEM = keyPairPEM[0];
+            string privateKeyPEM = keyPairPEM[1];
+
+            // Write the keys to a file
+            File.WriteAllText("public.pem", publicKeyPEM);
+            File.WriteAllText("private.pem", privateKeyPEM);
+        }
+
+        private async void button3_Click(object sender, EventArgs e)
+        {
+            HttpClient client = new HttpClient();
+            string url = "http://localhost:3000/api/user/login";
+            string body = "{\"username\": \"hao\", \"password\": \"123\"}";
+
+            StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Handle successful response
+                string result = await response.Content.ReadAsStringAsync();
+                MessageBox.Show(result);
+                // Do something with the result
+            }
+            else
+            {
+                // Handle error response
+                string error = await response.Content.ReadAsStringAsync();
+                // Do something with the error
+            }
         }
     }
 }

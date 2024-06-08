@@ -21,6 +21,10 @@ Response:
 */
 app.post('/send-request', (req, res) => {
     const { from, to, message } = req.body;
+    if (!from || !to || !message) {
+        res.status(400).json({ error: 'Invalid request' });
+        return;
+    }
     const request = { from, to, message, status: 'pending' };
 
     db.insert(request, (err, newDoc) => {
@@ -43,7 +47,7 @@ or	{ from: 'A', to: 'B', message: '', response: 'rejected' }
 app.post('/respond-request', (req, res) => {
     const { from, to, message, response } = req.body;
 
-    db.update({ from, to, message }, { $set: { message, status: response } }, {}, (err, numReplaced) => {
+    db.update({ from, to }, { $set: { message, status: response } }, {}, (err) => {
         if (err) {
             res.status(500).json({ error: 'Failed to respond to request' });
         } else {
@@ -83,7 +87,7 @@ Request body:
 	{ from: 'A', to: 'B' }
 Response:
 	{ status: 'accepted', message: 'A\'s encrypted secret-key' } 
-or  { status: 'rejected' }
+or  { status: 'rejected' mesaage: '' }
 */
 app.get('/check-resopnse/', (req, res) => {
     const { from, to } = req.body;

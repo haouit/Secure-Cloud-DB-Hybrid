@@ -9,8 +9,8 @@ namespace NT219_FinalProject.Crypto
 {
     internal class AES_Prj
     {
-        private static byte[] key = new byte[32];
-        private static byte[] iv = new byte[16];
+        private byte[] key = new byte[32];
+        private byte[] iv = new byte[16];
 
         public byte[][] KeyIVGen()
         {

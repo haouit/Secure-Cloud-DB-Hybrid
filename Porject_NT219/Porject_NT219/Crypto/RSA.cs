@@ -4,81 +4,123 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using Org.BouncyCastle.Crypto;
 
 namespace NT219_FinalProject.Crypto
 {
     internal class RSA_Prj
     {
-        private static byte[] rsaPublicKey;
-        private static byte[] rsaPrivateKey;
+        private RSAParameters publicKey;
+        private RSAParameters privateKey;
 
-        public byte[][] GenerateKeyPair()
+        public void GenerateKeyPair()
         {
-            using (var rsa = new RSACryptoServiceProvider(2048))
+            using (RSA rsa = RSA.Create())
             {
-                rsaPublicKey = rsa.ExportRSAPublicKey();
-                rsaPrivateKey = rsa.ExportRSAPrivateKey();
-                return new byte[][] { rsaPublicKey, rsaPrivateKey };
+                // Generate the key pair
+                rsa.KeySize = 2048;
+                publicKey = rsa.ExportParameters(false);
+                privateKey = rsa.ExportParameters(true);
             }
         }
 
-        public byte[] Encrypt(byte[] data, byte[] publicKey)
+        public byte[] Encrypt(byte[] data)
         {
-            using (var rsa = new RSACryptoServiceProvider(2048))
+            using (RSA rsa = RSA.Create())
             {
-                rsa.ImportRSAPublicKey(publicKey, out _);
+                rsa.ImportParameters(publicKey);
                 return rsa.Encrypt(data, RSAEncryptionPadding.Pkcs1);
             }
         }
 
-        public byte[] Decrypt(byte[] data, byte[] privateKey)
+        public byte[] Decrypt(byte[] data)
         {
-            using (var rsa = new RSACryptoServiceProvider(2048))
+            using (RSA rsa = RSA.Create())
             {
-                rsa.ImportRSAPrivateKey(privateKey, out _);
+                rsa.ImportParameters(privateKey);
                 return rsa.Decrypt(data, RSAEncryptionPadding.Pkcs1);
             }
         }
 
-        public byte[] SignData(byte[] data, byte[] privateKey)
+        public string[] GetKeyPair()
         {
-            using (var rsa = new RSACryptoServiceProvider(2048))
+            return new string[] { ExportPublicKeyToPem(publicKey), ExportPrivateKeyToPem(privateKey) };
+        }
+
+        public void SaveKeyPair(string publicKeyPath, string privateKeyPath)
+        {
+            // Save the key pair to file
+            File.WriteAllText(publicKeyPath, ExportPublicKeyToPem(publicKey));
+            File.WriteAllText(privateKeyPath, ExportPrivateKeyToPem(privateKey));
+        }
+
+        public void LoadKeyPair(string publicKeyPath, string privateKeyPath)
+        {
+            // Load the key pair from file
+            publicKey = ImportPublicKeyFromPem(File.ReadAllText(publicKeyPath));
+            privateKey = ImportPrivateKeyFromPem(File.ReadAllText(privateKeyPath));
+        }
+
+        private string ExportPublicKeyToPem(RSAParameters publicKey)
+        {
+            using (RSA rsa = RSA.Create())
             {
-                rsa.ImportRSAPrivateKey(privateKey, out _);
-                return rsa.SignData(data, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+                rsa.ImportParameters(publicKey);
+                byte[] publicKeyBytes = rsa.ExportRSAPublicKey();
+                return PemFormat(publicKeyBytes, "PUBLIC KEY");
             }
         }
 
-        public bool VerifyData(byte[] data, byte[] signature, byte[] publicKey)
+        private string ExportPrivateKeyToPem(RSAParameters privateKey)
         {
-            using (var rsa = new RSACryptoServiceProvider(2048))
+            using (RSA rsa = RSA.Create())
             {
-                rsa.ImportRSAPublicKey(publicKey, out _);
-                return rsa.VerifyData(data, signature, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+                rsa.ImportParameters(privateKey);
+                byte[] privateKeyBytes = rsa.ExportRSAPrivateKey();
+                return PemFormat(privateKeyBytes, "PRIVATE KEY");
             }
         }
 
-        public string[] ExportKeyPair()
+        private static string PemFormat(byte[] keyBytes, string keyType)
         {
-            using (var rsa = new RSACryptoServiceProvider(2048))
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"-----BEGIN {keyType}-----");
+            builder.AppendLine(Convert.ToBase64String(keyBytes, Base64FormattingOptions.InsertLineBreaks));
+            builder.AppendLine($"-----END {keyType}-----");
+            return builder.ToString();
+        }
+        private static RSAParameters ImportPublicKeyFromPem(string publicKeyPem)
+        {
+            using (RSA rsa = RSA.Create())
             {
-                rsa.ImportRSAPrivateKey(rsaPrivateKey, out _);
-                rsa.ImportRSAPublicKey(rsaPublicKey, out _);
-
-                // Private key export
-                string headerPrv = "-----BEGIN RSA PRIVATE KEY-----";
-                string footerPrv = "-----END RSA PRIVATE KEY-----";
-                string keyPrv = Convert.ToBase64String(rsa.ExportPkcs8PrivateKey());
-                string PEMPrv = $"{headerPrv}\n{keyPrv}\n{footerPrv}"; 
-
-                // Public key export
-                string headerPub = "-----BEGIN RSA PUBLIC KEY-----";
-                string footerPub = "-----END RSA PUBLIC KEY-----";
-                string keyPub = Convert.ToBase64String(rsa.ExportRSAPublicKey());
-                string PEMPub = $"{headerPub}\n{keyPub}\n{footerPub}";
-
-                return new string[] { PEMPub, PEMPrv };
+                byte[] publicKeyBytes = GetKeyBytesFromPem(publicKeyPem);
+                rsa.ImportRSAPublicKey(publicKeyBytes, out _);
+                return rsa.ExportParameters(false);
             }
+        }
+
+        private static RSAParameters ImportPrivateKeyFromPem(string privateKeyPem)
+        {
+            using (RSA rsa = RSA.Create())
+            {
+                byte[] privateKeyBytes = GetKeyBytesFromPem(privateKeyPem);
+                rsa.ImportRSAPrivateKey(privateKeyBytes, out _);
+                return rsa.ExportParameters(true);
+            }
+        }
+
+        private static byte[] GetKeyBytesFromPem(string pem)
+        {
+            string[] lines = pem.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            StringBuilder builder = new StringBuilder();
+            foreach (string line in lines)
+            {
+                if (!line.StartsWith("-----"))
+                {
+                    builder.Append(line);
+                }
+            }
+            return Convert.FromBase64String(builder.ToString());
         }
     }
 }

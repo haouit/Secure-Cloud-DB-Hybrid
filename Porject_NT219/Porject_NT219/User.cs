@@ -129,9 +129,9 @@ namespace NT219_FinalProject
             rb_publickey.Clear();
             rb_privatekey.Clear();
             RSA_Prj rsa = new RSA_Prj();
-            byte[][] pubandpri = rsa.GenerateKeyPair();
-            rsaPublicKey = pubandpri[0];
-            rsaPrivateKey = pubandpri[1];
+            //byte[][] pubandpri = rsa.GenerateKeyPair();
+            //rsaPublicKey = pubandpri[0];
+            //rsaPrivateKey = pubandpri[1];
             rb_privatekey.Text = Convert.ToBase64String(rsaPrivateKey);
             rb_publickey.Text = Convert.ToBase64String(rsaPublicKey);
         }

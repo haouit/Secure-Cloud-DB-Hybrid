@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using NT219_FinalProject.Crypto;
+using System.Security.Cryptography;
 
 namespace NT219_FinalProject
 {
@@ -23,8 +24,8 @@ namespace NT219_FinalProject
         byte[] secret_key;
         byte[] iv;
 
-        byte[] rsaPublicKey;
-        byte[] rsaPrivateKey;
+        RSAParameters privKey;
+        RSAParameters pubKey;
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -79,17 +80,10 @@ namespace NT219_FinalProject
         private void button2_Click(object sender, EventArgs e)
         {
             RSA_Prj rsa = new RSA_Prj();
-            byte[][] keyPair = rsa.GenerateKeyPair();
-            rsaPublicKey = keyPair[0];
-            rsaPrivateKey = keyPair[1];
-
-            string[] keyPairPEM = rsa.ExportKeyPair();
-            string publicKeyPEM = keyPairPEM[0];
-            string privateKeyPEM = keyPairPEM[1];
-
-            // Write the keys to a file
-            File.WriteAllText("public.pem", publicKeyPEM);
-            File.WriteAllText("private.pem", privateKeyPEM);
+            rsa.GenerateKeyPair();
+            string[] keys = rsa.GetKeyPair();
+            MessageBox.Show(keys[0]);
+            MessageBox.Show(keys[1]);
         }
 
         private async void button3_Click(object sender, EventArgs e)

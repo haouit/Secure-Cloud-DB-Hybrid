@@ -37,7 +37,7 @@ namespace Porject_NT219
 
         private readonly HttpClient httpClient = new HttpClient
         {
-            BaseAddress = new Uri(@"https://.vn")
+            BaseAddress = new Uri(@"https://nt106.uitiot.vn")
         };
 
         private async void btn_signin_Click(object sender, EventArgs e)

@@ -42,6 +42,7 @@
             list_data = new TabPage();
             btn_refresh = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            btn_removedata = new Button();
             btn_downdata = new Button();
             btn_newdata = new Button();
             list_request = new TabPage();
@@ -50,7 +51,7 @@
             list_accepted = new TabPage();
             button1 = new Button();
             flowLayoutPanel3 = new FlowLayoutPanel();
-            btn_removedata = new Button();
+            btn_ = new Button();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             tabshow.SuspendLayout();
             Key_setting.SuspendLayout();
@@ -172,6 +173,7 @@
             // 
             // list_data
             // 
+            list_data.Controls.Add(btn_);
             list_data.Controls.Add(btn_refresh);
             list_data.Controls.Add(flowLayoutPanel1);
             list_data.Controls.Add(btn_removedata);
@@ -199,6 +201,15 @@
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(1047, 574);
             flowLayoutPanel1.TabIndex = 4;
+            // 
+            // btn_removedata
+            // 
+            btn_removedata.Location = new Point(845, 13);
+            btn_removedata.Name = "btn_removedata";
+            btn_removedata.Size = new Size(196, 45);
+            btn_removedata.TabIndex = 3;
+            btn_removedata.Text = "Remove Data";
+            btn_removedata.UseVisualStyleBackColor = true;
             // 
             // btn_downdata
             // 
@@ -276,14 +287,14 @@
             flowLayoutPanel3.Size = new Size(1047, 575);
             flowLayoutPanel3.TabIndex = 7;
             // 
-            // btn_removedata
+            // btn_
             // 
-            btn_removedata.Location = new Point(845, 13);
-            btn_removedata.Name = "btn_removedata";
-            btn_removedata.Size = new Size(196, 45);
-            btn_removedata.TabIndex = 3;
-            btn_removedata.Text = "Remove Data";
-            btn_removedata.UseVisualStyleBackColor = true;
+            btn_.Location = new Point(311, 13);
+            btn_.Name = "btn_";
+            btn_.Size = new Size(128, 45);
+            btn_.TabIndex = 6;
+            btn_.Text = "Find";
+            btn_.UseVisualStyleBackColor = true;
             // 
             // User
             // 
@@ -327,5 +338,6 @@
         private Button button1;
         private FlowLayoutPanel flowLayoutPanel3;
         private Button btn_removedata;
+        private Button btn_;
     }
 }

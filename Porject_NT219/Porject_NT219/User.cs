@@ -13,13 +13,13 @@ using System.Windows.Forms;
 using NT219_FinalProject.Crypto;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.Net.Http.Json;
-
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace NT219_FinalProject
 {
     public partial class User : Form
     {
-        const string BaseURL = "https://secure-cloud-db-hybrid.onrender.com";
+        const string BaseURL = Config.BaseURL;
         HttpClient client;
         string username;
 

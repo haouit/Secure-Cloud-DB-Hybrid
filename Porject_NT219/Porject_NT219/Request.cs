@@ -14,6 +14,7 @@ namespace NT219_FinalProject
 {
     public partial class Request : UserControl
     {
+        const string BaseURL = Config.BaseURL;
         HttpClient client;
         string username;
         public Request(HttpClient Client, string Username)
@@ -38,10 +39,6 @@ namespace NT219_FinalProject
 
         private async void btn_accept_Click(object sender, EventArgs e)
         {
-            // đổi state
-            // gửi key lên server
-            // gửi request lên server
-            string url = "https://secure-cloud-db-hybrid.onrender.com/api/communicate/respond-request";
             string from = $"{lb_namerequest.Text}";
             string to = $"{username}";
             string message = "Key encrypted";
@@ -50,13 +47,12 @@ namespace NT219_FinalProject
 
             StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await client.PostAsync(url, content);
+            HttpResponseMessage response = await client.PostAsync($"{BaseURL}/api/communicate/respond-request", content);
 
             if (response.IsSuccessStatusCode)
             {
                 // Handle successful response
                 string result = await response.Content.ReadAsStringAsync();
-                MessageBox.Show(result);
                 // Do something with the result
             }
             else
@@ -70,7 +66,6 @@ namespace NT219_FinalProject
         private async void btn_remove_Click(object sender, EventArgs e)
         {
             HttpClient client = new HttpClient();
-            string url = "https://secure-cloud-db-hybrid.onrender.com/api/communicate/respond-request";
             string from = $"{lb_namerequest.Text}";
             string to = $"{username}";
             string status = "rejected";
@@ -78,13 +73,12 @@ namespace NT219_FinalProject
 
             StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await client.PostAsync(url, content);
+            HttpResponseMessage response = await client.PostAsync($"{BaseURL}/api/communicate/respond-request", content);
 
             if (response.IsSuccessStatusCode)
             {
                 // Handle successful response
                 string result = await response.Content.ReadAsStringAsync();
-                MessageBox.Show(result);
                 // Do something with the result
             }
             else

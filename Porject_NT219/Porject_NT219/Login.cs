@@ -22,7 +22,7 @@ namespace NT219_FinalProject
 {
     public partial class Login : Form
     {
-        const string BaseURL = "https://secure-cloud-db-hybrid.onrender.com";
+        const string BaseURL = Config.BaseURL;
         public Login()
         {
             InitializeComponent();

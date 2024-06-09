@@ -12,6 +12,7 @@ namespace NT219_FinalProject
 {
     public partial class datafind : UserControl
     {
+        const string BaseURL = Config.BaseURL;
         HttpClient client;
         string username;
         public datafind(HttpClient Client, string Username)
@@ -37,21 +38,18 @@ namespace NT219_FinalProject
         private async void btn_request_Click(object sender, EventArgs e)
         {
             HttpClient client = new HttpClient();
-            string url = "https://secure-cloud-db-hybrid.onrender.com/api/communicate/send-request";
             string from = $"{username}";
             string to = $"{lb_nameuser.Text}";
             string message = "key encrypt";
             string body = "{\"from\": \"" + from + "\", \"to\": \"" + to + "\", \"message\": \"" + message + "\"}";
 
             StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = await client.PostAsync(url, content);
+            HttpResponseMessage response = await client.PostAsync($"{BaseURL}/api/communicate/send-request", content);
 
             if (response.IsSuccessStatusCode)
             {
                 // Handle successful response
                 string result = await response.Content.ReadAsStringAsync();
-                MessageBox.Show(result);
                 // Do something with the result
             }
             else

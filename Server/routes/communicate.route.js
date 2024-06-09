@@ -7,7 +7,7 @@ Route to send a request from A to B
 	- This route is used by A to send a request to B. The request contains A's public-key. 
 	- The request is stored in the database with status 'pending'.
 Request body: 
-	{ from: 'A', to: 'B', message: 'B's public-key' }
+	{ from: 'A', to: 'B', message: 'A's public-key' }
 Response: 
 	{ success: true, requestId: 'id' }
 */
@@ -76,16 +76,16 @@ Route to check a request sent to B is accepted or rejected
 	- If the request is accepted, the message contains B's encrypted secret-key.
 	- If the request is rejected, the message is empty.
 Request body: 
-	{ from: 'A', to: 'B' }
+	{ from: 'A', to: 'any' }
 Response:
     - a list of resopned requests 
 	{ status: 'accepted', message: 'A\'s encrypted secret-key' } 
 or  { status: 'rejected' mesaage: '' }
 */
 router.get('/check-resopnse/', (req, res) => {
-    const { from, to } = req.body;
+    const { from } = req.body;
 
-    requestsDB.find({ from, to }, (err, docs) => {
+    requestsDB.find({ from }, (err, docs) => {
         if (err || !docs) {
             res.status(404).json({ error: 'Request not found' });
         } else {

@@ -22,34 +22,16 @@ namespace NT219_FinalProject
 {
     public partial class Login : Form
     {
-        private string tokentype;
-        private string accesstoken;
-        public string TokenType
-        {
-            get { return tokentype; }
-            set { tokentype = value; }
-        }
-
-        public string AccessToken
-        {
-            get { return accesstoken; }
-            set { accesstoken = value; }
-        }
-
+        const string RootURI = "http://localhost:3000";
         public Login()
         {
             InitializeComponent();
         }
 
-        private readonly HttpClient client = new HttpClient
-        {
-            BaseAddress = new Uri(@"http://localhost:3000/")
-        };
-
         private async void btn_signin_Click(object sender, EventArgs e)
         {
             HttpClient client = new HttpClient();
-            string url = "http://localhost:3000/api/user/login";
+            string url = $"{RootURI}/api/user/login";
             string username = tb_usename.Text;
             string password = tb_password.Text;
             string body = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}";
@@ -62,7 +44,7 @@ namespace NT219_FinalProject
             {
                 // Handle successful response
                 string result = await response.Content.ReadAsStringAsync();
-                User user = new User(client);
+                User user = new User(client, username);
                 user.Show();
                 MessageBox.Show(result);
                 // Do something with the result
@@ -72,16 +54,17 @@ namespace NT219_FinalProject
                 // Handle error response
                 string error = await response.Content.ReadAsStringAsync();
                 // Do something with the error
+                MessageBox.Show(error);
             }
         }
 
         private async void btn_signup_Click(object sender, EventArgs e)
         {
             HttpClient client = new HttpClient();
-            string url = "http://localhost:3000/api/user/register";
+            string url = $"{RootURI}/api/user/register";
             string username = tb_usename.Text;
             string password = tb_password.Text;
-            string body = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}";
+            string body = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\", \"email\": \"" + $"{username}@g,com" + "\"}";
 
             StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
 
@@ -91,7 +74,7 @@ namespace NT219_FinalProject
             {
                 // Handle successful response
                 string result = await response.Content.ReadAsStringAsync();
-                User user = new User(client);
+                User user = new User(client, username);
                 user.Show();
                 MessageBox.Show(result);
                 // Do something with the result
@@ -101,6 +84,7 @@ namespace NT219_FinalProject
                 // Handle error response
                 string error = await response.Content.ReadAsStringAsync();
                 // Do something with the error
+                MessageBox.Show(error);
             }
         }
     }

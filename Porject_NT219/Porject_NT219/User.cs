@@ -13,16 +13,20 @@ using System.Windows.Forms;
 using NT219_FinalProject.Crypto;
 using static NT219_FinalProject.User;
 
+
 namespace NT219_FinalProject
 {
     public partial class User : Form
     {
+        const string RootURI = "http://localhost:3000";
         HttpClient client;
+        string username;
 
-        public User(HttpClient Client)
+        public User(HttpClient Client, string Username)
         {
             InitializeComponent();
             client = Client;
+            username = Username;
         }
 
         private void btn_newdata_Click(object sender, EventArgs e)
@@ -83,22 +87,17 @@ namespace NT219_FinalProject
 
         private async Task SendRequestRequest()
         {
-            string url = $"http://localhost:3000/api/communicate/";
-            string body = "{\"username\": \"hao\", \"password\": \"123\"}";
+            string url = $"{RootURI}/api/communicate/check-requests/{username}";
 
-            StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.GetAsync(url);
 
-            HttpResponseMessage response = await client.PostAsync(url, content);
-
-            HttpResponseMessage responses = null;
-
-            if (responses.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
-                string responseContent = await responses.Content.ReadAsStringAsync();
+                string responseContent = await response.Content.ReadAsStringAsync();
                 DataResponse responseObject = JsonConvert.DeserializeObject<DataResponse>(responseContent);
 
                 // Xóa tất cả các controls trong flowLayoutPanel1
-                flowLayoutPanel1.Controls.Clear();
+                flowLayoutPanel2.Controls.Clear();
 
                 // Hiển thị dữ liệu mới từ phản hồi
                 foreach (var data_response in responseObject.Data)
@@ -119,15 +118,17 @@ namespace NT219_FinalProject
         private async Task SendRequestAccept()
         {
 
-            HttpResponseMessage responses = null;
+            string url = $"{RootURI}/api/communicate/check-resopnse";
+            string body = "{\"fron\": \"" + username + "\"}";
+            HttpResponseMessage response = await client.GetAsync(url);
 
-            if (responses.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
-                string responseContent = await responses.Content.ReadAsStringAsync();
+                string responseContent = await response.Content.ReadAsStringAsync();
                 DataResponse responseObject = JsonConvert.DeserializeObject<DataResponse>(responseContent);
 
                 // Xóa tất cả các controls trong flowLayoutPanel1
-                flowLayoutPanel1.Controls.Clear();
+                flowLayoutPanel3.Controls.Clear();
 
                 // Hiển thị dữ liệu mới từ phản hồi
                 foreach (var data_response in responseObject.Data)
@@ -147,72 +148,58 @@ namespace NT219_FinalProject
 
         private async void btn_refresh_Click(object sender, EventArgs e)
         {
-            string id = "data_response.Id";
-            string data_name = "data_response.name_data";
-            string user_name = "data_response.name_user";
-            AddprogressbarData(id, data_name, user_name);
+            //pull cloud
         }
 
         private void btn_refreshrequest_Click(object sender, EventArgs e)
         {
-            string id = "data_response.Id";
-            string data_name = "data_response.name_data";
-            string user_name = "data_response.name_user";
-            AddprogressbarRequest(id, data_name, user_name);
+            SendRequestRequest();
         }
 
         private void btn_refreshaccept_Click(object sender, EventArgs e)
         {
-            string id = "data_response.Id";
-            string data_name = "data_response.name_data";
-            string user_name = "data_response.name_user";
-            AddprogressbarAccept(id, data_name, user_name);
+            SendRequestAccept();
         }
 
-        private static byte[] rsaPublicKey;
-        private static byte[] rsaPrivateKey;
+        private static string rsaPublicKey;
+        private static string rsaPrivateKey;
+        RSA_Prj rsa = new RSA_Prj();
 
         private void btn_createpublickey_Click(object sender, EventArgs e)
         {
             rb_publickey.Clear();
             rb_privatekey.Clear();
-            //byte[][] pubandpri = rsa.GenerateKeyPair();
-            //rsaPublicKey = pubandpri[0];
-            //rsaPrivateKey = pubandpri[1];
-
-            RSA_Prj rsa = new RSA_Prj();
             rsa.GenerateKeyPair();
             string[] keys = rsa.GetKeyPair();
-            rb_privatekey.Text = Convert.ToBase64String(rsaPrivateKey);
-            rb_publickey.Text = Convert.ToBase64String(rsaPublicKey);
+            rsaPublicKey = keys[0];
+            rsaPrivateKey = keys[1];
+            rb_privatekey.Text = rsaPrivateKey;
+            rb_publickey.Text = rsaPublicKey;
         }
 
         private void btn_configpublickey_Click(object sender, EventArgs e)
         {
-
         }
 
         private void btn_saveprivatekey_Click(object sender, EventArgs e)
         {
-            checkBox2.Checked = true;
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            // Open folder browser dialog to select the file directory
+            using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
             {
-                string fileName = saveFileDialog.FileName;
-                File.WriteAllBytes(fileName + "public_key.bin", rsaPublicKey);
-                File.WriteAllBytes(fileName + "private_key.bin", rsaPrivateKey);
+                DialogResult result = folderBrowserDialog.ShowDialog();
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
+                {
+                    string selectedPath = folderBrowserDialog.SelectedPath;
+                    rsa.SaveKeyPair(selectedPath + "/publickey.pem", selectedPath + "/privatekey.pem");
+                    checkBox2.Checked = true;
+                }
             }
         }
 
         private void btn_find_Click(object sender, EventArgs e)
         {
-            Data_Find df = new Data_Find();
+            Data_Find df = new Data_Find(client);
             df.Show();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

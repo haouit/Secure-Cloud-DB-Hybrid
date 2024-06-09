@@ -62,9 +62,9 @@
             lb_name.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lb_name.Location = new Point(113, 14);
             lb_name.Name = "lb_name";
-            lb_name.Size = new Size(74, 32);
+            lb_name.Size = new Size(69, 32);
             lb_name.TabIndex = 4;
-            lb_name.Text = "name";
+            lb_name.Text = "none";
             // 
             // lb_dataname
             // 
@@ -72,9 +72,9 @@
             lb_dataname.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lb_dataname.Location = new Point(190, 46);
             lb_dataname.Name = "lb_dataname";
-            lb_dataname.Size = new Size(120, 32);
+            lb_dataname.Size = new Size(69, 32);
             lb_dataname.TabIndex = 5;
-            lb_dataname.Text = "dataname";
+            lb_dataname.Text = "none";
             // 
             // lb_dataid
             // 
@@ -82,9 +82,9 @@
             lb_dataid.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lb_dataid.Location = new Point(72, 78);
             lb_dataid.Name = "lb_dataid";
-            lb_dataid.Size = new Size(80, 32);
+            lb_dataid.Size = new Size(69, 32);
             lb_dataid.TabIndex = 7;
-            lb_dataid.Text = "dataid";
+            lb_dataid.Text = "none";
             // 
             // label4
             // 

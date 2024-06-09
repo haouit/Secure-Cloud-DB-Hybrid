@@ -40,7 +40,7 @@
             label1 = new Label();
             rb_publickey = new RichTextBox();
             list_data = new TabPage();
-            btn_ = new Button();
+            btn_find = new Button();
             btn_refresh = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
             btn_downdata = new Button();
@@ -103,7 +103,7 @@
             // 
             checkBox1.AutoSize = true;
             checkBox1.Enabled = false;
-            checkBox1.Location = new Point(738, 528);
+            checkBox1.Location = new Point(890, 528);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(22, 21);
             checkBox1.TabIndex = 11;
@@ -112,11 +112,11 @@
             // btn_saveprivatekey
             // 
             btn_saveprivatekey.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_saveprivatekey.Location = new Point(791, 503);
+            btn_saveprivatekey.Location = new Point(934, 503);
             btn_saveprivatekey.Name = "btn_saveprivatekey";
-            btn_saveprivatekey.Size = new Size(343, 61);
+            btn_saveprivatekey.Size = new Size(200, 61);
             btn_saveprivatekey.TabIndex = 10;
-            btn_saveprivatekey.Text = "Save private key";
+            btn_saveprivatekey.Text = "Save key";
             btn_saveprivatekey.UseVisualStyleBackColor = true;
             btn_saveprivatekey.Click += btn_saveprivatekey_Click;
             // 
@@ -152,7 +152,7 @@
             // btn_configpublickey
             // 
             btn_configpublickey.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_configpublickey.Location = new Point(428, 503);
+            btn_configpublickey.Location = new Point(580, 503);
             btn_configpublickey.Name = "btn_configpublickey";
             btn_configpublickey.Size = new Size(304, 61);
             btn_configpublickey.TabIndex = 5;
@@ -180,7 +180,7 @@
             // 
             // list_data
             // 
-            list_data.Controls.Add(btn_);
+            list_data.Controls.Add(btn_find);
             list_data.Controls.Add(btn_refresh);
             list_data.Controls.Add(flowLayoutPanel1);
             list_data.Controls.Add(btn_downdata);
@@ -192,15 +192,15 @@
             list_data.Text = "Data Manager";
             list_data.UseVisualStyleBackColor = true;
             // 
-            // btn_
+            // btn_find
             // 
-            btn_.Location = new Point(732, 13);
-            btn_.Name = "btn_";
-            btn_.Size = new Size(128, 45);
-            btn_.TabIndex = 6;
-            btn_.Text = "Find";
-            btn_.UseVisualStyleBackColor = true;
-            btn_.Click += btn_find_Click;
+            btn_find.Location = new Point(732, 13);
+            btn_find.Name = "btn_find";
+            btn_find.Size = new Size(128, 45);
+            btn_find.TabIndex = 6;
+            btn_find.Text = "Find";
+            btn_find.UseVisualStyleBackColor = true;
+            btn_find.Click += btn_find_Click;
             // 
             // btn_refresh
             // 
@@ -248,7 +248,7 @@
             list_request.Padding = new Padding(3);
             list_request.Size = new Size(1267, 638);
             list_request.TabIndex = 0;
-            list_request.Text = "Request";
+            list_request.Text = "Pending Requests";
             list_request.UseVisualStyleBackColor = true;
             // 
             // btn_refreshrequest
@@ -277,7 +277,7 @@
             list_accepted.Padding = new Padding(3);
             list_accepted.Size = new Size(1267, 638);
             list_accepted.TabIndex = 1;
-            list_accepted.Text = "Accepted";
+            list_accepted.Text = "Check Request";
             list_accepted.UseVisualStyleBackColor = true;
             // 
             // btn_refreshaccept
@@ -332,7 +332,7 @@
         private FlowLayoutPanel flowLayoutPanel2;
         private Button btn_refreshaccept;
         private FlowLayoutPanel flowLayoutPanel3;
-        private Button btn_;
+        private Button btn_find;
         private CheckBox checkBox2;
         private CheckBox checkBox1;
         private Button btn_saveprivatekey;

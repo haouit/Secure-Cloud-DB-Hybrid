@@ -37,7 +37,7 @@ namespace NT219_FinalProject
             HttpClient client = new HttpClient();
             string url = "http://localhost:3000/api/send-request";
             string from = "a";
-            string to = "b";
+            string to = $"{lb_name.Text}";
             string message = "key encrypt";
             string body = "{\"from\": \"" + from + "\", \"to\": \"" + to + "\", \"message\": \"" + message + "\"}";
 

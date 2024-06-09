@@ -56,7 +56,6 @@ namespace NT219_FinalProject
 
                 RSA_Prj rsa = new RSA_Prj();
                 RSAParameters public_key = rsa.ImportPublicKeyFromPem(publickey);
-                MessageBox.Show(public_key.Exponent.Length.ToString());
                 byte[] encryptedSecretKey = rsa.Encrypt(secertkey);
                 string encryptedSecretKeyBase64 = Convert.ToBase64String(encryptedSecretKey);
 

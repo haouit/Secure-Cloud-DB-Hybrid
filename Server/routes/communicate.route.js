@@ -22,6 +22,7 @@ router.post('/send-request', (req, res) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to send request' });
         } else {
+            console.log('[Request] sent:', { from, to });
             return res.status(200).json({ success: true, requestId: newDoc._id });
         }
     });
@@ -42,6 +43,7 @@ router.post('/respond-request', (req, res) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to respond to request' });
         } else {
+            console.log('[Response] responded:', { from, to, status });
             return res.status(200).json({ success: true });
         }
     });
@@ -63,6 +65,7 @@ router.get('/check-requests/:id', (req, res) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to retrieve requests' });
         } else {
+            console.log('[Request] checked by:', id);
             return res.status(200).json(docs);
         }
     });
@@ -84,6 +87,7 @@ router.post('/check-responses/', (req, res) => {
         if (err || !docs) {
             return res.status(404).json({ error: 'Request not found' });
         } else {
+            console.log('[Response] checked by:', from);
             return res.status(200).json(docs);
         }
     });

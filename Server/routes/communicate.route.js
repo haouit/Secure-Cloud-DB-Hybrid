@@ -40,7 +40,7 @@ or	{ from: 'A', to: 'B', message: '', response: 'rejected' }
 router.post('/respond-request', (req, res) => {
     const { from, to, message, status } = req.body;
 
-    requestsDB.update({ from, to }, { $set: { message, status } }, {}, (err) => {
+    requestsDB.update({ from, to, status: 'pending' }, { $set: { message, status } }, {}, (err) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to respond to request' });
         } else {

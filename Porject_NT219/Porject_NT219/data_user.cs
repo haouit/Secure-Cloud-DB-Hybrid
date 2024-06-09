@@ -17,14 +17,11 @@ namespace NT219_FinalProject
             InitializeComponent();
         }
 
-        public void Setnamerequest(string s)
-        {
-            lb_namerequest.Text = s;
-        }
         public void Setnameuser(string s)
         {
             lb_nameuser.Text = s;
         }
+
         public void Setmessage(string s)
         {
             lb_message.Text = s;

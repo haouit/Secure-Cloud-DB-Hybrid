@@ -17,15 +17,19 @@ using Microsoft.VisualBasic.ApplicationServices;
 using System.IO;
 using Newtonsoft.Json;
 using MongoDB.Driver.Core.Authentication;
+using MongoDB.Bson;
 
 namespace NT219_FinalProject
 {
     public partial class Login : Form
     {
         const string BaseURL = Config.BaseURL;
+        private MongoClient clientmongo;
+
         public Login()
         {
             InitializeComponent();
+            clientmongo = Login_Mongo();
         }
 
         private async void btn_signin_Click(object sender, EventArgs e)
@@ -49,7 +53,7 @@ namespace NT219_FinalProject
             {
                 // Handle successful response
                 string result = await response.Content.ReadAsStringAsync();
-                User user = new User(client, username);
+                User user = new User(client, username, clientmongo);
                 user.Show();
             }
             else
@@ -77,7 +81,7 @@ namespace NT219_FinalProject
             {
                 // Handle successful response
                 string result = await response.Content.ReadAsStringAsync();
-                User user = new User(client, username);
+                User user = new User(client, username, clientmongo);
                 user.Show();
                 // Do something with the result
             }
@@ -88,6 +92,25 @@ namespace NT219_FinalProject
                 // Do something with the error
                 MessageBox.Show(error);
             }
+        }
+
+        private MongoClient Login_Mongo()
+        {
+            string connectionUri = $"mongodb+srv://d0905206126:cde4Vht02d8YXni4@nt219.aqc0g5i.mongodb.net/?retryWrites=true&w=majority&appName=NT219";
+            var settings = MongoClientSettings.FromConnectionString(connectionUri);
+
+            settings.ServerApi = new ServerApi(ServerApiVersion.V1);
+            var clientmongo = new MongoClient(settings);
+
+            try
+            {
+                var result = clientmongo.GetDatabase("admin").RunCommand<BsonDocument>(new BsonDocument("ping", 1));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return clientmongo;
         }
     }
 }

@@ -66,7 +66,7 @@ namespace NT219_FinalProject
             string fileName = lb_namefile.Text;
             byte[] encryptedData = aes.Encrypt(data, secret_key, iv);
 
-
+            
 
             checkBox1.Checked = false;
             checkBox2.Checked = false;

@@ -39,27 +39,37 @@ namespace NT219_FinalProject
 
         private async void btn_accept_Click(object sender, EventArgs e)
         {
-            string from = $"{lb_namerequest.Text}";
-            string to = $"{username}";
-            string message = "Key encrypted";
-            string status = "accepted";
-            string body = "{\"from\": \"" + from + "\", \"to\": \"" + to + "\", \"message\": \"" + message + "\", \"status\": \"" + status + "\"}";
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Secret Key Files (*.key)|*.key";
+            openFileDialog.Title = "Select Secret Key File";
 
-            StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = await client.PostAsync($"{BaseURL}/api/communicate/respond-request", content);
-
-            if (response.IsSuccessStatusCode)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // Handle successful response
-                string result = await response.Content.ReadAsStringAsync();
-                // Do something with the result
-            }
-            else
-            {
-                // Handle error response
-                string error = await response.Content.ReadAsStringAsync();
-                // Do something with the error
+                string secretKeyFilePath = openFileDialog.FileName;
+
+
+                string from = $"{lb_namerequest.Text}";
+                string to = $"{username}";
+                string message = "Key encrypted";
+                string status = "accepted";
+                string body = "{\"from\": \"" + from + "\", \"to\": \"" + to + "\", \"message\": \"" + message + "\", \"status\": \"" + status + "\"}";
+
+                StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync($"{BaseURL}/api/communicate/respond-request", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Handle successful response
+                    string result = await response.Content.ReadAsStringAsync();
+                    // Do something with the result
+                }
+                else
+                {
+                    // Handle error response
+                    string error = await response.Content.ReadAsStringAsync();
+                    // Do something with the error
+                }
             }
         }
 

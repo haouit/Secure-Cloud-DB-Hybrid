@@ -27,11 +27,11 @@ namespace NT219_FinalProject
             var settings = MongoClientSettings.FromConnectionString(connectionUri);
 
             settings.ServerApi = new ServerApi(ServerApiVersion.V1);
-            var client = new MongoClient(settings);
+            var clientmongo = new MongoClient(settings);
 
             try
             {
-                var result = client.GetDatabase("admin").RunCommand<BsonDocument>(new BsonDocument("ping", 1));
+                var result = clientmongo.GetDatabase("admin").RunCommand<BsonDocument>(new BsonDocument("ping", 1));
                 MessageBox.Show($"{result}");
                 MessageBox.Show("Pinged your deployment. You successfully connected to MongoDB!");
             }

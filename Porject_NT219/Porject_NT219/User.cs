@@ -92,7 +92,7 @@ namespace NT219_FinalProject
 
         private void AddprogressbarAccpect(string name_user, string name_request, string message)
         {
-            Accepted data = new Accepted();
+            Accepted data = new Accepted(client, username);
             data.Setnameuser(name_user);
             data.Setnamerequest(name_request);
             data.Setmessage(message);

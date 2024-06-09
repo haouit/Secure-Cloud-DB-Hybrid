@@ -74,6 +74,7 @@ namespace NT219_FinalProject
             string fileName = lb_namefile.Text;
             byte[] encryptedData = aes.Encrypt(data, secret_key, iv);
 
+<<<<<<< HEAD
             //await InsertDataToMongo(fileName, encryptedData, tb_API.Text);
             using (HttpClient client = new HttpClient())
             {
@@ -94,6 +95,9 @@ namespace NT219_FinalProject
                         }
                     }
                 };
+=======
+            
+>>>>>>> b18598fdfa00deece1636b90cd731c9c3f21eca3
 
                 string body = JsonConvert.SerializeObject(document);
             

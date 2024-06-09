@@ -14,6 +14,7 @@ using NT219_FinalProject.Crypto;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.WebUtilities;
+using MongoDB.Driver;
 
 namespace NT219_FinalProject
 {
@@ -21,13 +22,15 @@ namespace NT219_FinalProject
     {
         const string BaseURL = Config.BaseURL;
         HttpClient client;
+        MongoClient clientMongo;
         string username;
 
-        public User(HttpClient Client, string Username)
+        public User(HttpClient Client, string Username , MongoClient Clientmongo)
         {
             InitializeComponent();
             client = Client;
             username = Username;
+            clientMongo = Clientmongo;
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel2.AutoScroll = true;
             flowLayoutPanel3.AutoScroll = true;
@@ -78,6 +81,14 @@ namespace NT219_FinalProject
             data.Setnamerequest(name_request);
             data.Setmessage(message);
             flowLayoutPanel3.Controls.Add(data);
+        }
+
+        private void AddprogressbarMongo(string name_user, string message)
+        {
+            data_user data = new data_user();
+            data.Setnameuser(name_user);
+            data.Setmessage(message);
+            flowLayoutPanel1.Controls.Add(data);
         }
 
         private async Task SendCheckRequest()
@@ -148,9 +159,40 @@ namespace NT219_FinalProject
             }
         }
 
+        private async Task SendRequestMongo()
+        {
+            // refresh data from mongo
+            HttpResponseMessage response = null;
+            if (response.IsSuccessStatusCode)
+            {
+                string responseContent = await response.Content.ReadAsStringAsync();
+                List<DataResponse>? responseObject = JsonConvert.DeserializeObject<List<DataResponse>>(responseContent);
+
+                //Xóa tất cả các controls trong flowLayoutPanel3
+                flowLayoutPanel1.Controls.Clear();
+
+                // Hiển thị dữ liệu mới từ phản hồi
+                if (responseObject != null)
+                {
+                    foreach (var data_response in responseObject)
+                    {
+                        try
+                        {
+                            string from = data_response.from;
+                            string to = data_response.to;
+                            string message = data_response.message;
+                            string status = data_response.status;
+                            AddprogressbarMongo(to, message);
+                        }
+                        catch { }
+                    }
+                }
+            }
+        }
+
         private async void btn_refresh_Click(object sender, EventArgs e)
         {
-            await SendCheckRequest();
+            SendRequestMongo();
         }
 
         private async void btn_refreshrequest_Click(object sender, EventArgs e)

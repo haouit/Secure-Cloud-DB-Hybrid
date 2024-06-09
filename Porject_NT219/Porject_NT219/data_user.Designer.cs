@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            label2 = new Label();
             lb_nameuser = new Label();
-            lb_namerequest = new Label();
+            btn_remove = new Button();
             lb_message = new Label();
             label4 = new Label();
-            btn_remove = new Button();
             SuspendLayout();
             // 
             // label1
@@ -47,16 +45,6 @@
             label1.TabIndex = 2;
             label1.Text = "Name Owner:";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(24, 46);
-            label2.Name = "label2";
-            label2.Size = new Size(158, 32);
-            label2.TabIndex = 3;
-            label2.Text = "User Request:";
-            // 
             // lb_nameuser
             // 
             lb_nameuser.AutoSize = true;
@@ -66,36 +54,6 @@
             lb_nameuser.Size = new Size(69, 32);
             lb_nameuser.TabIndex = 4;
             lb_nameuser.Text = "none";
-            // 
-            // lb_namerequest
-            // 
-            lb_namerequest.AutoSize = true;
-            lb_namerequest.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_namerequest.Location = new Point(179, 46);
-            lb_namerequest.Name = "lb_namerequest";
-            lb_namerequest.Size = new Size(69, 32);
-            lb_namerequest.TabIndex = 5;
-            lb_namerequest.Text = "none";
-            // 
-            // lb_message
-            // 
-            lb_message.AutoSize = true;
-            lb_message.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_message.Location = new Point(129, 78);
-            lb_message.Name = "lb_message";
-            lb_message.Size = new Size(69, 32);
-            lb_message.TabIndex = 7;
-            lb_message.Text = "none";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(24, 78);
-            label4.Name = "label4";
-            label4.Size = new Size(113, 32);
-            label4.TabIndex = 6;
-            label4.Text = "Message:";
             // 
             // btn_remove
             // 
@@ -108,17 +66,35 @@
             btn_remove.UseVisualStyleBackColor = false;
             btn_remove.Click += btn_remove_Click;
             // 
+            // lb_message
+            // 
+            lb_message.AutoSize = true;
+            lb_message.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_message.Location = new Point(135, 58);
+            lb_message.Name = "lb_message";
+            lb_message.Size = new Size(69, 32);
+            lb_message.TabIndex = 11;
+            lb_message.Text = "none";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(29, 58);
+            label4.Name = "label4";
+            label4.Size = new Size(113, 32);
+            label4.TabIndex = 10;
+            label4.Text = "Message:";
+            // 
             // data_user
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            Controls.Add(btn_remove);
             Controls.Add(lb_message);
             Controls.Add(label4);
-            Controls.Add(lb_namerequest);
+            Controls.Add(btn_remove);
             Controls.Add(lb_nameuser);
-            Controls.Add(label2);
             Controls.Add(label1);
             Name = "data_user";
             Size = new Size(950, 123);
@@ -128,11 +104,9 @@
 
         #endregion
         private Label label1;
-        private Label label2;
         private Label lb_nameuser;
-        private Label lb_namerequest;
+        private Button btn_remove;
         private Label lb_message;
         private Label label4;
-        private Button btn_remove;
     }
 }

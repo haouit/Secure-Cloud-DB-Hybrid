@@ -4,12 +4,12 @@ const router = express.Router();
 
 /* 
 Route to send a request from A to B
-	- This route is used by A to send a request to B. The request contains A's public-key. 
-	- The request is stored in the database with status 'pending'.
+    - This route is used by A to send a request to B. The request contains A's public-key. 
+    - The request is stored in the database with status 'pending'.
 Request body: 
-	{ from: 'A', to: 'B', message: 'A's public-key' }
+    { from: 'A', to: 'B', message: 'A's public-key' }
 Response: 
-	{ success: true, requestId: 'id' }
+    { success: true, requestId: 'id' }
 */
 router.post('/send-request', (req, res) => {
     const { from, to, message } = req.body;
@@ -30,16 +30,16 @@ router.post('/send-request', (req, res) => {
 
 /*
 Route to send a response from B to A
-	- This route is used by B to send a response to A. The response may contain B's encrypted secret-key.
-	- The request is updated in the database with the `message` and `response`.
+    - This route is used by B to send a response to A. The response may contain B's encrypted secret-key.
+    - The request is updated in the database with the `message` and `response`.
 Request body: 	
-	{ from: 'A', to: 'B', message: 'B\'s encrypted secret-key', response: 'accepted' }
+    { from: 'A', to: 'B', message: 'B\'s encrypted secret-key', response: 'accepted' }
 or	{ from: 'A', to: 'B', message: '', response: 'rejected' }
 */
 router.post('/respond-request', (req, res) => {
-    const { from, to, message, response } = req.body;
+    const { from, to, message, status } = req.body;
 
-    requestsDB.update({ from, to }, { $set: { message, status: response } }, {}, (err) => {
+    requestsDB.update({ from, to }, { $set: { message, status } }, {}, (err) => {
         if (err) {
             res.status(500).json({ error: 'Failed to respond to request' });
         } else {
@@ -50,12 +50,12 @@ router.post('/respond-request', (req, res) => {
 
 /*
 Route to check requests sent to B (called by itself)
-	- This route is used by B to check all the pending requests sent to B.
-	- The response contains all the requests with status 'pending'.
+    - This route is used by B to check all the pending requests sent to B.
+    - The response contains all the requests with status 'pending'.
 Request parameters: 
-	:id - B's id
+    :id - B's id
 Response:
-	[ docs ] - a list of requests sent to B
+    [ docs ] - a list of requests sent to B
 */
 router.get('/check-requests/:id', (req, res) => {
     const id = req.params.id;
@@ -71,14 +71,14 @@ router.get('/check-requests/:id', (req, res) => {
 
 /*
 Route to check all requests sent from A to anyone is accepted or rejected
-	- This route is used by A to check if the requests sent to any is accepted or rejected.
-	- The response contains the list of responses (accepted or rejected)
+    - This route is used by A to check if the requests sent to any is accepted or rejected.
+    - The response contains the list of responses (accepted or rejected)
 Request body: 
-	{ from: 'A' }
+    { from: 'A' }
 Response:
     - a list of responed requests 
 */
-router.get('/check-responses/', (req, res) => {
+router.post('/check-responses/', (req, res) => {
     const { from } = req.body;
 
     requestsDB.find({ from }, (err, docs) => {

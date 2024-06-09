@@ -14,9 +14,13 @@ namespace NT219_FinalProject
 {
     public partial class Request : UserControl
     {
-        public Request(HttpClient client)
+        HttpClient client;
+        string username;
+        public Request(HttpClient Client, string Username)
         {
             InitializeComponent();
+            client = Client;
+            username = Username;
         }
 
         public void Setnamerequest(string s)
@@ -37,13 +41,12 @@ namespace NT219_FinalProject
             // đổi state
             // gửi key lên server
             // gửi request lên server
-            HttpClient client = new HttpClient();
             string url = "http://localhost:3000/api/respond-request";
-            string from = "a";
-            string to = "b";
+            string from = $"{lb_namerequest.Text}";
+            string to = $"{username}";
             string message = "Key encrypted";
-            string state = "accepted";
-            string body = "{\"from\": \"" + from + "\", \"to\": \"" + to + "\", \"message\": \"" + message + "\", \"response\": \"" + state + "\"}";
+            string status = "accepted";
+            string body = "{\"from\": \"" + from + "\", \"to\": \"" + to + "\", \"message\": \"" + message + "\", \"status\": \"" + status + "\"}";
 
             StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
 
@@ -68,10 +71,10 @@ namespace NT219_FinalProject
         {
             HttpClient client = new HttpClient();
             string url = "http://localhost:3000/api/respond-request";
-            string from = "a";
-            string to = "b";
-            string state = "rejected";
-            string body = "{\"from\": \"" + from + "\", \"to\": \"" + to + "\", \"response\": \"" + state + "\"}";
+            string from = $"{lb_namerequest.Text}";
+            string to = $"{username}";
+            string status = "rejected";
+            string body = "{\"from\": \"" + from + "\", \"to\": \"" + to + "\", \"status\": \"" + status + "\"}";
 
             StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
 

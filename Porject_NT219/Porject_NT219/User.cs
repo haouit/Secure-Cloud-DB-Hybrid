@@ -28,6 +28,9 @@ namespace NT219_FinalProject
             InitializeComponent();
             client = Client;
             username = Username;
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel2.AutoScroll = true;
+            flowLayoutPanel3.AutoScroll = true;
         }
 
         private void btn_newdata_Click(object sender, EventArgs e)
@@ -61,7 +64,7 @@ namespace NT219_FinalProject
 
         private void AddprogressbarRequest(string name_user, string name_request, string message)
         {
-            Request data = new Request(client);
+            Request data = new Request(client, username);
             data.Setnameuser(name_user);
             data.Setnamerequest(name_request);
             data.Setmessage(message);
@@ -88,6 +91,9 @@ namespace NT219_FinalProject
                 // Response is a list of DataResponse
                 string responseContent = await response.Content.ReadAsStringAsync();
                 List<DataResponse>? responseObject = JsonConvert.DeserializeObject<List<DataResponse>>(responseContent);
+                
+                //Xóa tất cả các controls trong flowLayoutPanel3
+                flowLayoutPanel2.Controls.Clear();
 
                 if (responseObject != null)
                 {
@@ -109,10 +115,11 @@ namespace NT219_FinalProject
 
         private async Task SendRequestAccept()
         {
-
-            string url = $"{BaseURL}/api/communicate/check-response";
+            if (username == "") return;
+            string url = $"{BaseURL}/api/communicate/check-responses";
             string body = "{\"from\": \"" + username + "\"}";
-            HttpResponseMessage response = await client.GetAsync(url);
+            StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(url, content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -123,18 +130,20 @@ namespace NT219_FinalProject
                 flowLayoutPanel3.Controls.Clear();
 
                 // Hiển thị dữ liệu mới từ phản hồi
-                foreach (var data_response in responseObject)
+                if (responseObject != null)
                 {
-                    try
+                    foreach (var data_response in responseObject)
                     {
-                        string from = data_response.from;
-                        string to = data_response.to;
-                        string message = data_response.message;
-                        string status = data_response.status;
-                        // Thêm Hienthimonan vào flowLayoutPanel1 với các giá trị tương ứng
-                        AddprogressbarAccpect(to, from, message);
+                        try
+                        {
+                            string from = data_response.from;
+                            string to = data_response.to;
+                            string message = data_response.message;
+                            string status = data_response.status;
+                            AddprogressbarAccpect(to, from, message);
+                        }
+                        catch { }
                     }
-                    catch { }
                 }
             }
         }

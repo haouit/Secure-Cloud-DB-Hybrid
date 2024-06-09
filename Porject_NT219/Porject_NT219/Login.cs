@@ -46,7 +46,6 @@ namespace NT219_FinalProject
                 string result = await response.Content.ReadAsStringAsync();
                 User user = new User(client, username);
                 user.Show();
-                MessageBox.Show(result);
                 // Do something with the result
             }
             else
@@ -76,7 +75,6 @@ namespace NT219_FinalProject
                 string result = await response.Content.ReadAsStringAsync();
                 User user = new User(client, username);
                 user.Show();
-                MessageBox.Show(result);
                 // Do something with the result
             }
             else

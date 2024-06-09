@@ -14,16 +14,15 @@ Response:
 router.post('/send-request', (req, res) => {
     const { from, to, message } = req.body;
     if (!from || !to || !message) {
-        res.status(400).json({ error: 'Invalid request' });
-        return;
+        return res.status(400).json({ error: 'Invalid request' });
     }
     const request = { from, to, message, status: 'pending' };
 
     requestsDB.insert(request, (err, newDoc) => {
         if (err) {
-            res.status(500).json({ error: 'Failed to send request' });
+            return res.status(500).json({ error: 'Failed to send request' });
         } else {
-            res.status(200).json({ success: true, requestId: newDoc._id });
+            return res.status(200).json({ success: true, requestId: newDoc._id });
         }
     });
 });
@@ -41,9 +40,9 @@ router.post('/respond-request', (req, res) => {
 
     requestsDB.update({ from, to }, { $set: { message, status } }, {}, (err) => {
         if (err) {
-            res.status(500).json({ error: 'Failed to respond to request' });
+            return res.status(500).json({ error: 'Failed to respond to request' });
         } else {
-            res.status(200).json({ success: true });
+            return res.status(200).json({ success: true });
         }
     });
 });
@@ -62,9 +61,9 @@ router.get('/check-requests/:id', (req, res) => {
 
     requestsDB.find({ to: id, status: 'pending' }, (err, docs) => {
         if (err) {
-            res.status(500).json({ error: 'Failed to retrieve requests' });
+            return res.status(500).json({ error: 'Failed to retrieve requests' });
         } else {
-            res.status(200).json(docs);
+            return res.status(200).json(docs);
         }
     });
 });
@@ -83,9 +82,9 @@ router.post('/check-responses/', (req, res) => {
 
     requestsDB.find({ from }, (err, docs) => {
         if (err || !docs) {
-            res.status(404).json({ error: 'Request not found' });
+            return res.status(404).json({ error: 'Request not found' });
         } else {
-            res.status(200).json(docs);
+            return res.status(200).json(docs);
         }
     });
 });

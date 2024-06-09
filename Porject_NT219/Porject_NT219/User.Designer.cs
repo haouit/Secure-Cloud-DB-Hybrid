@@ -47,7 +47,6 @@
             btn_find = new Button();
             btn_refresh = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
-            btn_downdata = new Button();
             btn_newdata = new Button();
             list_request = new TabPage();
             btn_refreshrequest = new Button();
@@ -69,11 +68,10 @@
             tabshow.Controls.Add(list_request);
             tabshow.Controls.Add(list_accepted);
             tabshow.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            tabshow.Location = new Point(1, 1);
-            tabshow.Margin = new Padding(2, 2, 2, 2);
+            tabshow.Location = new Point(1, 2);
             tabshow.Name = "tabshow";
             tabshow.SelectedIndex = 0;
-            tabshow.Size = new Size(892, 432);
+            tabshow.Size = new Size(1274, 720);
             tabshow.TabIndex = 0;
             // 
             // Key_setting
@@ -91,10 +89,9 @@
             Key_setting.Controls.Add(btn_loadpublic);
             Key_setting.Controls.Add(label1);
             Key_setting.Controls.Add(rb_publickey);
-            Key_setting.Location = new Point(4, 30);
-            Key_setting.Margin = new Padding(2, 2, 2, 2);
+            Key_setting.Location = new Point(4, 41);
             Key_setting.Name = "Key_setting";
-            Key_setting.Size = new Size(884, 398);
+            Key_setting.Size = new Size(1266, 675);
             Key_setting.TabIndex = 3;
             Key_setting.Text = "Key Setting";
             Key_setting.UseVisualStyleBackColor = true;
@@ -103,20 +100,18 @@
             // 
             checkBox4.AutoSize = true;
             checkBox4.Enabled = false;
-            checkBox4.Location = new Point(613, 316);
-            checkBox4.Margin = new Padding(2, 2, 2, 2);
+            checkBox4.Location = new Point(876, 527);
             checkBox4.Name = "checkBox4";
-            checkBox4.Size = new Size(15, 14);
+            checkBox4.Size = new Size(22, 21);
             checkBox4.TabIndex = 16;
             checkBox4.UseVisualStyleBackColor = true;
             // 
             // btn_config
             // 
             btn_config.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_config.Location = new Point(472, 302);
-            btn_config.Margin = new Padding(2, 2, 2, 2);
+            btn_config.Location = new Point(674, 503);
             btn_config.Name = "btn_config";
-            btn_config.Size = new Size(137, 37);
+            btn_config.Size = new Size(196, 62);
             btn_config.TabIndex = 15;
             btn_config.Text = "Config Key";
             btn_config.UseVisualStyleBackColor = true;
@@ -126,20 +121,18 @@
             // 
             checkBox3.AutoSize = true;
             checkBox3.Enabled = false;
-            checkBox3.Location = new Point(420, 316);
-            checkBox3.Margin = new Padding(2, 2, 2, 2);
+            checkBox3.Location = new Point(600, 527);
             checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(15, 14);
+            checkBox3.Size = new Size(22, 21);
             checkBox3.TabIndex = 14;
             checkBox3.UseVisualStyleBackColor = true;
             // 
             // btn_loadprivate
             // 
             btn_loadprivate.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_loadprivate.Location = new Point(228, 341);
-            btn_loadprivate.Margin = new Padding(2, 2, 2, 2);
+            btn_loadprivate.Location = new Point(326, 568);
             btn_loadprivate.Name = "btn_loadprivate";
-            btn_loadprivate.Size = new Size(188, 37);
+            btn_loadprivate.Size = new Size(269, 62);
             btn_loadprivate.TabIndex = 13;
             btn_loadprivate.Text = "Load private key";
             btn_loadprivate.UseVisualStyleBackColor = true;
@@ -149,10 +142,9 @@
             // 
             checkBox2.AutoSize = true;
             checkBox2.Enabled = false;
-            checkBox2.Location = new Point(798, 317);
-            checkBox2.Margin = new Padding(2, 2, 2, 2);
+            checkBox2.Location = new Point(1140, 528);
             checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(15, 14);
+            checkBox2.Size = new Size(22, 21);
             checkBox2.TabIndex = 12;
             checkBox2.UseVisualStyleBackColor = true;
             // 
@@ -160,20 +152,18 @@
             // 
             checkBox1.AutoSize = true;
             checkBox1.Enabled = false;
-            checkBox1.Location = new Point(420, 356);
-            checkBox1.Margin = new Padding(2, 2, 2, 2);
+            checkBox1.Location = new Point(600, 593);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(15, 14);
+            checkBox1.Size = new Size(22, 21);
             checkBox1.TabIndex = 11;
             checkBox1.UseVisualStyleBackColor = true;
             // 
             // btn_saveprivatekey
             // 
             btn_saveprivatekey.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_saveprivatekey.Location = new Point(654, 302);
-            btn_saveprivatekey.Margin = new Padding(2, 2, 2, 2);
+            btn_saveprivatekey.Location = new Point(934, 503);
             btn_saveprivatekey.Name = "btn_saveprivatekey";
-            btn_saveprivatekey.Size = new Size(140, 37);
+            btn_saveprivatekey.Size = new Size(200, 62);
             btn_saveprivatekey.TabIndex = 10;
             btn_saveprivatekey.Text = "Save key";
             btn_saveprivatekey.UseVisualStyleBackColor = true;
@@ -183,29 +173,26 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(577, 13);
-            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Location = new Point(824, 22);
             label2.Name = "label2";
-            label2.Size = new Size(161, 37);
+            label2.Size = new Size(232, 54);
             label2.TabIndex = 9;
             label2.Text = "Private key";
             // 
             // rb_privatekey
             // 
-            rb_privatekey.Location = new Point(472, 56);
-            rb_privatekey.Margin = new Padding(2, 2, 2, 2);
+            rb_privatekey.Location = new Point(674, 93);
             rb_privatekey.Name = "rb_privatekey";
-            rb_privatekey.Size = new Size(346, 231);
+            rb_privatekey.Size = new Size(493, 382);
             rb_privatekey.TabIndex = 8;
             rb_privatekey.Text = "";
             // 
             // btn_createpublickey
             // 
             btn_createpublickey.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_createpublickey.Location = new Point(71, 302);
-            btn_createpublickey.Margin = new Padding(2, 2, 2, 2);
+            btn_createpublickey.Location = new Point(101, 503);
             btn_createpublickey.Name = "btn_createpublickey";
-            btn_createpublickey.Size = new Size(137, 37);
+            btn_createpublickey.Size = new Size(196, 62);
             btn_createpublickey.TabIndex = 7;
             btn_createpublickey.Text = "Create key";
             btn_createpublickey.UseVisualStyleBackColor = true;
@@ -214,10 +201,9 @@
             // btn_loadpublic
             // 
             btn_loadpublic.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_loadpublic.Location = new Point(228, 301);
-            btn_loadpublic.Margin = new Padding(2, 2, 2, 2);
+            btn_loadpublic.Location = new Point(326, 502);
             btn_loadpublic.Name = "btn_loadpublic";
-            btn_loadpublic.Size = new Size(188, 37);
+            btn_loadpublic.Size = new Size(269, 62);
             btn_loadpublic.TabIndex = 5;
             btn_loadpublic.Text = "Load public key";
             btn_loadpublic.UseVisualStyleBackColor = true;
@@ -227,19 +213,17 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(176, 13);
-            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Location = new Point(251, 22);
             label1.Name = "label1";
-            label1.Size = new Size(148, 37);
+            label1.Size = new Size(214, 54);
             label1.TabIndex = 4;
             label1.Text = "Public key";
             // 
             // rb_publickey
             // 
-            rb_publickey.Location = new Point(71, 56);
-            rb_publickey.Margin = new Padding(2, 2, 2, 2);
+            rb_publickey.Location = new Point(101, 93);
             rb_publickey.Name = "rb_publickey";
-            rb_publickey.Size = new Size(346, 231);
+            rb_publickey.Size = new Size(493, 382);
             rb_publickey.TabIndex = 3;
             rb_publickey.Text = "";
             // 
@@ -248,22 +232,19 @@
             list_data.Controls.Add(btn_find);
             list_data.Controls.Add(btn_refresh);
             list_data.Controls.Add(flowLayoutPanel1);
-            list_data.Controls.Add(btn_downdata);
             list_data.Controls.Add(btn_newdata);
-            list_data.Location = new Point(4, 30);
-            list_data.Margin = new Padding(2, 2, 2, 2);
+            list_data.Location = new Point(4, 41);
             list_data.Name = "list_data";
-            list_data.Size = new Size(884, 376);
+            list_data.Size = new Size(1266, 675);
             list_data.TabIndex = 2;
             list_data.Text = "Data Manager";
             list_data.UseVisualStyleBackColor = true;
             // 
             // btn_find
             // 
-            btn_find.Location = new Point(512, 8);
-            btn_find.Margin = new Padding(2, 2, 2, 2);
+            btn_find.Location = new Point(961, 12);
             btn_find.Name = "btn_find";
-            btn_find.Size = new Size(90, 27);
+            btn_find.Size = new Size(129, 45);
             btn_find.TabIndex = 6;
             btn_find.Text = "Find";
             btn_find.UseVisualStyleBackColor = true;
@@ -271,10 +252,9 @@
             // 
             // btn_refresh
             // 
-            btn_refresh.Location = new Point(5, 8);
-            btn_refresh.Margin = new Padding(2, 2, 2, 2);
+            btn_refresh.Location = new Point(7, 13);
             btn_refresh.Name = "btn_refresh";
-            btn_refresh.Size = new Size(108, 27);
+            btn_refresh.Size = new Size(154, 45);
             btn_refresh.TabIndex = 5;
             btn_refresh.Text = "Refresh";
             btn_refresh.UseVisualStyleBackColor = true;
@@ -282,29 +262,16 @@
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.Location = new Point(0, 38);
-            flowLayoutPanel1.Margin = new Padding(2, 2, 2, 2);
+            flowLayoutPanel1.Location = new Point(0, 63);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(887, 344);
+            flowLayoutPanel1.Size = new Size(1267, 573);
             flowLayoutPanel1.TabIndex = 4;
-            // 
-            // btn_downdata
-            // 
-            btn_downdata.Location = new Point(733, 8);
-            btn_downdata.Margin = new Padding(2, 2, 2, 2);
-            btn_downdata.Name = "btn_downdata";
-            btn_downdata.Size = new Size(149, 27);
-            btn_downdata.TabIndex = 2;
-            btn_downdata.Text = "Download Data";
-            btn_downdata.UseVisualStyleBackColor = true;
-            btn_downdata.Click += btn_downdata_Click;
             // 
             // btn_newdata
             // 
-            btn_newdata.Location = new Point(614, 8);
-            btn_newdata.Margin = new Padding(2, 2, 2, 2);
+            btn_newdata.Location = new Point(1107, 12);
             btn_newdata.Name = "btn_newdata";
-            btn_newdata.Size = new Size(108, 27);
+            btn_newdata.Size = new Size(154, 45);
             btn_newdata.TabIndex = 1;
             btn_newdata.Text = "New Data";
             btn_newdata.UseVisualStyleBackColor = true;
@@ -314,21 +281,19 @@
             // 
             list_request.Controls.Add(btn_refreshrequest);
             list_request.Controls.Add(flowLayoutPanel2);
-            list_request.Location = new Point(4, 30);
-            list_request.Margin = new Padding(2, 2, 2, 2);
+            list_request.Location = new Point(4, 41);
             list_request.Name = "list_request";
-            list_request.Padding = new Padding(2, 2, 2, 2);
-            list_request.Size = new Size(884, 376);
+            list_request.Padding = new Padding(3);
+            list_request.Size = new Size(1266, 675);
             list_request.TabIndex = 0;
             list_request.Text = "Pending Requests";
             list_request.UseVisualStyleBackColor = true;
             // 
             // btn_refreshrequest
             // 
-            btn_refreshrequest.Location = new Point(4, 7);
-            btn_refreshrequest.Margin = new Padding(2, 2, 2, 2);
+            btn_refreshrequest.Location = new Point(6, 12);
             btn_refreshrequest.Name = "btn_refreshrequest";
-            btn_refreshrequest.Size = new Size(108, 27);
+            btn_refreshrequest.Size = new Size(154, 45);
             btn_refreshrequest.TabIndex = 6;
             btn_refreshrequest.Text = "Refresh";
             btn_refreshrequest.UseVisualStyleBackColor = true;
@@ -336,31 +301,28 @@
             // 
             // flowLayoutPanel2
             // 
-            flowLayoutPanel2.Location = new Point(0, 38);
-            flowLayoutPanel2.Margin = new Padding(2, 2, 2, 2);
+            flowLayoutPanel2.Location = new Point(0, 63);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(887, 345);
+            flowLayoutPanel2.Size = new Size(1267, 575);
             flowLayoutPanel2.TabIndex = 0;
             // 
             // list_accepted
             // 
             list_accepted.Controls.Add(btn_refreshaccept);
             list_accepted.Controls.Add(flowLayoutPanel3);
-            list_accepted.Location = new Point(4, 30);
-            list_accepted.Margin = new Padding(2, 2, 2, 2);
+            list_accepted.Location = new Point(4, 41);
             list_accepted.Name = "list_accepted";
-            list_accepted.Padding = new Padding(2, 2, 2, 2);
-            list_accepted.Size = new Size(884, 376);
+            list_accepted.Padding = new Padding(3);
+            list_accepted.Size = new Size(1266, 675);
             list_accepted.TabIndex = 1;
             list_accepted.Text = "Responded Requests";
             list_accepted.UseVisualStyleBackColor = true;
             // 
             // btn_refreshaccept
             // 
-            btn_refreshaccept.Location = new Point(4, 7);
-            btn_refreshaccept.Margin = new Padding(2, 2, 2, 2);
+            btn_refreshaccept.Location = new Point(7, 12);
             btn_refreshaccept.Name = "btn_refreshaccept";
-            btn_refreshaccept.Size = new Size(108, 27);
+            btn_refreshaccept.Size = new Size(154, 45);
             btn_refreshaccept.TabIndex = 8;
             btn_refreshaccept.Text = "Refresh";
             btn_refreshaccept.UseVisualStyleBackColor = true;
@@ -368,19 +330,17 @@
             // 
             // flowLayoutPanel3
             // 
-            flowLayoutPanel3.Location = new Point(0, 38);
-            flowLayoutPanel3.Margin = new Padding(2, 2, 2, 2);
+            flowLayoutPanel3.Location = new Point(0, 63);
             flowLayoutPanel3.Name = "flowLayoutPanel3";
-            flowLayoutPanel3.Size = new Size(887, 345);
+            flowLayoutPanel3.Size = new Size(1267, 575);
             flowLayoutPanel3.TabIndex = 7;
             // 
             // User
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(895, 434);
+            ClientSize = new Size(1279, 723);
             Controls.Add(tabshow);
-            Margin = new Padding(2, 2, 2, 2);
             Name = "User";
             Text = "User";
             tabshow.ResumeLayout(false);
@@ -398,7 +358,6 @@
         private TabPage list_accepted;
         private TabPage list_data;
         private Button btn_newdata;
-        private Button btn_downdata;
         private FlowLayoutPanel flowLayoutPanel1;
         private TabPage Key_setting;
         private Button btn_createpublickey;

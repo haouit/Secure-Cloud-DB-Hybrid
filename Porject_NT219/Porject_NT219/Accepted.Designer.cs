@@ -32,8 +32,9 @@
             label2 = new Label();
             lb_nameuser = new Label();
             lb_namerequest = new Label();
-            lb_message = new Label();
+            lb_key = new Label();
             label4 = new Label();
+            btn_download = new Button();
             SuspendLayout();
             // 
             // label1
@@ -76,15 +77,15 @@
             lb_namerequest.TabIndex = 5;
             lb_namerequest.Text = "none";
             // 
-            // lb_message
+            // lb_key
             // 
-            lb_message.AutoSize = true;
-            lb_message.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_message.Location = new Point(130, 78);
-            lb_message.Name = "lb_message";
-            lb_message.Size = new Size(69, 32);
-            lb_message.TabIndex = 7;
-            lb_message.Text = "none";
+            lb_key.AutoSize = true;
+            lb_key.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_key.Location = new Point(79, 78);
+            lb_key.Name = "lb_key";
+            lb_key.Size = new Size(69, 32);
+            lb_key.TabIndex = 7;
+            lb_key.Text = "none";
             // 
             // label4
             // 
@@ -92,16 +93,28 @@
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label4.Location = new Point(24, 78);
             label4.Name = "label4";
-            label4.Size = new Size(113, 32);
+            label4.Size = new Size(58, 32);
             label4.TabIndex = 6;
-            label4.Text = "Message:";
+            label4.Text = "Key:";
+            // 
+            // btn_download
+            // 
+            btn_download.BackColor = Color.GreenYellow;
+            btn_download.Location = new Point(784, 39);
+            btn_download.Name = "btn_download";
+            btn_download.Size = new Size(146, 51);
+            btn_download.TabIndex = 10;
+            btn_download.Text = "Download";
+            btn_download.UseVisualStyleBackColor = false;
+            btn_download.Click += btn_download_Click;
             // 
             // Accepted
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            Controls.Add(lb_message);
+            Controls.Add(btn_download);
+            Controls.Add(lb_key);
             Controls.Add(label4);
             Controls.Add(lb_namerequest);
             Controls.Add(lb_nameuser);
@@ -118,7 +131,8 @@
         private Label label2;
         private Label lb_nameuser;
         private Label lb_namerequest;
-        private Label lb_message;
+        private Label lb_key;
         private Label label4;
+        private Button btn_download;
     }
 }

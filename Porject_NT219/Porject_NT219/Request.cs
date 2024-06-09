@@ -41,7 +41,7 @@ namespace NT219_FinalProject
             // đổi state
             // gửi key lên server
             // gửi request lên server
-            string url = "http://localhost:3000/api/respond-request";
+            string url = "https://secure-cloud-db-hybrid.onrender.com/api/communicate/respond-request";
             string from = $"{lb_namerequest.Text}";
             string to = $"{username}";
             string message = "Key encrypted";
@@ -70,7 +70,7 @@ namespace NT219_FinalProject
         private async void btn_remove_Click(object sender, EventArgs e)
         {
             HttpClient client = new HttpClient();
-            string url = "http://localhost:3000/api/respond-request";
+            string url = "https://secure-cloud-db-hybrid.onrender.com/api/communicate/respond-request";
             string from = $"{lb_namerequest.Text}";
             string to = $"{username}";
             string status = "rejected";

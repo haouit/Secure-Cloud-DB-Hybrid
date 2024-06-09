@@ -250,6 +250,7 @@
             btn_find.TabIndex = 6;
             btn_find.Text = "Find";
             btn_find.UseVisualStyleBackColor = true;
+            btn_find.Click += btn_find_Click;
             // 
             // btn_refresh
             // 
@@ -326,7 +327,7 @@
             list_accepted.Padding = new Padding(3);
             list_accepted.Size = new Size(1267, 638);
             list_accepted.TabIndex = 1;
-            list_accepted.Text = "Check Request";
+            list_accepted.Text = "Responded Requests";
             list_accepted.UseVisualStyleBackColor = true;
             // 
             // btn_refreshaccept

@@ -18,10 +18,12 @@ namespace NT219_FinalProject
     public partial class Data_Find : Form
     {
         HttpClient client;
-        public Data_Find(HttpClient Client)
+        string username;
+        public Data_Find(HttpClient Client, string Username)
         {
             InitializeComponent();
             client = Client;
+            username = Username;
         }
 
         public List<DataResponse> Data { get; set; }
@@ -43,7 +45,7 @@ namespace NT219_FinalProject
 
         private void AddprogressbarAccept(string name_data, string name_user, string Id)
         {
-            datafind data = new datafind(client);
+            datafind data = new datafind(client, username);
             data.Setnameuser(name_user);
             data.Setnamerequest(name_data);
             data.Setmessage(Id);
@@ -71,7 +73,12 @@ namespace NT219_FinalProject
 
         private void btn_refresh_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

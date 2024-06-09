@@ -52,6 +52,7 @@
             button2.TabIndex = 1;
             button2.Text = "Find";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // textBox1
             // 

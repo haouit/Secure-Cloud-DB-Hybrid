@@ -19,7 +19,7 @@ namespace NT219_FinalProject
 {
     public partial class User : Form
     {
-        const string BaseURL = "http://localhost:3000";
+        const string BaseURL = "https://secure-cloud-db-hybrid.onrender.com";
         HttpClient client;
         string username;
 
@@ -91,7 +91,7 @@ namespace NT219_FinalProject
                 // Response is a list of DataResponse
                 string responseContent = await response.Content.ReadAsStringAsync();
                 List<DataResponse>? responseObject = JsonConvert.DeserializeObject<List<DataResponse>>(responseContent);
-                
+
                 //Xóa tất cả các controls trong flowLayoutPanel3
                 flowLayoutPanel2.Controls.Clear();
 
@@ -216,7 +216,7 @@ namespace NT219_FinalProject
 
         private void btn_config_Click(object sender, EventArgs e)
         {
-            if (!checkBox1.Checked || !checkBox3.Checked)
+            if (!checkBox1.Checked || !checkBox3.Checked || publicKeyFilePath == null || privateKeyFilePath == null)
             {
                 MessageBox.Show("Please create or load a key pair first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -238,6 +238,12 @@ namespace NT219_FinalProject
                     checkBox2.Checked = true;
                 }
             }
+        }
+
+        private void btn_find_Click(object sender, EventArgs e)
+        {
+            Data_Find data = new Data_Find(client, username);
+            data.Show();
         }
     }
 }

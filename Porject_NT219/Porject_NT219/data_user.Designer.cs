@@ -61,7 +61,7 @@
             // 
             lb_nameuser.AutoSize = true;
             lb_nameuser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_nameuser.Location = new Point(190, 14);
+            lb_nameuser.Location = new Point(179, 14);
             lb_nameuser.Name = "lb_nameuser";
             lb_nameuser.Size = new Size(69, 32);
             lb_nameuser.TabIndex = 4;
@@ -71,7 +71,7 @@
             // 
             lb_namerequest.AutoSize = true;
             lb_namerequest.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_namerequest.Location = new Point(188, 46);
+            lb_namerequest.Location = new Point(179, 46);
             lb_namerequest.Name = "lb_namerequest";
             lb_namerequest.Size = new Size(69, 32);
             lb_namerequest.TabIndex = 5;
@@ -81,7 +81,7 @@
             // 
             lb_message.AutoSize = true;
             lb_message.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_message.Location = new Point(143, 78);
+            lb_message.Location = new Point(129, 78);
             lb_message.Name = "lb_message";
             lb_message.Size = new Size(69, 32);
             lb_message.TabIndex = 7;

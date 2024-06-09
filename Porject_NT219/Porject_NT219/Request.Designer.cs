@@ -62,7 +62,7 @@
             // 
             lb_nameuser.AutoSize = true;
             lb_nameuser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_nameuser.Location = new Point(190, 14);
+            lb_nameuser.Location = new Point(175, 14);
             lb_nameuser.Name = "lb_nameuser";
             lb_nameuser.Size = new Size(69, 32);
             lb_nameuser.TabIndex = 4;
@@ -82,7 +82,7 @@
             // 
             lb_message.AutoSize = true;
             lb_message.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_message.Location = new Point(143, 78);
+            lb_message.Location = new Point(133, 78);
             lb_message.Name = "lb_message";
             lb_message.Size = new Size(69, 32);
             lb_message.TabIndex = 7;
@@ -101,7 +101,7 @@
             // btn_accept
             // 
             btn_accept.BackColor = Color.Lime;
-            btn_accept.Location = new Point(567, 39);
+            btn_accept.Location = new Point(620, 39);
             btn_accept.Name = "btn_accept";
             btn_accept.Size = new Size(146, 51);
             btn_accept.TabIndex = 8;
@@ -112,7 +112,7 @@
             // btn_remove
             // 
             btn_remove.BackColor = Color.Salmon;
-            btn_remove.Location = new Point(730, 39);
+            btn_remove.Location = new Point(783, 39);
             btn_remove.Name = "btn_remove";
             btn_remove.Size = new Size(146, 51);
             btn_remove.TabIndex = 9;

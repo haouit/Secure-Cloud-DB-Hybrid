@@ -13,10 +13,12 @@ namespace NT219_FinalProject
     public partial class datafind : UserControl
     {
         HttpClient client;
-        public datafind(HttpClient Client)
+        string username;
+        public datafind(HttpClient Client, string Username)
         {
             InitializeComponent();
             client = Client;
+            username = Username;
         }
 
         public void Setnamerequest(string s)
@@ -35,8 +37,8 @@ namespace NT219_FinalProject
         private async void btn_request_Click(object sender, EventArgs e)
         {
             HttpClient client = new HttpClient();
-            string url = "http://localhost:3000/api/send-request";
-            string from = "a";
+            string url = "https://secure-cloud-db-hybrid.onrender.com/api/communicate/send-request";
+            string from = $"{username}";
             string to = $"{lb_nameuser.Text}";
             string message = "key encrypt";
             string body = "{\"from\": \"" + from + "\", \"to\": \"" + to + "\", \"message\": \"" + message + "\"}";

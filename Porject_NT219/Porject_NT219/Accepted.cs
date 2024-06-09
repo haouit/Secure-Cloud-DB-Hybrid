@@ -17,9 +17,13 @@ namespace NT219_FinalProject
 {
     public partial class Accepted : UserControl
     {
-        public Accepted()
+        HttpClient client;
+        string username;
+        public Accepted(HttpClient Client, string )
         {
             InitializeComponent();
+            client = Client;
+            username = Username;
         }
 
         public void Setnamerequest(string s)
@@ -37,7 +41,8 @@ namespace NT219_FinalProject
 
         private void btn_download_Click(object sender, EventArgs e)
         {
-
+            Download download = new Download(client, username, lb_key.Text);
+            download.Show();
             //OpenFileDialog openFileDialog = new OpenFileDialog();
             //openFileDialog.Filter = "Private Key Files (*.pem)|*.pem";
             //openFileDialog.Title = "Select Private Key File";

@@ -38,7 +38,7 @@ namespace NT219_FinalProject
 
         private void btn_newdata_Click(object sender, EventArgs e)
         {
-            DataManager dataForm = new DataManager();
+            DataManager dataForm = new DataManager(client, username, clientMongo);
             dataForm.Show();
         }
 
@@ -284,7 +284,7 @@ namespace NT219_FinalProject
 
         private void btn_find_Click(object sender, EventArgs e)
         {
-            Data_Find data = new Data_Find(client, username);
+            Data_Find data = new Data_Find(client, username, clientMongo);
             data.Show();
         }
     }

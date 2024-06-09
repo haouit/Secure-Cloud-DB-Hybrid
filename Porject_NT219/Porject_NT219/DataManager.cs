@@ -12,15 +12,24 @@ using Newtonsoft.Json;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using NT219_FinalProject.Crypto;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using MongoDB.Driver;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace NT219_FinalProject
 {
     public partial class DataManager : Form
     {
         const string BaseMongoURL = Config.BaseMongoDbURL;
-        public DataManager()
+        string username;
+        HttpClient client;
+        MongoClient clientMongo;
+        public DataManager(HttpClient Client, string Username, MongoClient ClientMongo)
         {
             InitializeComponent();
+            client = Client;
+            username = Username;
+            clientMongo = ClientMongo;
         }
 
         byte[] data;
@@ -74,48 +83,8 @@ namespace NT219_FinalProject
             string fileName = lb_namefile.Text;
             byte[] encryptedData = aes.Encrypt(data, secret_key, iv);
 
-            //await InsertDataToMongo(fileName, encryptedData, tb_API.Text);
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Clear();
-                string dataBase64 = Convert.ToBase64String(data);
 
-                var document = new
-                {
-                    dataSource = "Cluster0",
-                    database = "crypt-cloud",
-                    collection = "files",
-                    document = new
-                    {
-                        filename = fileName,
-                        data = new
-                        {
-                            encrypted_data = dataBase64
-                        }
-                    }
-                };            
 
-                string body = JsonConvert.SerializeObject(document);
-            
-
-                StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
-                content.Headers.Add("api-key", tb_API.Text);
-                content.Headers.Add("Accepted", "*/*");
-                HttpResponseMessage response = await client.PostAsync($"{BaseMongoURL}/action/insertOne", content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    // Handle successful response
-                    string result = await response.Content.ReadAsStringAsync();
-                    // Do something with the result
-                }
-                else
-                {
-                    // Handle error response
-                    string error = await response.Content.ReadAsStringAsync();
-                    // Do something with the error
-                }
-            }
             checkBox1.Checked = false;
             checkBox2.Checked = false;
             checkBox3.Checked = false;

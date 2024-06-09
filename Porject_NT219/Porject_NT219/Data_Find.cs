@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 using static NT219_FinalProject.User;
 using Newtonsoft.Json;
 using static NT219_FinalProject.Data_Find;
+using MongoDB.Driver.Core.Authentication;
+using MongoDB.Driver;
 
 namespace NT219_FinalProject
 {
@@ -19,11 +21,13 @@ namespace NT219_FinalProject
     {
         HttpClient client;
         string username;
-        public Data_Find(HttpClient Client, string Username)
+        MongoClient clientMongo;
+        public Data_Find(HttpClient Client, string Username, MongoClient Clientmongo)
         {
             InitializeComponent();
             client = Client;
             username = Username;
+            clientMongo = Clientmongo;
         }
 
         public List<DataResponse> Data { get; set; }
@@ -76,7 +80,7 @@ namespace NT219_FinalProject
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btn_find_Click(object sender, EventArgs e)
         {
 
         }

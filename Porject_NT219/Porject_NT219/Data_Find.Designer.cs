@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             btn_refresh = new Button();
-            button2 = new Button();
+            btn_find = new Button();
             textBox1 = new TextBox();
             flowLayoutPanel1 = new FlowLayoutPanel();
             SuspendLayout();
@@ -44,15 +44,15 @@
             btn_refresh.UseVisualStyleBackColor = true;
             btn_refresh.Click += btn_refresh_Click;
             // 
-            // button2
+            // btn_find
             // 
-            button2.Location = new Point(1123, 12);
-            button2.Name = "button2";
-            button2.Size = new Size(143, 47);
-            button2.TabIndex = 1;
-            button2.Text = "Find";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            btn_find.Location = new Point(1123, 12);
+            btn_find.Name = "btn_find";
+            btn_find.Size = new Size(143, 47);
+            btn_find.TabIndex = 1;
+            btn_find.Text = "Find";
+            btn_find.UseVisualStyleBackColor = true;
+            btn_find.Click += btn_find_Click;
             // 
             // textBox1
             // 
@@ -76,7 +76,7 @@
             ClientSize = new Size(1278, 684);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(textBox1);
-            Controls.Add(button2);
+            Controls.Add(btn_find);
             Controls.Add(btn_refresh);
             Name = "Data_Find";
             Text = "Data_Find";
@@ -87,7 +87,7 @@
         #endregion
 
         private Button btn_refresh;
-        private Button button2;
+        private Button btn_find;
         private TextBox textBox1;
         private FlowLayoutPanel flowLayoutPanel1;
     }

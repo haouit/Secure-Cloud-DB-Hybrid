@@ -7,7 +7,11 @@ requestsDB.loadDatabase();
 const usersDB = new Datastore({ filename: 'databases/users.db', autoload: true });
 usersDB.loadDatabase();
 
+const datasDB = new Datastore({ filename: 'databases/datas.db', autoload: true });
+datasDB.loadDatabase();
+
 module.exports = {
 	requestsDB,
-	usersDB
+	usersDB,
+	datasDB
 };

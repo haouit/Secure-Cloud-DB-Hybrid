@@ -19,7 +19,7 @@ namespace NT219_FinalProject
     {
         HttpClient client;
         string username;
-        public Accepted(HttpClient Client, string )
+        public Accepted(HttpClient Client, string Username)
         {
             InitializeComponent();
             client = Client;

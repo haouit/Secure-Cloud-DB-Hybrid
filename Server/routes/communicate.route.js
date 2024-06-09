@@ -33,7 +33,7 @@ Route to send a response from B to A
 	- This route is used by B to send a response to A. The response may contain B's encrypted secret-key.
 	- The request is updated in the database with the `message` and `response`.
 Request body: 	
-	{ from: 'A', to: 'B', message: 'A\'s encrypted secret-key', response: 'accepted' }
+	{ from: 'A', to: 'B', message: 'B\'s encrypted secret-key', response: 'accepted' }
 or	{ from: 'A', to: 'B', message: '', response: 'rejected' }
 */
 router.post('/respond-request', (req, res) => {
@@ -50,12 +50,12 @@ router.post('/respond-request', (req, res) => {
 
 /*
 Route to check requests sent to B (called by itself)
-	- This route is used by B to check all the requests sent to B.
+	- This route is used by B to check all the pending requests sent to B.
 	- The response contains all the requests with status 'pending'.
 Request parameters: 
 	:id - B's id
 Response:
-	[ docs ]
+	[ docs ] - a list of requests sent to B
 */
 router.get('/check-requests/:id', (req, res) => {
     const id = req.params.id;
@@ -70,19 +70,15 @@ router.get('/check-requests/:id', (req, res) => {
 });
 
 /*
-Route to check a request sent to B is accepted or rejected
-	- This route is used by A to check if the request sent to B is accepted or rejected.
-	- The response contains the status and message.
-	- If the request is accepted, the message contains B's encrypted secret-key.
-	- If the request is rejected, the message is empty.
+Route to check all requests sent from A to anyone is accepted or rejected
+	- This route is used by A to check if the requests sent to any is accepted or rejected.
+	- The response contains the list of responses (accepted or rejected)
 Request body: 
-	{ from: 'A', to: 'any' }
+	{ from: 'A' }
 Response:
-    - a list of resopned requests 
-	{ status: 'accepted', message: 'A\'s encrypted secret-key' } 
-or  { status: 'rejected' mesaage: '' }
+    - a list of responed requests 
 */
-router.get('/check-resopnse/', (req, res) => {
+router.get('/check-responses/', (req, res) => {
     const { from } = req.body;
 
     requestsDB.find({ from }, (err, docs) => {

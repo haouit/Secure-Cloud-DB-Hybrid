@@ -12,7 +12,7 @@ router.post('/upload-data', (req, res) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to send request' });
         } else {
-            console.log('Upload data:', { from, name });
+            console.log('Upload data:', { from, filename });
             return res.status(200).json({ success: true, dataId: newDoc._id });
         }
     });

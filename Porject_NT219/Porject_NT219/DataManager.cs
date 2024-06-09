@@ -15,21 +15,21 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace NT219_FinalProject
 {
     public partial class DataManager : Form
     {
-        const string BaseMongoURL = Config.BaseMongoDbURL;
         string username;
         HttpClient client;
-        MongoClient clientMongo;
-        public DataManager(HttpClient Client, string Username, MongoClient ClientMongo)
+        const string BaseURL = Config.BaseURL;
+
+        public DataManager(HttpClient Client, string Username)
         {
             InitializeComponent();
             client = Client;
             username = Username;
-            clientMongo = ClientMongo;
         }
 
         byte[] data;
@@ -82,8 +82,24 @@ namespace NT219_FinalProject
             AES_Prj aes = new AES_Prj();
             string fileName = lb_namefile.Text;
             byte[] encryptedData = aes.Encrypt(data, secret_key, iv);
+            string data_send = Convert.ToBase64String(encryptedData);
+            string url = $"{BaseURL}/api/data/upload-data";
+            string body = "{\"author\": \"" + username + "\", \"filename\": \"" + fileName + "\", \"content\": \"" + "data_send" + "\"}";
+            StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(url, content);
 
-
+            if (response.IsSuccessStatusCode)
+            {
+                // Handle successful response
+                string result = await response.Content.ReadAsStringAsync();
+                // Do something with the result
+            }
+            else
+            {
+                // Handle error response
+                string error = await response.Content.ReadAsStringAsync();
+                // Do something with the error
+            }
 
             checkBox1.Checked = false;
             checkBox2.Checked = false;

@@ -200,7 +200,6 @@
             btn_find.TabIndex = 6;
             btn_find.Text = "Find";
             btn_find.UseVisualStyleBackColor = true;
-            btn_find.Click += btn_find_Click;
             // 
             // btn_refresh
             // 

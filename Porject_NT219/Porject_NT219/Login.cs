@@ -22,7 +22,7 @@ namespace NT219_FinalProject
 {
     public partial class Login : Form
     {
-        const string RootURI = "http://localhost:3000";
+        const string BaseURL = "http://localhost:3000";
         public Login()
         {
             InitializeComponent();
@@ -31,9 +31,14 @@ namespace NT219_FinalProject
         private async void btn_signin_Click(object sender, EventArgs e)
         {
             HttpClient client = new HttpClient();
-            string url = $"{RootURI}/api/user/login";
+            string url = $"{BaseURL}/api/user/login";
             string username = tb_usename.Text;
             string password = tb_password.Text;
+            if (username == "" || password == "")
+            {
+                MessageBox.Show("Please enter username and password");
+                return;
+            }
             string body = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}";
 
             StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
@@ -46,8 +51,6 @@ namespace NT219_FinalProject
                 string result = await response.Content.ReadAsStringAsync();
                 User user = new User(client, username);
                 user.Show();
-                MessageBox.Show(result);
-                // Do something with the result
             }
             else
             {
@@ -61,7 +64,7 @@ namespace NT219_FinalProject
         private async void btn_signup_Click(object sender, EventArgs e)
         {
             HttpClient client = new HttpClient();
-            string url = $"{RootURI}/api/user/register";
+            string url = $"{BaseURL}/api/user/register";
             string username = tb_usename.Text;
             string password = tb_password.Text;
             string body = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\", \"email\": \"" + $"{username}@g,com" + "\"}";

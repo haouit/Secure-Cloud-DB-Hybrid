@@ -11,14 +11,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NT219_FinalProject.Crypto;
-using static NT219_FinalProject.User;
+using Microsoft.VisualBasic.ApplicationServices;
+using System.Net.Http.Json;
 
 
 namespace NT219_FinalProject
 {
     public partial class User : Form
     {
-        const string RootURI = "http://localhost:3000";
+        const string BaseURL = "http://localhost:3000";
         HttpClient client;
         string username;
 
@@ -41,21 +42,21 @@ namespace NT219_FinalProject
 
         }
 
+        public List<DataResponse> Data { get; set; }
+
         public class DataResponse
         {
-            public List<Data_response> Data { get; set; }
-        }
+            [JsonProperty("from")]
+            public string from { get; set; }
 
-        public class Data_response
-        {
-            [JsonProperty("id")]
-            public string Id { get; set; }
+            [JsonProperty("to")]
+            public string to { get; set; }
 
-            [JsonProperty("name_data")]
-            public string name_data { get; set; }
+            [JsonProperty("message")]
+            public string message { get; set; }
 
-            [JsonProperty("name_user")]
-            public string name_user { get; set; }
+            [JsonProperty("status")]
+            public string status { get; set; }
         }
 
         private void AddprogressbarData(string name_data, string name_user, string Id)
@@ -67,50 +68,31 @@ namespace NT219_FinalProject
             flowLayoutPanel1.Controls.Add(data);
         }
 
-        private void AddprogressbarRequest(string name_data, string name_user, string Id)
+        private async Task SendCheckRequest()
         {
-            Request data = new Request(client);
-            data.Setname(name_data);
-            data.Setdataname(name_user);
-            data.Setdataid(Id);
-            flowLayoutPanel2.Controls.Add(data);
-        }
-
-        private void AddprogressbarAccept(string name_data, string name_user, string Id)
-        {
-            Accepted data = new Accepted();
-            data.Setname(name_data);
-            data.Setdataname(name_user);
-            data.Setdataid(Id);
-            flowLayoutPanel3.Controls.Add(data);
-        }
-
-        private async Task SendRequestRequest()
-        {
-            string url = $"{RootURI}/api/communicate/check-requests/{username}";
+            string url = $"{BaseURL}/api/communicate/check-requests/{username}";
 
             HttpResponseMessage response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
             {
+                // Response is a list of DataResponse
                 string responseContent = await response.Content.ReadAsStringAsync();
-                DataResponse responseObject = JsonConvert.DeserializeObject<DataResponse>(responseContent);
+                List<DataResponse>? responseObject = JsonConvert.DeserializeObject<List<DataResponse>>(responseContent);
 
-                // Xóa tất cả các controls trong flowLayoutPanel1
-                flowLayoutPanel2.Controls.Clear();
-
-                // Hiển thị dữ liệu mới từ phản hồi
-                foreach (var data_response in responseObject.Data)
+                if (responseObject != null)
                 {
-                    try
+                    foreach (var data_response in responseObject)
                     {
-                        string id = data_response.Id;
-                        string data_name = data_response.name_data;
-                        string user_name = data_response.name_user;
-                        // Thêm Hienthimonan vào flowLayoutPanel1 với các giá trị tương ứng
-                        AddprogressbarRequest(id, data_name, user_name);
+                        try
+                        {
+                            string from = data_response.from;
+                            string to = data_response.to;
+                            string message = data_response.message;
+                            string status = data_response.status;
+                        }
+                        catch { }
                     }
-                    catch { }
                 }
             }
         }
@@ -118,8 +100,8 @@ namespace NT219_FinalProject
         private async Task SendRequestAccept()
         {
 
-            string url = $"{RootURI}/api/communicate/check-resopnse";
-            string body = "{\"fron\": \"" + username + "\"}";
+            string url = $"{BaseURL}/api/communicate/check-response";
+            string body = "{\"from\": \"" + username + "\"}";
             HttpResponseMessage response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
@@ -130,35 +112,35 @@ namespace NT219_FinalProject
                 // Xóa tất cả các controls trong flowLayoutPanel1
                 flowLayoutPanel3.Controls.Clear();
 
-                // Hiển thị dữ liệu mới từ phản hồi
-                foreach (var data_response in responseObject.Data)
-                {
-                    try
-                    {
-                        string id = data_response.Id;
-                        string data_name = data_response.name_data;
-                        string user_name = data_response.name_user;
-                        // Thêm Hienthimonan vào flowLayoutPanel1 với các giá trị tương ứng
-                        AddprogressbarAccept(id, data_name, user_name);
-                    }
-                    catch { }
-                }
+                //// Hiển thị dữ liệu mới từ phản hồi
+                //foreach (var data_response in responseObject.Data)
+                //{
+                //    try
+                //    {
+                //        string id = data_response.Id;
+                //        string data_name = data_response.name_data;
+                //        string user_name = data_response.name_user;
+                //        // Thêm Hienthimonan vào flowLayoutPanel1 với các giá trị tương ứng
+                //        AddprogressbarAccept(id, data_name, user_name);
+                //    }
+                //    catch { }
+                //}
             }
         }
 
         private async void btn_refresh_Click(object sender, EventArgs e)
         {
-            //pull cloud
+            await SendCheckRequest();
         }
 
-        private void btn_refreshrequest_Click(object sender, EventArgs e)
+        private async void btn_refreshrequest_Click(object sender, EventArgs e)
         {
-            SendRequestRequest();
+            await SendCheckRequest();
         }
 
-        private void btn_refreshaccept_Click(object sender, EventArgs e)
+        private async void btn_refreshaccept_Click(object sender, EventArgs e)
         {
-            SendRequestAccept();
+            await SendRequestAccept();
         }
 
         private static string rsaPublicKey;
@@ -194,12 +176,6 @@ namespace NT219_FinalProject
                     checkBox2.Checked = true;
                 }
             }
-        }
-
-        private void btn_find_Click(object sender, EventArgs e)
-        {
-            Data_Find df = new Data_Find(client);
-            df.Show();
         }
     }
 }

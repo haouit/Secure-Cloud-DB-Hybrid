@@ -20,15 +20,13 @@ namespace NT219_FinalProject
         {
             InitializeComponent();
         }
-        byte[] data;
-        byte[] secret_key;
-        byte[] iv;
 
-        RSAParameters privKey;
-        RSAParameters pubKey;
 
         private void button1_Click(object sender, EventArgs e)
         {
+            byte[] data = null;
+            byte[] secret_key = null;
+            byte[] iv = null;
             AES_Prj aes = new AES_Prj();
             string fileName = "";
             // Open a file dialog
@@ -82,8 +80,15 @@ namespace NT219_FinalProject
             RSA_Prj rsa = new RSA_Prj();
             rsa.GenerateKeyPair();
             string[] keys = rsa.GetKeyPair();
-            MessageBox.Show(keys[0]);
-            MessageBox.Show(keys[1]);
+
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                //fileName = Path.GetFileName(ofd.FileName);
+
+                //// Read the file
+                //data = File.ReadAllBytes(ofd.FileName);
+            }
         }
 
         private async void button3_Click(object sender, EventArgs e)

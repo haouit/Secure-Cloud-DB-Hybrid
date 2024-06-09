@@ -26,6 +26,7 @@ router.post('/send-request', (req, res) => {
             return res.status(200).json({ success: true, requestId: newDoc._id });
         }
     });
+    return; 
 });
 
 /*
@@ -47,6 +48,7 @@ router.post('/respond-request', (req, res) => {
             return res.status(200).json({ success: true });
         }
     });
+    return;
 });
 
 /*
@@ -69,6 +71,7 @@ router.get('/check-requests/:id', (req, res) => {
             return res.status(200).json(docs);
         }
     });
+    return;
 });
 
 /*
@@ -91,6 +94,7 @@ router.post('/check-responses/', (req, res) => {
             return res.status(200).json(docs);
         }
     });
+    return;
 });
 
 module.exports = router;

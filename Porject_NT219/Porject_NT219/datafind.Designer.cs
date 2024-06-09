@@ -1,6 +1,6 @@
 ﻿namespace NT219_FinalProject
 {
-    partial class Accepted
+    partial class datafind
     {
         /// <summary> 
         /// Required designer variable.
@@ -34,6 +34,7 @@
             lb_dataname = new Label();
             lb_dataid = new Label();
             label4 = new Label();
+            btn_request = new Button();
             SuspendLayout();
             // 
             // label1
@@ -96,17 +97,29 @@
             label4.TabIndex = 6;
             label4.Text = "ID:";
             // 
-            // Accepted
+            // btn_request
+            // 
+            btn_request.BackColor = Color.GreenYellow;
+            btn_request.Location = new Point(870, 39);
+            btn_request.Name = "btn_request";
+            btn_request.Size = new Size(146, 51);
+            btn_request.TabIndex = 9;
+            btn_request.Text = "Request";
+            btn_request.UseVisualStyleBackColor = false;
+            btn_request.Click += btn_request_Click;
+            // 
+            // datafind
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(btn_request);
             Controls.Add(lb_dataid);
             Controls.Add(label4);
             Controls.Add(lb_dataname);
             Controls.Add(lb_name);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "Accepted";
+            Name = "datafind";
             Size = new Size(1047, 123);
             ResumeLayout(false);
             PerformLayout();
@@ -119,5 +132,6 @@
         private Label lb_dataname;
         private Label lb_dataid;
         private Label label4;
+        private Button btn_request;
     }
 }

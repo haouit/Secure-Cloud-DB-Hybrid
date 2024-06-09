@@ -1,15 +1,14 @@
 const express = require('express');
-const { datasDB } = require('../database');
+const { filesDB } = require('../database');
 const router = express.Router();
 
 router.post('/upload-data', (req, res) => {
-    const { from, name, message } = req.body;
-    if (!from || !name || message) {
+    const { author, filename, content } = req.body;
+    if (!author || !filename || content) {
         return res.status(400).json({ error: 'Invalid data' });
     }
-    const data = { from, name, message };
-
-    datasDB.insert(data, (err, newDoc) => {
+    const data = { author, filename, content };
+    filesDB.insert(data, (err, newDoc) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to send request' });
         } else {
@@ -17,24 +16,29 @@ router.post('/upload-data', (req, res) => {
             return res.status(200).json({ success: true, dataId: newDoc._id });
         }
     });
+    return;
 });
 
 router.post('/remove-data', (req, res) => {
-    const { from, name, message } = req.body;
+    const { author, filename } = req.body;
 
-    datasDB.remove({ from, name, message }, {}, (err) => {
+    filesDB.remove({ author, filename }, {}, (err) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to remove data' });
         } else {
-            console.log('Remove data:', { from, name });
+            console.log('Remove data:', { author, filename });
             return res.status(200).json({ success: true });
         }
     });
-
+    return;
 });
 
-router.get('/data-all', (req, res) => {
-    datasDB.find({}, (err, docs) => {
+router.get('/all/:user', (req, res) => {
+    const { user } = req.params;
+    if (!user) {
+        return res.status(400).json({ error: 'Invalid user' });
+    }
+    filesDB.find({author: user}, (err, docs) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to retrieve data' });
         } else {
@@ -42,6 +46,7 @@ router.get('/data-all', (req, res) => {
             return res.status(200).json(docs);
         }
     });
+    return;
 });
 
-exports.router = router;
+module.exports = router;

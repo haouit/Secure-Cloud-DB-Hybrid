@@ -102,6 +102,23 @@ namespace NT219_FinalProject
             data.Setnameuser(name_user);
             data.Setnamerequest(name_request);
             data.Setmessage(message);
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Private Key Files (*.pem)|*.pem";
+            openFileDialog.Title = "Select Private Key File";
+            MessageBox.Show("Please select your private key file");
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string privateKeyFilePath = openFileDialog.FileName;
+                RSA_Prj rsa = new RSA_Prj();
+                rsa.ImportPrivateKeyFromPem(File.ReadAllText(privateKeyFilePath));
+
+                byte[] decryptedSecretKey = rsa.Decrypt(Convert.FromBase64String(message));
+                string decryptedSecretKeyBase64 = Convert.ToBase64String(decryptedSecretKey);
+
+                data.Setmessage(decryptedSecretKeyBase64);
+            }
+            
             flowLayoutPanel3.Controls.Add(data);
         }
 

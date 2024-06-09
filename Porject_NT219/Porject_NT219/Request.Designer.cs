@@ -101,7 +101,7 @@
             // btn_accept
             // 
             btn_accept.BackColor = Color.Lime;
-            btn_accept.Location = new Point(707, 39);
+            btn_accept.Location = new Point(567, 39);
             btn_accept.Name = "btn_accept";
             btn_accept.Size = new Size(146, 51);
             btn_accept.TabIndex = 8;
@@ -112,7 +112,7 @@
             // btn_remove
             // 
             btn_remove.BackColor = Color.Salmon;
-            btn_remove.Location = new Point(870, 39);
+            btn_remove.Location = new Point(730, 39);
             btn_remove.Name = "btn_remove";
             btn_remove.Size = new Size(146, 51);
             btn_remove.TabIndex = 9;
@@ -124,6 +124,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.GradientInactiveCaption;
             Controls.Add(btn_remove);
             Controls.Add(btn_accept);
             Controls.Add(lb_dataid);
@@ -133,7 +134,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Request";
-            Size = new Size(1047, 123);
+            Size = new Size(950, 123);
             ResumeLayout(false);
             PerformLayout();
         }

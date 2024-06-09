@@ -36,7 +36,7 @@
             // 
             // tb_username
             // 
-            tb_username.Location = new Point(271, 102);
+            tb_username.Location = new Point(266, 128);
             tb_username.Multiline = true;
             tb_username.Name = "tb_username";
             tb_username.Size = new Size(259, 49);
@@ -44,7 +44,7 @@
             // 
             // tb_password
             // 
-            tb_password.Location = new Point(271, 175);
+            tb_password.Location = new Point(266, 201);
             tb_password.Multiline = true;
             tb_password.Name = "tb_password";
             tb_password.Size = new Size(259, 49);
@@ -52,7 +52,7 @@
             // 
             // btn_signin
             // 
-            btn_signin.Location = new Point(271, 252);
+            btn_signin.Location = new Point(266, 278);
             btn_signin.Name = "btn_signin";
             btn_signin.Size = new Size(259, 39);
             btn_signin.TabIndex = 2;
@@ -64,7 +64,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(322, 30);
+            label1.Location = new Point(317, 56);
             label1.Name = "label1";
             label1.Size = new Size(142, 38);
             label1.TabIndex = 3;

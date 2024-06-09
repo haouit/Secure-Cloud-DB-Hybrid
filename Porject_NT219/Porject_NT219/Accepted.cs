@@ -17,9 +17,17 @@ namespace NT219_FinalProject
             InitializeComponent();
         }
 
-        private void btn_request_Click(object sender, EventArgs e)
+        public void Setdataname(string s)
         {
-            //call api
+            lb_dataname.Text = s;
+        }
+        public void Setname(string s)
+        {
+            lb_name.Text = s;
+        }
+        public void Setdataid(string s)
+        {
+            lb_dataid.Text = s;
         }
     }
 }

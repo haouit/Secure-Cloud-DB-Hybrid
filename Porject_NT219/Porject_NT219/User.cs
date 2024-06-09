@@ -11,25 +11,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NT219_FinalProject.Crypto;
+using static NT219_FinalProject.User;
 
 namespace NT219_FinalProject
 {
     public partial class User : Form
     {
-        private string receivedUserid;
-        private string receivedAccessToken;
-        List<string> thongtin = new List<string>();
+        HttpClient client;
 
-        public User(string userid, string accesstoken)
+        public User(HttpClient Client)
         {
             InitializeComponent();
-            receivedUserid = userid;
-            receivedAccessToken = accesstoken;
+            client = Client;
         }
-        private readonly HttpClient httpClient = new HttpClient
+
+        private void btn_newdata_Click(object sender, EventArgs e)
         {
-            BaseAddress = new Uri(@"https://nt106.uitiot.vn")
-        };
+            DataManager dataForm = new DataManager();
+            dataForm.Show();
+        }
+
+        private void btn_downdata_Click(object sender, EventArgs e)
+        {
+            //request data from cloud
+
+        }
 
         public class DataResponse
         {
@@ -48,33 +54,43 @@ namespace NT219_FinalProject
             public string name_user { get; set; }
         }
 
-        private void Addprogressbar(string name_data, string name_user, string Id)
+        private void AddprogressbarData(string name_data, string name_user, string Id)
         {
-            Request data = new Request();
+            data_user data = new data_user();
             data.Setname(name_data);
             data.Setdataname(name_user);
             data.Setdataid(Id);
             flowLayoutPanel1.Controls.Add(data);
         }
 
-        private async Task SendRequestByme(int currentPage, int pageSize)
+        private void AddprogressbarRequest(string name_data, string name_user, string Id)
         {
-            string apiUrl = "https://nt106.uitiot.vn/api/v1/monan/my-dishes";
-            var requestData = new
-            {
-                current = currentPage,
-                pageSize = pageSize,
-            };
+            Request data = new Request(client);
+            data.Setname(name_data);
+            data.Setdataname(name_user);
+            data.Setdataid(Id);
+            flowLayoutPanel2.Controls.Add(data);
+        }
 
-            string jsonData = JsonConvert.SerializeObject(requestData);
-            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+        private void AddprogressbarAccept(string name_data, string name_user, string Id)
+        {
+            Accepted data = new Accepted();
+            data.Setname(name_data);
+            data.Setdataname(name_user);
+            data.Setdataid(Id);
+            flowLayoutPanel3.Controls.Add(data);
+        }
 
-            // Gửi yêu cầu POST đến API và nhận phản hồi
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, apiUrl);
-            request.Content = content;
-            request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(receivedUserid, receivedAccessToken);
+        private async Task SendRequestRequest()
+        {
+            string url = $"http://localhost:3000/api/communicate/";
+            string body = "{\"username\": \"hao\", \"password\": \"123\"}";
 
-            HttpResponseMessage responses = await httpClient.SendAsync(request);
+            StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            HttpResponseMessage responses = null;
 
             if (responses.IsSuccessStatusCode)
             {
@@ -83,7 +99,6 @@ namespace NT219_FinalProject
 
                 // Xóa tất cả các controls trong flowLayoutPanel1
                 flowLayoutPanel1.Controls.Clear();
-                thongtin.Clear();
 
                 // Hiển thị dữ liệu mới từ phản hồi
                 foreach (var data_response in responseObject.Data)
@@ -93,32 +108,65 @@ namespace NT219_FinalProject
                         string id = data_response.Id;
                         string data_name = data_response.name_data;
                         string user_name = data_response.name_user;
-                        string information = id + "," + data_name + "," + user_name + ";";
-                        thongtin.Add(information);
                         // Thêm Hienthimonan vào flowLayoutPanel1 với các giá trị tương ứng
-                        Addprogressbar(id, data_name, user_name);
+                        AddprogressbarRequest(id, data_name, user_name);
                     }
                     catch { }
                 }
             }
         }
 
-        private void btn_newdata_Click(object sender, EventArgs e)
+        private async Task SendRequestAccept()
         {
-            DataManager dataForm = new DataManager();
-            dataForm.Show();
-        }
 
-        private void btn_downdata_Click(object sender, EventArgs e)
-        {
-            //request data from server
+            HttpResponseMessage responses = null;
 
+            if (responses.IsSuccessStatusCode)
+            {
+                string responseContent = await responses.Content.ReadAsStringAsync();
+                DataResponse responseObject = JsonConvert.DeserializeObject<DataResponse>(responseContent);
+
+                // Xóa tất cả các controls trong flowLayoutPanel1
+                flowLayoutPanel1.Controls.Clear();
+
+                // Hiển thị dữ liệu mới từ phản hồi
+                foreach (var data_response in responseObject.Data)
+                {
+                    try
+                    {
+                        string id = data_response.Id;
+                        string data_name = data_response.name_data;
+                        string user_name = data_response.name_user;
+                        // Thêm Hienthimonan vào flowLayoutPanel1 với các giá trị tương ứng
+                        AddprogressbarAccept(id, data_name, user_name);
+                    }
+                    catch { }
+                }
+            }
         }
 
         private async void btn_refresh_Click(object sender, EventArgs e)
         {
+            string id = "data_response.Id";
+            string data_name = "data_response.name_data";
+            string user_name = "data_response.name_user";
+            AddprogressbarData(id, data_name, user_name);
+        }
 
-            //await SendRequestByme(currentPage, pageSize);
+        private void btn_refreshrequest_Click(object sender, EventArgs e)
+        {
+            string id = "data_response.Id";
+            string data_name = "data_response.name_data";
+            string user_name = "data_response.name_user";
+            AddprogressbarRequest(id, data_name, user_name);
+        }
+
+        private void btn_refreshaccept_Click(object sender, EventArgs e)
+        {
+            string id = "data_response.Id";
+            string data_name = "data_response.name_data";
+            string user_name = "data_response.name_user";
+            AddprogressbarAccept(id, data_name, user_name);
         }
 
         private static byte[] rsaPublicKey;
@@ -128,17 +176,20 @@ namespace NT219_FinalProject
         {
             rb_publickey.Clear();
             rb_privatekey.Clear();
-            RSA_Prj rsa = new RSA_Prj();
             //byte[][] pubandpri = rsa.GenerateKeyPair();
             //rsaPublicKey = pubandpri[0];
             //rsaPrivateKey = pubandpri[1];
+
+            RSA_Prj rsa = new RSA_Prj();
+            rsa.GenerateKeyPair();
+            string[] keys = rsa.GetKeyPair();
             rb_privatekey.Text = Convert.ToBase64String(rsaPrivateKey);
             rb_publickey.Text = Convert.ToBase64String(rsaPublicKey);
         }
 
         private void btn_configpublickey_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btn_saveprivatekey_Click(object sender, EventArgs e)
@@ -151,6 +202,17 @@ namespace NT219_FinalProject
                 File.WriteAllBytes(fileName + "public_key.bin", rsaPublicKey);
                 File.WriteAllBytes(fileName + "private_key.bin", rsaPrivateKey);
             }
+        }
+
+        private void btn_find_Click(object sender, EventArgs e)
+        {
+            Data_Find df = new Data_Find();
+            df.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

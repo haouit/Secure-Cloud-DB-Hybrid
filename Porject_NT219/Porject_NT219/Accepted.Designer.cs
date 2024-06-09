@@ -100,6 +100,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.GradientInactiveCaption;
             Controls.Add(lb_dataid);
             Controls.Add(label4);
             Controls.Add(lb_dataname);
@@ -107,7 +108,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Accepted";
-            Size = new Size(1047, 123);
+            Size = new Size(950, 123);
             ResumeLayout(false);
             PerformLayout();
         }

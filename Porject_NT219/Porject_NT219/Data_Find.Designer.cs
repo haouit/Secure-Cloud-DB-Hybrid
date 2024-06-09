@@ -31,6 +31,7 @@
             btn_refresh = new Button();
             button2 = new Button();
             textBox1 = new TextBox();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // btn_refresh
@@ -41,10 +42,11 @@
             btn_refresh.TabIndex = 0;
             btn_refresh.Text = "Refresh";
             btn_refresh.UseVisualStyleBackColor = true;
+            btn_refresh.Click += btn_refresh_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(903, 12);
+            button2.Location = new Point(1123, 12);
             button2.Name = "button2";
             button2.Size = new Size(143, 47);
             button2.TabIndex = 1;
@@ -56,14 +58,22 @@
             textBox1.Location = new Point(161, 12);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(736, 47);
+            textBox1.Size = new Size(956, 47);
             textBox1.TabIndex = 2;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Location = new Point(-1, 65);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(1279, 620);
+            flowLayoutPanel1.TabIndex = 5;
             // 
             // Data_Find
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1058, 684);
+            ClientSize = new Size(1278, 684);
+            Controls.Add(flowLayoutPanel1);
             Controls.Add(textBox1);
             Controls.Add(button2);
             Controls.Add(btn_refresh);
@@ -78,5 +88,6 @@
         private Button btn_refresh;
         private Button button2;
         private TextBox textBox1;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }

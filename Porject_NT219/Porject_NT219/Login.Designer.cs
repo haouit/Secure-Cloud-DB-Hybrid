@@ -34,7 +34,6 @@
             label2 = new Label();
             label3 = new Label();
             btn_signin = new Button();
-            btn_repass = new Button();
             btn_signup = new Button();
             SuspendLayout();
             // 
@@ -92,16 +91,6 @@
             btn_signin.UseVisualStyleBackColor = true;
             btn_signin.Click += btn_signin_Click;
             // 
-            // btn_repass
-            // 
-            btn_repass.Location = new Point(39, 230);
-            btn_repass.Name = "btn_repass";
-            btn_repass.Size = new Size(155, 34);
-            btn_repass.TabIndex = 6;
-            btn_repass.Text = "test";
-            btn_repass.UseVisualStyleBackColor = true;
-            btn_repass.Click += btn_test_Click;
-            // 
             // btn_signup
             // 
             btn_signup.Location = new Point(251, 259);
@@ -118,7 +107,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(811, 406);
             Controls.Add(btn_signup);
-            Controls.Add(btn_repass);
             Controls.Add(btn_signin);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -139,7 +127,6 @@
         private Label label2;
         private Label label3;
         private Button btn_signin;
-        private Button btn_repass;
         private Button btn_signup;
     }
 }

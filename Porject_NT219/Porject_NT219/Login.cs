@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging.Console.Internal;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.IO;
 using Newtonsoft.Json;
+using MongoDB.Driver.Core.Authentication;
 
 namespace NT219_FinalProject
 {
@@ -40,75 +41,66 @@ namespace NT219_FinalProject
             InitializeComponent();
         }
 
-        private readonly HttpClient httpClient = new HttpClient
+        private readonly HttpClient client = new HttpClient
         {
             BaseAddress = new Uri(@"http://localhost:3000/")
         };
 
         private async void btn_signin_Click(object sender, EventArgs e)
         {
+            HttpClient client = new HttpClient();
+            string url = "http://localhost:3000/api/user/login";
             string username = tb_usename.Text;
             string password = tb_password.Text;
+            string body = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}";
 
-            var formData = new FormUrlEncodedContent(new[]
+            StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            if (response.IsSuccessStatusCode)
             {
-                new KeyValuePair<string, string>("username", username),
-                new KeyValuePair<string, string>("password", password)
-            });
-
-            HttpResponseMessage response = await httpClient.PostAsync("auth/token", formData);
-
-            using (response)
+                // Handle successful response
+                string result = await response.Content.ReadAsStringAsync();
+                User user = new User(client);
+                user.Show();
+                MessageBox.Show(result);
+                // Do something with the result
+            }
+            else
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var res = await response.Content.ReadAsStringAsync();
-                    JObject jsonResponse = JObject.Parse(res);
-                    if (jsonResponse["access_token"] != null)
-                    {
-                        tokentype = jsonResponse["token_type"].ToString();
-                        accesstoken = jsonResponse["access_token"].ToString();
-                    }
-                    User user = new User(tokentype, accesstoken);
-                    this.Hide();
-                    user.ShowDialog();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                // Handle error response
+                string error = await response.Content.ReadAsStringAsync();
+                // Do something with the error
             }
         }
 
-        private void btn_signup_Click(object sender, EventArgs e)
+        private async void btn_signup_Click(object sender, EventArgs e)
         {
-        }
+            HttpClient client = new HttpClient();
+            string url = "http://localhost:3000/api/user/register";
+            string username = tb_usename.Text;
+            string password = tb_password.Text;
+            string body = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}";
 
+            StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
 
-        public class formdata
-        {
-            public string from { get; set; }
-            public string to { get; set; }
-            public string message { get; set; }
-        }
+            HttpResponseMessage response = await client.PostAsync(url, content);
 
-        private async void btn_test_Click(object sender, EventArgs e)
-        {
-            try
+            if (response.IsSuccessStatusCode)
             {
-                formdata formData = new formdata
-                {
-                    from = "a",
-                    to = "b"
-                };
-
-                HttpContent content = new StringContent(JsonConvert.SerializeObject(formData), Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await httpClient.PostAsync("api/send-request", content);
+                // Handle successful response
+                string result = await response.Content.ReadAsStringAsync();
+                User user = new User(client);
+                user.Show();
+                MessageBox.Show(result);
+                // Do something with the result
             }
-            catch (Exception error)
+            else
             {
-                MessageBox.Show(error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Handle error response
+                string error = await response.Content.ReadAsStringAsync();
+                // Do something with the error
             }
         }
     }

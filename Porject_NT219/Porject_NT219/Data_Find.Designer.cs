@@ -28,21 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btn_refresh = new Button();
             btn_find = new Button();
             tb_find = new TextBox();
             flowLayoutPanel1 = new FlowLayoutPanel();
             SuspendLayout();
-            // 
-            // btn_refresh
-            // 
-            btn_refresh.Location = new Point(12, 12);
-            btn_refresh.Name = "btn_refresh";
-            btn_refresh.Size = new Size(143, 47);
-            btn_refresh.TabIndex = 0;
-            btn_refresh.Text = "Refresh";
-            btn_refresh.UseVisualStyleBackColor = true;
-            btn_refresh.Click += btn_refresh_Click;
             // 
             // btn_find
             // 
@@ -56,15 +45,15 @@
             // 
             // tb_find
             // 
-            tb_find.Location = new Point(161, 12);
+            tb_find.Location = new Point(12, 12);
             tb_find.Multiline = true;
             tb_find.Name = "tb_find";
-            tb_find.Size = new Size(956, 47);
+            tb_find.Size = new Size(1105, 47);
             tb_find.TabIndex = 2;
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.Location = new Point(-1, 65);
+            flowLayoutPanel1.Location = new Point(0, 65);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(1279, 620);
             flowLayoutPanel1.TabIndex = 5;
@@ -77,7 +66,6 @@
             Controls.Add(flowLayoutPanel1);
             Controls.Add(tb_find);
             Controls.Add(btn_find);
-            Controls.Add(btn_refresh);
             Name = "Data_Find";
             Text = "Data_Find";
             ResumeLayout(false);
@@ -85,8 +73,6 @@
         }
 
         #endregion
-
-        private Button btn_refresh;
         private Button btn_find;
         private TextBox tb_find;
         private FlowLayoutPanel flowLayoutPanel1;

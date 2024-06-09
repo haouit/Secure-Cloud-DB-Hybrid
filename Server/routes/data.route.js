@@ -4,15 +4,16 @@ const router = express.Router();
 
 router.post('/upload-data', (req, res) => {
     const { author, filename, content } = req.body;
-    if (!author || !filename || content) {
+    if (!author || !filename || !content) {
         return res.status(400).json({ error: 'Invalid data' });
     }
     const data = { author, filename, content };
     filesDB.insert(data, (err, newDoc) => {
         if (err) {
+            console.log(err);
             return res.status(500).json({ error: 'Failed to send request' });
         } else {
-            console.log('Upload data:', { from, filename });
+            console.log('Upload data:', { author, filename });
             return res.status(200).json({ success: true, dataId: newDoc._id });
         }
     });
@@ -38,7 +39,7 @@ router.get('/all/:user', (req, res) => {
     if (!user) {
         return res.status(400).json({ error: 'Invalid user' });
     }
-    filesDB.find({author: user}, (err, docs) => {
+    filesDB.find({ author: user }, (err, docs) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to retrieve data' });
         } else {

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             lb_nameuser = new Label();
-            lb_name = new Label();
+            lb_filename = new Label();
             lb_message = new Label();
             btn_request = new Button();
             label1 = new Label();
@@ -47,15 +47,15 @@
             lb_nameuser.TabIndex = 4;
             lb_nameuser.Text = "none";
             // 
-            // lb_name
+            // lb_filename
             // 
-            lb_name.AutoSize = true;
-            lb_name.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_name.Location = new Point(175, 46);
-            lb_name.Name = "lb_name";
-            lb_name.Size = new Size(69, 32);
-            lb_name.TabIndex = 5;
-            lb_name.Text = "none";
+            lb_filename.AutoSize = true;
+            lb_filename.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_filename.Location = new Point(175, 46);
+            lb_filename.Name = "lb_filename";
+            lb_filename.Size = new Size(69, 32);
+            lb_filename.TabIndex = 5;
+            lb_filename.Text = "none";
             // 
             // lb_message
             // 
@@ -70,7 +70,7 @@
             // btn_request
             // 
             btn_request.BackColor = Color.GreenYellow;
-            btn_request.Location = new Point(743, 39);
+            btn_request.Location = new Point(1076, 39);
             btn_request.Name = "btn_request";
             btn_request.Size = new Size(146, 51);
             btn_request.TabIndex = 9;
@@ -116,19 +116,19 @@
             Controls.Add(btn_request);
             Controls.Add(lb_message);
             Controls.Add(label4);
-            Controls.Add(lb_name);
+            Controls.Add(lb_filename);
             Controls.Add(lb_nameuser);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "datafind";
-            Size = new Size(950, 123);
+            Size = new Size(1268, 123);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
         private Label lb_nameuser;
-        private Label lb_name;
+        private Label lb_filename;
         private Label lb_message;
         private Button btn_request;
         private Label label1;

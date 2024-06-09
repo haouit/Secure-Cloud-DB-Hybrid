@@ -26,9 +26,9 @@ namespace NT219_FinalProject
         {
             lb_nameuser.Text = s;
         }
-        public void Setname(string s)
+        public void Setfilename(string s)
         {
-            lb_name.Text = s;
+            lb_filename.Text = s;
         }
         public void Setmessage(string s)
         {

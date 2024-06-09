@@ -15,6 +15,7 @@ using Microsoft.VisualBasic.ApplicationServices;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.WebUtilities;
 using MongoDB.Driver;
+using static NT219_FinalProject.User;
 
 namespace NT219_FinalProject
 {
@@ -63,6 +64,29 @@ namespace NT219_FinalProject
             public string status { get; set; }
         }
 
+        public List<FileResponse> file_sv { get; set; }
+
+        public class FileResponse
+        {
+            [JsonProperty("author")]
+            public string author { get; set; }
+
+            [JsonProperty("filename")]
+            public string filename { get; set; }
+
+            [JsonProperty("content")]
+            public string content { get; set; }
+        }
+
+        private void AddprogressbarData(string name_user, string filename, string message)
+        {
+            data_user data = new data_user(client, username);
+            data.Setnameuser(name_user);
+            data.Setfilename(filename);
+            data.Setmessage(message);
+            flowLayoutPanel1.Controls.Add(data);
+        }
+
         private void AddprogressbarRequest(string name_user, string name_request, string message)
         {
             Request data = new Request(client, username);
@@ -81,12 +105,36 @@ namespace NT219_FinalProject
             flowLayoutPanel3.Controls.Add(data);
         }
 
-        private void AddprogressbarMongo(string name_user, string message)
+        private async Task SendRequestData()
         {
-            data_user data = new data_user();
-            data.Setnameuser(name_user);
-            data.Setmessage(message);
-            flowLayoutPanel1.Controls.Add(data);
+            if (username == "") return;
+            string url = $"{BaseURL}/api/data/all/{username}";
+            HttpResponseMessage response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseContent = await response.Content.ReadAsStringAsync();
+                List<FileResponse>? responseObject = JsonConvert.DeserializeObject<List<FileResponse>>(responseContent);
+
+                //Xóa tất cả các controls trong flowLayoutPanel3
+                flowLayoutPanel1.Controls.Clear();
+
+                // Hiển thị dữ liệu mới từ phản hồi
+                if (responseObject != null)
+                {
+                    foreach (var file_response in responseObject)
+                    {
+                        try
+                        {
+                            string author = file_response.author;
+                            string filename = file_response.filename;
+                            string content = file_response.content;
+                            AddprogressbarData(author, filename, content);
+                        }
+                        catch { }
+                    }
+                }
+            }
         }
 
         private async Task SendCheckRequest()
@@ -159,7 +207,7 @@ namespace NT219_FinalProject
 
         private async void btn_refresh_Click(object sender, EventArgs e)
         {
-
+            await SendRequestData();
         }
 
         private async void btn_refreshrequest_Click(object sender, EventArgs e)

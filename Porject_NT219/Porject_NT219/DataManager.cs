@@ -84,7 +84,7 @@ namespace NT219_FinalProject
             byte[] encryptedData = aes.Encrypt(data, secret_key, iv);
             string data_send = Convert.ToBase64String(encryptedData);
             string url = $"{BaseURL}/api/data/upload-data";
-            string body = "{\"author\": \"" + username + "\", \"filename\": \"" + fileName + "\", \"content\": \"" + "data_send" + "\"}";
+            string body = "{\"author\": \"" + username + "\", \"filename\": \"" + fileName + "\", \"content\": \"" + data_send + "\"}";
             StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync(url, content);
 

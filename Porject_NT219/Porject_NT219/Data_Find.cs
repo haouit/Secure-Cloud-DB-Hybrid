@@ -28,28 +28,29 @@ namespace NT219_FinalProject
             InitializeComponent();
             client = Client;
             username = Username;
+            flowLayoutPanel1.AutoScroll = true;
         }
 
         public List<DataResponse> Data { get; set; }
 
         public class DataResponse
         {
-            [JsonProperty("from")]
-            public string from { get; set; }
+            [JsonProperty("author")]
+            public string author { get; set; }
 
-            [JsonProperty("name")]
-            public string name { get; set; }
+            [JsonProperty("filename")]
+            public string filename { get; set; }
 
-            [JsonProperty("message")]
-            public string message { get; set; }
+            [JsonProperty("content")]
+            public string content { get; set; }
         }
 
-        private void AddprogressbarFind(string name_user, string name, string message)
+        private void AddprogressbarFind(string author, string filename, string content)
         {
             datafind data = new datafind(client, username);
-            data.Setnameuser(name_user);
-            data.Setname(name);
-            data.Setmessage(message);
+            data.Setnameuser(author);
+            data.Setfilename(filename);
+            data.Setmessage(content);
             flowLayoutPanel1.Controls.Add(data);
         }
 
@@ -65,7 +66,7 @@ namespace NT219_FinalProject
                 string responseContent = await response.Content.ReadAsStringAsync();
                 List<DataResponse>? responseObject = JsonConvert.DeserializeObject<List<DataResponse>>(responseContent);
 
-                //Xóa tất cả các controls trong flowLayoutPanel3
+                //Xóa tất cả các controls trong flowLayoutPanel1
                 flowLayoutPanel1.Controls.Clear();
 
                 // Hiển thị dữ liệu mới từ phản hồi
@@ -75,10 +76,10 @@ namespace NT219_FinalProject
                     {
                         try
                         {
-                            string from = data_response.from;
-                            string name = data_response.name;
-                            string message = data_response.message;
-                            AddprogressbarFind(from, name, message);
+                            string author = data_response.author;
+                            string filename = data_response.filename;
+                            string content = data_response.content;
+                            AddprogressbarFind(author, filename, content);
                         }
                         catch { }
                     }
@@ -86,14 +87,9 @@ namespace NT219_FinalProject
             }
         }
 
-        private void btn_refresh_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_find_Click(object sender, EventArgs e)
         {
-
+            SendRequestFind();
         }
     }
 }

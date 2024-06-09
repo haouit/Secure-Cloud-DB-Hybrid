@@ -33,6 +33,8 @@
             btn_remove = new Button();
             lb_message = new Label();
             label4 = new Label();
+            lb_filename = new Label();
+            label3 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -70,7 +72,7 @@
             // 
             lb_message.AutoSize = true;
             lb_message.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_message.Location = new Point(135, 58);
+            lb_message.Location = new Point(130, 78);
             lb_message.Name = "lb_message";
             lb_message.Size = new Size(69, 32);
             lb_message.TabIndex = 11;
@@ -80,17 +82,39 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(29, 58);
+            label4.Location = new Point(24, 78);
             label4.Name = "label4";
             label4.Size = new Size(113, 32);
             label4.TabIndex = 10;
             label4.Text = "Message:";
+            // 
+            // lb_filename
+            // 
+            lb_filename.AutoSize = true;
+            lb_filename.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_filename.Location = new Point(143, 46);
+            lb_filename.Name = "lb_filename";
+            lb_filename.Size = new Size(69, 32);
+            lb_filename.TabIndex = 13;
+            lb_filename.Text = "none";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(24, 46);
+            label3.Name = "label3";
+            label3.Size = new Size(123, 32);
+            label3.TabIndex = 12;
+            label3.Text = "File name:";
             // 
             // data_user
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
+            Controls.Add(lb_filename);
+            Controls.Add(label3);
             Controls.Add(lb_message);
             Controls.Add(label4);
             Controls.Add(btn_remove);
@@ -108,5 +132,7 @@
         private Button btn_remove;
         private Label lb_message;
         private Label label4;
+        private Label lb_filename;
+        private Label label3;
     }
 }

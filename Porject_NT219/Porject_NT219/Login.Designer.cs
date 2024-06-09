@@ -39,53 +39,59 @@
             // 
             // tb_usename
             // 
-            tb_usename.Location = new Point(251, 140);
+            tb_usename.Location = new Point(176, 84);
+            tb_usename.Margin = new Padding(2, 2, 2, 2);
             tb_usename.Multiline = true;
             tb_usename.Name = "tb_usename";
-            tb_usename.Size = new Size(316, 39);
+            tb_usename.Size = new Size(222, 25);
             tb_usename.TabIndex = 0;
             // 
             // tb_password
             // 
-            tb_password.Location = new Point(251, 214);
+            tb_password.Location = new Point(176, 128);
+            tb_password.Margin = new Padding(2, 2, 2, 2);
             tb_password.Multiline = true;
             tb_password.Name = "tb_password";
-            tb_password.Size = new Size(316, 39);
+            tb_password.Size = new Size(222, 25);
             tb_password.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 22F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(338, 36);
+            label1.Location = new Point(237, 22);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(142, 60);
+            label1.Size = new Size(97, 41);
             label1.TabIndex = 2;
             label1.Text = "Login";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(251, 112);
+            label2.Location = new Point(176, 67);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(91, 25);
+            label2.Size = new Size(60, 15);
             label2.TabIndex = 3;
             label2.Text = "Username";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(251, 186);
+            label3.Location = new Point(176, 112);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(87, 25);
+            label3.Size = new Size(57, 15);
             label3.TabIndex = 4;
             label3.Text = "Password";
             // 
             // btn_signin
             // 
-            btn_signin.Location = new Point(417, 259);
+            btn_signin.Location = new Point(292, 155);
+            btn_signin.Margin = new Padding(2, 2, 2, 2);
             btn_signin.Name = "btn_signin";
-            btn_signin.Size = new Size(150, 34);
+            btn_signin.Size = new Size(105, 29);
             btn_signin.TabIndex = 5;
             btn_signin.Text = "Sign In";
             btn_signin.UseVisualStyleBackColor = true;
@@ -93,9 +99,10 @@
             // 
             // btn_signup
             // 
-            btn_signup.Location = new Point(251, 259);
+            btn_signup.Location = new Point(176, 155);
+            btn_signup.Margin = new Padding(2, 2, 2, 2);
             btn_signup.Name = "btn_signup";
-            btn_signup.Size = new Size(155, 34);
+            btn_signup.Size = new Size(108, 29);
             btn_signup.TabIndex = 7;
             btn_signup.Text = "Sign Up";
             btn_signup.UseVisualStyleBackColor = true;
@@ -104,9 +111,9 @@
             // Login
             // 
             AcceptButton = btn_signin;
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(811, 406);
+            ClientSize = new Size(568, 244);
             Controls.Add(btn_signup);
             Controls.Add(btn_signin);
             Controls.Add(label3);
@@ -114,6 +121,7 @@
             Controls.Add(label1);
             Controls.Add(tb_password);
             Controls.Add(tb_usename);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "Login";
             Text = "Login";
             ResumeLayout(false);

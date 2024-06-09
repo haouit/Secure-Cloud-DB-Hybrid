@@ -8,13 +8,16 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using NT219_FinalProject.Crypto;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace NT219_FinalProject
 {
     public partial class DataManager : Form
     {
+        const string BaseMongoURL = Config.BaseMongoDbURL;
         public DataManager()
         {
             InitializeComponent();
@@ -58,16 +61,61 @@ namespace NT219_FinalProject
             }
         }
 
-        private void btn_uploaddata_Click(object sender, EventArgs e)
+        private async void btn_uploaddata_Click(object sender, EventArgs e)
         {
-            //upload to server
+            if (!checkBox1.Checked || !checkBox2.Checked || !checkBox3.Checked)
+            {
+                MessageBox.Show("Please load data, key and iv");
+                return;
+            }
 
+            //upload to server
             AES_Prj aes = new AES_Prj();
             string fileName = lb_namefile.Text;
             byte[] encryptedData = aes.Encrypt(data, secret_key, iv);
 
+            //await InsertDataToMongo(fileName, encryptedData, tb_API.Text);
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Clear();
+                string dataBase64 = Convert.ToBase64String(data);
+
+                var document = new
+                {
+                    dataSource = "Cluster0",
+                    database = "crypt-cloud",
+                    collection = "files",
+                    document = new
+                    {
+                        filename = fileName,
+                        data = new
+                        {
+                            encrypted_data = dataBase64
+                        }
+                    }
+                };            
+
+                string body = JsonConvert.SerializeObject(document);
             
 
+                StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
+                content.Headers.Add("api-key", tb_API.Text);
+                content.Headers.Add("Accepted", "*/*");
+                HttpResponseMessage response = await client.PostAsync($"{BaseMongoURL}/action/insertOne", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Handle successful response
+                    string result = await response.Content.ReadAsStringAsync();
+                    // Do something with the result
+                }
+                else
+                {
+                    // Handle error response
+                    string error = await response.Content.ReadAsStringAsync();
+                    // Do something with the error
+                }
+            }
             checkBox1.Checked = false;
             checkBox2.Checked = false;
             checkBox3.Checked = false;

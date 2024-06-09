@@ -24,7 +24,7 @@ namespace NT219_FinalProject.Crypto
             }
         }
 
-        public byte[] Encrypt(byte[] data)
+        public byte[] Encrypt(byte[] data, RSAParameters publicKey)
         {
             using (RSA rsa = RSA.Create())
             {

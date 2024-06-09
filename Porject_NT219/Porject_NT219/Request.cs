@@ -9,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using NT219_FinalProject.Crypto;
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography;
 
 namespace NT219_FinalProject
 {
@@ -24,6 +27,8 @@ namespace NT219_FinalProject
             username = Username;
         }
 
+        string publickey;
+
         public void Setnamerequest(string s)
         {
             lb_namerequest.Text = s;
@@ -35,6 +40,7 @@ namespace NT219_FinalProject
         public void Setmessage(string s)
         {
             lb_message.Text = s;
+            publickey = s;
         }
 
         private async void btn_accept_Click(object sender, EventArgs e)
@@ -42,11 +48,17 @@ namespace NT219_FinalProject
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Secret Key Files (*.key)|*.key";
             openFileDialog.Title = "Select Secret Key File";
-
+            MessageBox.Show("Please select your secret key file");
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string secretKeyFilePath = openFileDialog.FileName;
+                byte[] secertkey = System.IO.File.ReadAllBytes(secretKeyFilePath);
 
+                RSA_Prj rsa = new RSA_Prj();
+
+                RSAParameters public_key = Convert.FromBase64String(publickey);
+
+                byte[] encrypted = rsa.Encrypt(secertkey, public_key);
 
                 string from = $"{lb_namerequest.Text}";
                 string to = $"{username}";

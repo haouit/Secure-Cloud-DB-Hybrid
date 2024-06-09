@@ -145,6 +145,8 @@ namespace NT219_FinalProject
 
         private static string rsaPublicKey;
         private static string rsaPrivateKey;
+        string publicKeyFilePath;
+        string privateKeyFilePath;
         RSA_Prj rsa = new RSA_Prj();
 
         private void btn_createpublickey_Click(object sender, EventArgs e)
@@ -157,10 +159,50 @@ namespace NT219_FinalProject
             rsaPrivateKey = keys[1];
             rb_privatekey.Text = rsaPrivateKey;
             rb_publickey.Text = rsaPublicKey;
+            checkBox1.Checked = true;
+            checkBox3.Checked = true;
         }
 
-        private void btn_configpublickey_Click(object sender, EventArgs e)
+        private void btn_loadprivate_Click(object sender, EventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "PEM Files (*.pem)|*.pem";
+            openFileDialog.Title = "Select Private Key File";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                privateKeyFilePath = openFileDialog.FileName;
+                rsaPrivateKey = File.ReadAllText(privateKeyFilePath);
+                rb_privatekey.Text = rsaPrivateKey;
+                checkBox1.Checked = true;
+                checkBox4.Checked = false;
+            }
+        }
+
+        private void btn_loadpublic_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "PEM Files (*.pem)|*.pem";
+            openFileDialog.Title = "Select Public Key File";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                publicKeyFilePath = openFileDialog.FileName;
+                rsaPublicKey = File.ReadAllText(publicKeyFilePath);
+                rb_publickey.Text = rsaPublicKey;
+                checkBox3.Checked = true;
+                checkBox4.Checked = false;
+            }
+        }
+
+        private void btn_config_Click(object sender, EventArgs e)
+        {
+            if (!checkBox1.Checked || !checkBox3.Checked)
+            {
+                MessageBox.Show("Please create or load a key pair first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            rsa.LoadKeyPair(publicKeyFilePath, privateKeyFilePath);
+            checkBox4.Checked = true;
         }
 
         private void btn_saveprivatekey_Click(object sender, EventArgs e)

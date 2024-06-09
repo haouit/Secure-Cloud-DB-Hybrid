@@ -30,13 +30,17 @@
         {
             tabshow = new TabControl();
             Key_setting = new TabPage();
+            checkBox4 = new CheckBox();
+            btn_config = new Button();
+            checkBox3 = new CheckBox();
+            btn_loadprivate = new Button();
             checkBox2 = new CheckBox();
             checkBox1 = new CheckBox();
             btn_saveprivatekey = new Button();
             label2 = new Label();
             rb_privatekey = new RichTextBox();
             btn_createpublickey = new Button();
-            btn_configpublickey = new Button();
+            btn_loadpublic = new Button();
             label1 = new Label();
             rb_publickey = new RichTextBox();
             list_data = new TabPage();
@@ -73,13 +77,17 @@
             // 
             // Key_setting
             // 
+            Key_setting.Controls.Add(checkBox4);
+            Key_setting.Controls.Add(btn_config);
+            Key_setting.Controls.Add(checkBox3);
+            Key_setting.Controls.Add(btn_loadprivate);
             Key_setting.Controls.Add(checkBox2);
             Key_setting.Controls.Add(checkBox1);
             Key_setting.Controls.Add(btn_saveprivatekey);
             Key_setting.Controls.Add(label2);
             Key_setting.Controls.Add(rb_privatekey);
             Key_setting.Controls.Add(btn_createpublickey);
-            Key_setting.Controls.Add(btn_configpublickey);
+            Key_setting.Controls.Add(btn_loadpublic);
             Key_setting.Controls.Add(label1);
             Key_setting.Controls.Add(rb_publickey);
             Key_setting.Location = new Point(4, 41);
@@ -88,6 +96,48 @@
             Key_setting.TabIndex = 3;
             Key_setting.Text = "Key Setting";
             Key_setting.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            checkBox4.AutoSize = true;
+            checkBox4.Enabled = false;
+            checkBox4.Location = new Point(876, 527);
+            checkBox4.Name = "checkBox4";
+            checkBox4.Size = new Size(22, 21);
+            checkBox4.TabIndex = 16;
+            checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // btn_config
+            // 
+            btn_config.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_config.Location = new Point(674, 503);
+            btn_config.Name = "btn_config";
+            btn_config.Size = new Size(196, 61);
+            btn_config.TabIndex = 15;
+            btn_config.Text = "Config Key";
+            btn_config.UseVisualStyleBackColor = true;
+            btn_config.Click += btn_config_Click;
+            // 
+            // checkBox3
+            // 
+            checkBox3.AutoSize = true;
+            checkBox3.Enabled = false;
+            checkBox3.Location = new Point(600, 527);
+            checkBox3.Name = "checkBox3";
+            checkBox3.Size = new Size(22, 21);
+            checkBox3.TabIndex = 14;
+            checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // btn_loadprivate
+            // 
+            btn_loadprivate.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_loadprivate.Location = new Point(326, 569);
+            btn_loadprivate.Name = "btn_loadprivate";
+            btn_loadprivate.Size = new Size(268, 61);
+            btn_loadprivate.TabIndex = 13;
+            btn_loadprivate.Text = "Load private key";
+            btn_loadprivate.UseVisualStyleBackColor = true;
+            btn_loadprivate.Click += btn_loadprivate_Click;
             // 
             // checkBox2
             // 
@@ -103,7 +153,7 @@
             // 
             checkBox1.AutoSize = true;
             checkBox1.Enabled = false;
-            checkBox1.Location = new Point(890, 528);
+            checkBox1.Location = new Point(600, 594);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(22, 21);
             checkBox1.TabIndex = 11;
@@ -149,16 +199,16 @@
             btn_createpublickey.UseVisualStyleBackColor = true;
             btn_createpublickey.Click += btn_createpublickey_Click;
             // 
-            // btn_configpublickey
+            // btn_loadpublic
             // 
-            btn_configpublickey.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_configpublickey.Location = new Point(580, 503);
-            btn_configpublickey.Name = "btn_configpublickey";
-            btn_configpublickey.Size = new Size(304, 61);
-            btn_configpublickey.TabIndex = 5;
-            btn_configpublickey.Text = "Config public key";
-            btn_configpublickey.UseVisualStyleBackColor = true;
-            btn_configpublickey.Click += btn_configpublickey_Click;
+            btn_loadpublic.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_loadpublic.Location = new Point(326, 502);
+            btn_loadpublic.Name = "btn_loadpublic";
+            btn_loadpublic.Size = new Size(268, 61);
+            btn_loadpublic.TabIndex = 5;
+            btn_loadpublic.Text = "Load public key";
+            btn_loadpublic.UseVisualStyleBackColor = true;
+            btn_loadpublic.Click += btn_loadpublic_Click;
             // 
             // label1
             // 
@@ -323,7 +373,7 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private TabPage Key_setting;
         private Button btn_createpublickey;
-        private Button btn_configpublickey;
+        private Button btn_loadpublic;
         private Label label1;
         private RichTextBox rb_publickey;
         private Button btn_refresh;
@@ -337,5 +387,9 @@
         private Button btn_saveprivatekey;
         private Label label2;
         private RichTextBox rb_privatekey;
+        private CheckBox checkBox3;
+        private Button btn_loadprivate;
+        private Button btn_config;
+        private CheckBox checkBox4;
     }
 }

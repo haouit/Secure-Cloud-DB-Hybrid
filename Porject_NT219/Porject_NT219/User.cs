@@ -59,13 +59,22 @@ namespace NT219_FinalProject
             public string status { get; set; }
         }
 
-        private void AddprogressbarData(string name_data, string name_user, string Id)
+        private void AddprogressbarRequest(string name_user, string name_request, string message)
         {
-            data_user data = new data_user();
-            data.Setname(name_data);
-            data.Setdataname(name_user);
-            data.Setdataid(Id);
-            flowLayoutPanel1.Controls.Add(data);
+            Request data = new Request(client);
+            data.Setnameuser(name_user);
+            data.Setnamerequest(name_request);
+            data.Setmessage(message);
+            flowLayoutPanel2.Controls.Add(data);
+        }
+
+        private void AddprogressbarAccpect(string name_user, string name_request, string message)
+        {
+            Accepted data = new Accepted();
+            data.Setnameuser(name_user);
+            data.Setnamerequest(name_request);
+            data.Setmessage(message);
+            flowLayoutPanel3.Controls.Add(data);
         }
 
         private async Task SendCheckRequest()
@@ -90,6 +99,7 @@ namespace NT219_FinalProject
                             string to = data_response.to;
                             string message = data_response.message;
                             string status = data_response.status;
+                            AddprogressbarRequest(to, from, message);
                         }
                         catch { }
                     }
@@ -107,24 +117,25 @@ namespace NT219_FinalProject
             if (response.IsSuccessStatusCode)
             {
                 string responseContent = await response.Content.ReadAsStringAsync();
-                DataResponse responseObject = JsonConvert.DeserializeObject<DataResponse>(responseContent);
+                List<DataResponse>? responseObject = JsonConvert.DeserializeObject<List<DataResponse>>(responseContent);
 
-                // Xóa tất cả các controls trong flowLayoutPanel1
+                //Xóa tất cả các controls trong flowLayoutPanel3
                 flowLayoutPanel3.Controls.Clear();
 
-                //// Hiển thị dữ liệu mới từ phản hồi
-                //foreach (var data_response in responseObject.Data)
-                //{
-                //    try
-                //    {
-                //        string id = data_response.Id;
-                //        string data_name = data_response.name_data;
-                //        string user_name = data_response.name_user;
-                //        // Thêm Hienthimonan vào flowLayoutPanel1 với các giá trị tương ứng
-                //        AddprogressbarAccept(id, data_name, user_name);
-                //    }
-                //    catch { }
-                //}
+                // Hiển thị dữ liệu mới từ phản hồi
+                foreach (var data_response in responseObject)
+                {
+                    try
+                    {
+                        string from = data_response.from;
+                        string to = data_response.to;
+                        string message = data_response.message;
+                        string status = data_response.status;
+                        // Thêm Hienthimonan vào flowLayoutPanel1 với các giá trị tương ứng
+                        AddprogressbarAccpect(to, from, message);
+                    }
+                    catch { }
+                }
             }
         }
 

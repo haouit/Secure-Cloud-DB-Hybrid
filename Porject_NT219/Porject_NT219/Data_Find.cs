@@ -24,29 +24,29 @@ namespace NT219_FinalProject
             client = Client;
         }
 
+        public List<DataResponse> Data { get; set; }
+
         public class DataResponse
         {
-            public List<Data_response> Data { get; set; }
-        }
+            [JsonProperty("from")]
+            public string from { get; set; }
 
-        public class Data_response
-        {
-            [JsonProperty("id")]
-            public string Id { get; set; }
+            [JsonProperty("to")]
+            public string to { get; set; }
 
-            [JsonProperty("name_data")]
-            public string name_data { get; set; }
+            [JsonProperty("message")]
+            public string message { get; set; }
 
-            [JsonProperty("name_user")]
-            public string name_user { get; set; }
+            [JsonProperty("status")]
+            public string status { get; set; }
         }
 
         private void AddprogressbarAccept(string name_data, string name_user, string Id)
         {
             datafind data = new datafind(client);
-            data.Setname(name_data);
-            data.Setdataname(name_user);
-            data.Setdataid(Id);
+            data.Setnameuser(name_user);
+            data.Setnamerequest(name_data);
+            data.Setmessage(Id);
             flowLayoutPanel1.Controls.Add(data);
         }
 

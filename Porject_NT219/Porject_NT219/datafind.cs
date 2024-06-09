@@ -19,17 +19,17 @@ namespace NT219_FinalProject
             client = Client;
         }
 
-        public void Setdataname(string s)
+        public void Setnamerequest(string s)
         {
-            lb_dataname.Text = s;
+            lb_namerequest.Text = s;
         }
-        public void Setname(string s)
+        public void Setnameuser(string s)
         {
-            lb_name.Text = s;
+            lb_nameuser.Text = s;
         }
-        public void Setdataid(string s)
+        public void Setmessage(string s)
         {
-            lb_dataid.Text = s;
+            lb_message.Text = s;
         }
 
         private async void btn_request_Click(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace NT219_FinalProject
             HttpClient client = new HttpClient();
             string url = "http://localhost:3000/api/send-request";
             string from = "a";
-            string to = $"{lb_name.Text}";
+            string to = $"{lb_nameuser.Text}";
             string message = "key encrypt";
             string body = "{\"from\": \"" + from + "\", \"to\": \"" + to + "\", \"message\": \"" + message + "\"}";
 

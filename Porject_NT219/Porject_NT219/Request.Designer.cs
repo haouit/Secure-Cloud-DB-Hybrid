@@ -30,9 +30,9 @@
         {
             label1 = new Label();
             label2 = new Label();
-            lb_name = new Label();
-            lb_dataname = new Label();
-            lb_dataid = new Label();
+            lb_nameuser = new Label();
+            lb_namerequest = new Label();
+            lb_message = new Label();
             label4 = new Label();
             btn_accept = new Button();
             btn_remove = new Button();
@@ -44,9 +44,9 @@
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(24, 14);
             label1.Name = "label1";
-            label1.Size = new Size(83, 32);
+            label1.Size = new Size(160, 32);
             label1.TabIndex = 2;
-            label1.Text = "Name:";
+            label1.Text = "Name Owner:";
             // 
             // label2
             // 
@@ -54,39 +54,39 @@
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(24, 46);
             label2.Name = "label2";
-            label2.Size = new Size(147, 32);
+            label2.Size = new Size(158, 32);
             label2.TabIndex = 3;
-            label2.Text = "Data Rquest:";
+            label2.Text = "User Request:";
             // 
-            // lb_name
+            // lb_nameuser
             // 
-            lb_name.AutoSize = true;
-            lb_name.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_name.Location = new Point(113, 14);
-            lb_name.Name = "lb_name";
-            lb_name.Size = new Size(69, 32);
-            lb_name.TabIndex = 4;
-            lb_name.Text = "none";
+            lb_nameuser.AutoSize = true;
+            lb_nameuser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_nameuser.Location = new Point(190, 14);
+            lb_nameuser.Name = "lb_nameuser";
+            lb_nameuser.Size = new Size(69, 32);
+            lb_nameuser.TabIndex = 4;
+            lb_nameuser.Text = "none";
             // 
-            // lb_dataname
+            // lb_namerequest
             // 
-            lb_dataname.AutoSize = true;
-            lb_dataname.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_dataname.Location = new Point(190, 46);
-            lb_dataname.Name = "lb_dataname";
-            lb_dataname.Size = new Size(69, 32);
-            lb_dataname.TabIndex = 5;
-            lb_dataname.Text = "none";
+            lb_namerequest.AutoSize = true;
+            lb_namerequest.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_namerequest.Location = new Point(175, 46);
+            lb_namerequest.Name = "lb_namerequest";
+            lb_namerequest.Size = new Size(69, 32);
+            lb_namerequest.TabIndex = 5;
+            lb_namerequest.Text = "none";
             // 
-            // lb_dataid
+            // lb_message
             // 
-            lb_dataid.AutoSize = true;
-            lb_dataid.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_dataid.Location = new Point(72, 78);
-            lb_dataid.Name = "lb_dataid";
-            lb_dataid.Size = new Size(69, 32);
-            lb_dataid.TabIndex = 7;
-            lb_dataid.Text = "none";
+            lb_message.AutoSize = true;
+            lb_message.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_message.Location = new Point(143, 78);
+            lb_message.Name = "lb_message";
+            lb_message.Size = new Size(69, 32);
+            lb_message.TabIndex = 7;
+            lb_message.Text = "none";
             // 
             // label4
             // 
@@ -94,9 +94,9 @@
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label4.Location = new Point(24, 78);
             label4.Name = "label4";
-            label4.Size = new Size(42, 32);
+            label4.Size = new Size(113, 32);
             label4.TabIndex = 6;
-            label4.Text = "ID:";
+            label4.Text = "Message:";
             // 
             // btn_accept
             // 
@@ -127,10 +127,10 @@
             BackColor = SystemColors.GradientInactiveCaption;
             Controls.Add(btn_remove);
             Controls.Add(btn_accept);
-            Controls.Add(lb_dataid);
+            Controls.Add(lb_message);
             Controls.Add(label4);
-            Controls.Add(lb_dataname);
-            Controls.Add(lb_name);
+            Controls.Add(lb_namerequest);
+            Controls.Add(lb_nameuser);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Request";
@@ -142,9 +142,9 @@
         #endregion
         private Label label1;
         private Label label2;
-        private Label lb_name;
-        private Label lb_dataname;
-        private Label lb_dataid;
+        private Label lb_nameuser;
+        private Label lb_namerequest;
+        private Label lb_message;
         private Label label4;
         private Button btn_accept;
         private Button btn_remove;

@@ -18,17 +18,18 @@ namespace NT219_FinalProject
         {
             InitializeComponent();
         }
-        public void Setdataname(string s)
+
+        public void Setnamerequest(string s)
         {
-            lb_dataname.Text = s;
+            lb_namerequest.Text = s;
         }
-        public void Setname(string s)
+        public void Setnameuser(string s)
         {
-            lb_name.Text = s;
+            lb_nameuser.Text = s;
         }
-        public void Setdataid(string s)
+        public void Setmessage(string s)
         {
-            lb_dataid.Text = s;
+            lb_message.Text = s;
         }
 
         private async void btn_accept_Click(object sender, EventArgs e)

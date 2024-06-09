@@ -24,7 +24,7 @@ namespace NT219_FinalProject.Crypto
             }
         }
 
-        public byte[] Encrypt(byte[] data, RSAParameters publicKey)
+        public byte[] Encrypt(byte[] data)
         {
             using (RSA rsa = RSA.Create())
             {
@@ -61,7 +61,7 @@ namespace NT219_FinalProject.Crypto
             privateKey = ImportPrivateKeyFromPem(File.ReadAllText(privateKeyPath));
         }
 
-        private static string ExportPublicKeyToPem(RSAParameters publicKey)
+        public static string ExportPublicKeyToPem(RSAParameters publicKey)
         {
             using (RSA rsa = RSA.Create())
             {
@@ -71,7 +71,7 @@ namespace NT219_FinalProject.Crypto
             }
         }
 
-        private static string ExportPrivateKeyToPem(RSAParameters privateKey)
+        public static string ExportPrivateKeyToPem(RSAParameters privateKey)
         {
             using (RSA rsa = RSA.Create())
             {
@@ -89,28 +89,31 @@ namespace NT219_FinalProject.Crypto
             builder.AppendLine($"-----END {keyType}-----");
             return builder.ToString();
         }
-        private static RSAParameters ImportPublicKeyFromPem(string publicKeyPem)
+        public RSAParameters ImportPublicKeyFromPem(string publicKeyPem)
         {
             using (RSA rsa = RSA.Create())
             {
                 byte[] publicKeyBytes = GetKeyBytesFromPem(publicKeyPem);
                 rsa.ImportRSAPublicKey(publicKeyBytes, out _);
+                publicKey = rsa.ExportParameters(false);
                 return rsa.ExportParameters(false);
             }
         }
 
-        private static RSAParameters ImportPrivateKeyFromPem(string privateKeyPem)
+        public RSAParameters ImportPrivateKeyFromPem(string privateKeyPem)
         {
             using (RSA rsa = RSA.Create())
             {
                 byte[] privateKeyBytes = GetKeyBytesFromPem(privateKeyPem);
                 rsa.ImportRSAPrivateKey(privateKeyBytes, out _);
+                privateKey = rsa.ExportParameters(true);
                 return rsa.ExportParameters(true);
             }
         }
 
-        private static byte[] GetKeyBytesFromPem(string pem)
+        public static byte[] GetKeyBytesFromPem(string pem)
         {
+            MessageBox.Show(pem);
             string[] lines = pem.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
             StringBuilder builder = new StringBuilder();
             foreach (string line in lines)
@@ -120,6 +123,7 @@ namespace NT219_FinalProject.Crypto
                     builder.Append(line);
                 }
             }
+            MessageBox.Show(builder.ToString());
             return Convert.FromBase64String(builder.ToString());
         }
     }

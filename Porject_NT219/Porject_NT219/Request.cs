@@ -46,7 +46,7 @@ namespace NT219_FinalProject
         private async void btn_accept_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Secret Key Files (*.key)|*.key";
+            openFileDialog.Filter = "Secret Key Files (*.bin)|*.bin";
             openFileDialog.Title = "Select Secret Key File";
             MessageBox.Show("Please select your secret key file");
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -55,14 +55,14 @@ namespace NT219_FinalProject
                 byte[] secertkey = System.IO.File.ReadAllBytes(secretKeyFilePath);
 
                 RSA_Prj rsa = new RSA_Prj();
-
-                RSAParameters public_key = Convert.FromBase64String(publickey);
-
-                byte[] encrypted = rsa.Encrypt(secertkey, public_key);
+                RSAParameters public_key = rsa.ImportPublicKeyFromPem(publickey);
+                MessageBox.Show(public_key.Exponent.Length.ToString());
+                byte[] encryptedSecretKey = rsa.Encrypt(secertkey);
+                string encryptedSecretKeyBase64 = Convert.ToBase64String(encryptedSecretKey);
 
                 string from = $"{lb_namerequest.Text}";
                 string to = $"{username}";
-                string message = "Key encrypted";
+                string message = encryptedSecretKeyBase64;
                 string status = "accepted";
                 string body = "{\"from\": \"" + from + "\", \"to\": \"" + to + "\", \"message\": \"" + message + "\", \"status\": \"" + status + "\"}";
 

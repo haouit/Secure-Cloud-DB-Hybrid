@@ -61,7 +61,7 @@ namespace NT219_FinalProject.Crypto
             privateKey = ImportPrivateKeyFromPem(File.ReadAllText(privateKeyPath));
         }
 
-        private string ExportPublicKeyToPem(RSAParameters publicKey)
+        private static string ExportPublicKeyToPem(RSAParameters publicKey)
         {
             using (RSA rsa = RSA.Create())
             {
@@ -71,7 +71,7 @@ namespace NT219_FinalProject.Crypto
             }
         }
 
-        private string ExportPrivateKeyToPem(RSAParameters privateKey)
+        private static string ExportPrivateKeyToPem(RSAParameters privateKey)
         {
             using (RSA rsa = RSA.Create())
             {

@@ -53,9 +53,11 @@ namespace NT219_FinalProject
             {
                 string secretKeyFilePath = openFileDialog.FileName;
                 byte[] secertkey = System.IO.File.ReadAllBytes(secretKeyFilePath);
+                byte[] publicKeyBytes = Convert.FromBase64String(publickey);
+                string publickeyPEM = Encoding.UTF8.GetString(publicKeyBytes);
 
                 RSA_Prj rsa = new RSA_Prj();
-                RSAParameters public_key = rsa.ImportPublicKeyFromPem(publickey);
+                RSAParameters public_key = rsa.ImportPublicKeyFromPem(publickeyPEM);
                 byte[] encryptedSecretKey = rsa.Encrypt(secertkey);
                 string encryptedSecretKeyBase64 = Convert.ToBase64String(encryptedSecretKey);
 

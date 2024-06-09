@@ -48,15 +48,11 @@ namespace NT219_FinalProject
                 byte[] publicKey = System.IO.File.ReadAllBytes(publicKeyFilePath);
                 string publicKeyPEM = System.Text.Encoding.UTF8.GetString(publicKey);
                 
-                /////////////////////////
-                MessageBox.Show(publicKeyPEM);
-                /////////////////////////
-                
-                HttpClient client = new HttpClient();
                 string from = $"{username}";
                 string to = $"{lb_nameuser.Text}";
                 string message = publicKeyPEM;
-                string body = "{\"from\": \"" + from + "\", \"to\": \"" + to + "\", \"message\": \"" + message + "\"}";
+                string messageBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(message));
+                string body = "{\"from\": \"" + from + "\", \"to\": \"" + to + "\", \"message\": \"" + messageBase64 + "\"}";
 
                 StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PostAsync($"{BaseURL}/api/communicate/send-request", content);

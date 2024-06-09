@@ -30,7 +30,7 @@
         {
             btn_refresh = new Button();
             btn_find = new Button();
-            textBox1 = new TextBox();
+            tb_find = new TextBox();
             flowLayoutPanel1 = new FlowLayoutPanel();
             SuspendLayout();
             // 
@@ -54,13 +54,13 @@
             btn_find.UseVisualStyleBackColor = true;
             btn_find.Click += btn_find_Click;
             // 
-            // textBox1
+            // tb_find
             // 
-            textBox1.Location = new Point(161, 12);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(956, 47);
-            textBox1.TabIndex = 2;
+            tb_find.Location = new Point(161, 12);
+            tb_find.Multiline = true;
+            tb_find.Name = "tb_find";
+            tb_find.Size = new Size(956, 47);
+            tb_find.TabIndex = 2;
             // 
             // flowLayoutPanel1
             // 
@@ -75,7 +75,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1278, 684);
             Controls.Add(flowLayoutPanel1);
-            Controls.Add(textBox1);
+            Controls.Add(tb_find);
             Controls.Add(btn_find);
             Controls.Add(btn_refresh);
             Name = "Data_Find";
@@ -88,7 +88,7 @@
 
         private Button btn_refresh;
         private Button btn_find;
-        private TextBox textBox1;
+        private TextBox tb_find;
         private FlowLayoutPanel flowLayoutPanel1;
     }
 }

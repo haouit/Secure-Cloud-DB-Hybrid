@@ -23,13 +23,13 @@ namespace NT219_FinalProject
             username = Username;
         }
 
-        public void Setnamerequest(string s)
-        {
-            lb_namerequest.Text = s;
-        }
         public void Setnameuser(string s)
         {
             lb_nameuser.Text = s;
+        }
+        public void Setname(string s)
+        {
+            lb_name.Text = s;
         }
         public void Setmessage(string s)
         {

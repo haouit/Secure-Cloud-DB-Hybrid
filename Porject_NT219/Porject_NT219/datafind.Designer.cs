@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             lb_nameuser = new Label();
-            lb_namerequest = new Label();
+            lb_name = new Label();
             lb_message = new Label();
             btn_request = new Button();
             label1 = new Label();
@@ -47,15 +47,15 @@
             lb_nameuser.TabIndex = 4;
             lb_nameuser.Text = "none";
             // 
-            // lb_namerequest
+            // lb_name
             // 
-            lb_namerequest.AutoSize = true;
-            lb_namerequest.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lb_namerequest.Location = new Point(175, 46);
-            lb_namerequest.Name = "lb_namerequest";
-            lb_namerequest.Size = new Size(69, 32);
-            lb_namerequest.TabIndex = 5;
-            lb_namerequest.Text = "none";
+            lb_name.AutoSize = true;
+            lb_name.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_name.Location = new Point(175, 46);
+            lb_name.Name = "lb_name";
+            lb_name.Size = new Size(69, 32);
+            lb_name.TabIndex = 5;
+            lb_name.Text = "none";
             // 
             // lb_message
             // 
@@ -116,7 +116,7 @@
             Controls.Add(btn_request);
             Controls.Add(lb_message);
             Controls.Add(label4);
-            Controls.Add(lb_namerequest);
+            Controls.Add(lb_name);
             Controls.Add(lb_nameuser);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -128,7 +128,7 @@
 
         #endregion
         private Label lb_nameuser;
-        private Label lb_namerequest;
+        private Label lb_name;
         private Label lb_message;
         private Button btn_request;
         private Label label1;

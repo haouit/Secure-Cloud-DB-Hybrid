@@ -21,13 +21,13 @@ namespace NT219_FinalProject
     {
         HttpClient client;
         string username;
-        MongoClient clientMongo;
-        public Data_Find(HttpClient Client, string Username, MongoClient Clientmongo)
+        const string BaseURL = Config.BaseURL;
+
+        public Data_Find(HttpClient Client, string Username)
         {
             InitializeComponent();
             client = Client;
             username = Username;
-            clientMongo = Clientmongo;
         }
 
         public List<DataResponse> Data { get; set; }
@@ -37,42 +37,53 @@ namespace NT219_FinalProject
             [JsonProperty("from")]
             public string from { get; set; }
 
-            [JsonProperty("to")]
-            public string to { get; set; }
+            [JsonProperty("name")]
+            public string name { get; set; }
 
             [JsonProperty("message")]
             public string message { get; set; }
-
-            [JsonProperty("status")]
-            public string status { get; set; }
         }
 
-        private void AddprogressbarAccept(string name_data, string name_user, string Id)
+        private void AddprogressbarFind(string name_user, string name, string message)
         {
             datafind data = new datafind(client, username);
             data.Setnameuser(name_user);
-            data.Setnamerequest(name_data);
-            data.Setmessage(Id);
+            data.Setname(name);
+            data.Setmessage(message);
             flowLayoutPanel1.Controls.Add(data);
         }
 
         private async Task SendRequestFind()
         {
-            flowLayoutPanel1.Controls.Clear();
+            if (username == "") return;
 
-            // Hiển thị dữ liệu mới từ phản hồi
-            //foreach (var data_response in Response form cloud)
-            //{
-            //    try
-            //    {
-            //        string id = data_response.Id;
-            //        string data_name = data_response.name_data;
-            //        string user_name = data_response.name_user;
-            //        // Thêm Hienthimonan vào flowLayoutPanel1 với các giá trị tương ứng
-            //        AddprogressbarAccept(id, data_name, user_name);
-            //    }
-            //    catch { }
-            //}
+            string url = $"{BaseURL}/api/data/all/{tb_find.Text}";
+            HttpResponseMessage response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseContent = await response.Content.ReadAsStringAsync();
+                List<DataResponse>? responseObject = JsonConvert.DeserializeObject<List<DataResponse>>(responseContent);
+
+                //Xóa tất cả các controls trong flowLayoutPanel3
+                flowLayoutPanel1.Controls.Clear();
+
+                // Hiển thị dữ liệu mới từ phản hồi
+                if (responseObject != null)
+                {
+                    foreach (var data_response in responseObject)
+                    {
+                        try
+                        {
+                            string from = data_response.from;
+                            string name = data_response.name;
+                            string message = data_response.message;
+                            AddprogressbarFind(from, name, message);
+                        }
+                        catch { }
+                    }
+                }
+            }
         }
 
         private void btn_refresh_Click(object sender, EventArgs e)

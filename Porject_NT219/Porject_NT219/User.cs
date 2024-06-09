@@ -22,15 +22,13 @@ namespace NT219_FinalProject
     {
         const string BaseURL = Config.BaseURL;
         HttpClient client;
-        MongoClient clientMongo;
         string username;
 
-        public User(HttpClient Client, string Username , MongoClient Clientmongo)
+        public User(HttpClient Client, string Username)
         {
             InitializeComponent();
             client = Client;
             username = Username;
-            clientMongo = Clientmongo;
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel2.AutoScroll = true;
             flowLayoutPanel3.AutoScroll = true;
@@ -38,7 +36,7 @@ namespace NT219_FinalProject
 
         private void btn_newdata_Click(object sender, EventArgs e)
         {
-            DataManager dataForm = new DataManager(client, username, clientMongo);
+            DataManager dataForm = new DataManager(client, username);
             dataForm.Show();
         }
 
@@ -176,40 +174,9 @@ namespace NT219_FinalProject
             }
         }
 
-        private async Task SendRequestMongo()
-        {
-            // refresh data from mongo
-            HttpResponseMessage response = null;
-            if (response.IsSuccessStatusCode)
-            {
-                string responseContent = await response.Content.ReadAsStringAsync();
-                List<DataResponse>? responseObject = JsonConvert.DeserializeObject<List<DataResponse>>(responseContent);
-
-                //Xóa tất cả các controls trong flowLayoutPanel3
-                flowLayoutPanel1.Controls.Clear();
-
-                // Hiển thị dữ liệu mới từ phản hồi
-                if (responseObject != null)
-                {
-                    foreach (var data_response in responseObject)
-                    {
-                        try
-                        {
-                            string from = data_response.from;
-                            string to = data_response.to;
-                            string message = data_response.message;
-                            string status = data_response.status;
-                            AddprogressbarMongo(to, message);
-                        }
-                        catch { }
-                    }
-                }
-            }
-        }
-
         private async void btn_refresh_Click(object sender, EventArgs e)
         {
-            SendRequestMongo();
+
         }
 
         private async void btn_refreshrequest_Click(object sender, EventArgs e)
@@ -301,7 +268,7 @@ namespace NT219_FinalProject
 
         private void btn_find_Click(object sender, EventArgs e)
         {
-            Data_Find data = new Data_Find(client, username, clientMongo);
+            Data_Find data = new Data_Find(client, username);
             data.Show();
         }
     }

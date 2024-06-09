@@ -55,7 +55,7 @@
             label2.Name = "label2";
             label2.Size = new Size(160, 32);
             label2.TabIndex = 3;
-            label2.Text = "Data Repuest:";
+            label2.Text = "Data Request:";
             // 
             // lb_name
             // 

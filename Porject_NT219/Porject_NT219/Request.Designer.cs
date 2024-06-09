@@ -54,9 +54,9 @@
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(24, 46);
             label2.Name = "label2";
-            label2.Size = new Size(160, 32);
+            label2.Size = new Size(147, 32);
             label2.TabIndex = 3;
-            label2.Text = "Data Repuest:";
+            label2.Text = "Data Rquest:";
             // 
             // lb_name
             // 

@@ -113,7 +113,6 @@ namespace NT219_FinalProject.Crypto
 
         public static byte[] GetKeyBytesFromPem(string pem)
         {
-            MessageBox.Show(pem);
             string[] lines = pem.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
             StringBuilder builder = new StringBuilder();
             foreach (string line in lines)
@@ -123,7 +122,6 @@ namespace NT219_FinalProject.Crypto
                     builder.Append(line);
                 }
             }
-            MessageBox.Show(builder.ToString());
             return Convert.FromBase64String(builder.ToString());
         }
     }

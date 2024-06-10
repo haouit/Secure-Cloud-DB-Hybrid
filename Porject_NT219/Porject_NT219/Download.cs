@@ -91,7 +91,9 @@ namespace NT219_FinalProject
 
                             byte[] decryptedData = aes.Decrypt(encryptedData, secretKey, secretIV);
 
-                            AddprogressbarData(author, filename, content);
+                            string rawData = Encoding.UTF8.GetString(decryptedData);
+
+                            AddprogressbarData(author, filename, rawData);
                         }
                         catch { }
                     }

@@ -19,6 +19,8 @@ namespace NT219_FinalProject
     {
         HttpClient client;
         string username;
+        string author;
+        string key;
         public Accepted(HttpClient Client, string Username)
         {
             InitializeComponent();
@@ -33,15 +35,17 @@ namespace NT219_FinalProject
         public void Setnameuser(string s)
         {
             lb_nameuser.Text = s;
+            author = s;
         }
         public void Setmessage(string s)
         {
             lb_key.Text = s;
+            key = s;
         }
 
         private void btn_download_Click(object sender, EventArgs e)
         {
-            Download download = new Download(client, username, lb_key.Text);
+            Download download = new Download(client, username, key, author);
             download.Show();
             //OpenFileDialog openFileDialog = new OpenFileDialog();
             //openFileDialog.Filter = "Private Key Files (*.pem)|*.pem";

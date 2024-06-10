@@ -105,7 +105,6 @@ namespace NT219_FinalProject
             {
                 // Handle successful response
                 string result = await response.Content.ReadAsStringAsync();
-                MessageBox.Show(result);
                 // Do something with the result
             }
             else

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static NT219_FinalProject.User;
 using Newtonsoft.Json;
+using NT219_FinalProject.Crypto;
+using SharpCompress.Common;
 
 namespace NT219_FinalProject
 {
@@ -18,13 +20,14 @@ namespace NT219_FinalProject
         HttpClient client;
         string username;
         string key;
-        public Download(HttpClient Client, string Username, string Key)
+        string author;
+        public Download(HttpClient Client, string Username, string Key, string Author)
         {
             InitializeComponent();
             client = Client;
             username = Username;
             key = Key;
-
+            author = Author;
             flowLayoutPanel1.AutoScroll = true;
         }
 
@@ -53,8 +56,7 @@ namespace NT219_FinalProject
 
         private async Task SendRequestData()
         {
-            if (username == "") return;
-            string url = $"{BaseURL}/api/data/all/{username}";
+            string url = $"{BaseURL}/api/data/all/{author}";
             HttpResponseMessage response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
@@ -75,8 +77,20 @@ namespace NT219_FinalProject
                             string author = file_response.author;
                             string filename = file_response.filename;
                             string content = file_response.content;
-                            /// dec here with key
-                            
+
+                            AES_Prj aes = new AES_Prj();
+                            byte[] encryptedData = Convert.FromBase64String(content);
+                            byte[] secretKeyIV = Convert.FromBase64String(key);
+                            byte[] secretKey = new byte[32];
+                            byte[] secretIV = new byte[16];
+
+                            File.WriteAllBytes("aaaaaa.bin", secretKey);
+
+                            Array.Copy(secretKeyIV, 0, secretKey, 0, 32);
+                            Array.Copy(secretKeyIV, 32, secretIV, 0, 16);
+
+                            byte[] decryptedData = aes.Decrypt(encryptedData, secretKey, secretIV);
+
                             AddprogressbarData(author, filename, content);
                         }
                         catch { }

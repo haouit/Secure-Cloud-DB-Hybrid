@@ -1,2 +1,13 @@
 {"author":"b","filename":"atest.txt","content":"ihAZ6/bnXcXUgZeQjKbEKQ==","_id":"byj4ONyd5Bah9m9p"}
+<<<<<<< HEAD
 {"author":"a","filename":"371546110_656804993205312_8232542454969708922_n.jpg","content":"data_send","_id":"sCVWMFm6gD7wexI0"}
+=======
+{"$$deleted":true,"_id":"UGPnZVOhnbjdyrBM"}
+{"$$deleted":true,"_id":"kaL8cjQy8mhYzVDW"}
+{"$$deleted":true,"_id":"h8onlxWVceGFrqKT"}
+{"author":"a","filename":"atest.txt","content":"ASyk0FuY/aKE","_id":"URw20i2WMcLL07mQ"}
+{"$$deleted":true,"_id":"URw20i2WMcLL07mQ"}
+{"$$deleted":true,"_id":"sCVWMFm6gD7wexI0"}
+{"$$deleted":true,"_id":"byj4ONyd5Bah9m9p"}
+{"author":"a","filename":"atest.txt","content":"ASyk0FuY/aKE","_id":"F6KQv5c4T9nGzoxP"}
+>>>>>>> a06cbf0b63ca656dfa9a8896bb0273b8bc47f2a9

@@ -18,7 +18,7 @@ namespace NT219_FinalProject.Crypto
             {
                 using (Aes aes = Aes.Create())
                 {
-                    aes.Mode = CipherMode.ECB;
+                    aes.Mode = CipherMode.CFB;
                     key = aes.Key;
                     iv = aes.IV;
                 }
@@ -39,7 +39,7 @@ namespace NT219_FinalProject.Crypto
             }
             using (Aes aes = Aes.Create())
             {
-                aes.Mode = CipherMode.ECB;
+                aes.Mode = CipherMode.CFB;
                 aes.Key = key;
                 aes.IV = iv;
                 aes.Padding = PaddingMode.PKCS7;
@@ -63,7 +63,7 @@ namespace NT219_FinalProject.Crypto
 
             using (Aes aes = Aes.Create())
             {
-                aes.Mode = CipherMode.ECB;
+                aes.Mode = CipherMode.CFB;
                 aes.Key = key;
                 aes.IV = iv;
                 aes.Padding = PaddingMode.PKCS7;
